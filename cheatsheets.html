@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheat Sheets — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html" class="active">Cheat Sheets</a></li>
+      <li><a href="notes.html">Study Notes</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="trace.html">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html">Scenarios</a></li>
+      <li><a href="guide.html">Exam Guide</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">📋</div>
+  <h1>Cheat Sheets</h1>
+  <p class="subtitle">Quick-reference cards for rapid revision. Tap a topic to switch.</p>
+</section>
+
+<main class="container">
+
+  <!-- TOPIC TABS -->
+  <div class="topic-tabs" role="tablist">
+    <button class="topic-tab" data-topic="1" data-active="true">1 · Input/Output</button>
+    <button class="topic-tab" data-topic="2">2 · Decisions</button>
+    <button class="topic-tab" data-topic="3">3 · Loops</button>
+    <button class="topic-tab" data-topic="4">4 · Functions</button>
+    <button class="topic-tab" data-topic="5">5 · Files/Except</button>
+    <button class="topic-tab" data-topic="6">6 · Lists/Tuples</button>
+    <button class="topic-tab" data-topic="7">7 · Database</button>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 1 ═══════════════════ -->
+  <div class="topic-panel active" id="topic-1">
+    <div class="topic-header">
+      <h3 style="color:var(--c-io);">📥 Input, Processing &amp; Output</h3>
+      <p>The three-step recipe every program follows</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>The IPO Model</h4>
+        <div class="analogy">🍳 A program is like a chef: <strong>Input</strong> = ingredients, <strong>Processing</strong> = cooking, <strong>Output</strong> = the dish.</div>
+        <div class="flow-diagram">
+          <span class="flow-box" style="background:rgba(255,107,53,0.15);color:var(--c-io);">INPUT</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-box" style="background:rgba(168,85,247,0.15);color:var(--c-function);">PROCESS</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-box" style="background:rgba(52,211,153,0.15);color:var(--c-list);">OUTPUT</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Variables &amp; Data Types</h4>
+<pre><span class="bi">name</span> = <span class="st">"Alice"</span>        <span class="cm"># str</span>
+<span class="bi">age</span>  = <span class="nb">21</span>             <span class="cm"># int</span>
+<span class="bi">gpa</span>  = <span class="nb">3.85</span>           <span class="cm"># float</span>
+<span class="bi">enrolled</span> = <span class="kw">True</span>      <span class="cm"># bool</span></pre>
+        <div class="tip-box"><strong>📝 Tip:</strong> Variable names are case-sensitive. <code>Age</code> ≠ <code>age</code>!</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Getting Input</h4>
+<pre><span class="cm"># input() always returns a string</span>
+<span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Name? "</span>)
+
+<span class="cm"># Convert for numbers:</span>
+<span class="bi">age</span>   = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+<span class="bi">price</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Price: "</span>))</pre>
+        <div class="warning-box"><strong>⚠️ #1 Mistake:</strong> Forgetting to convert! You can't do maths on strings.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Displaying Output</h4>
+<pre><span class="fn">print</span>(<span class="st">"Hello, World!"</span>)
+<span class="fn">print</span>(<span class="st">"Name:"</span>, <span class="bi">name</span>, <span class="st">"Age:"</span>, <span class="bi">age</span>)
+
+<span class="cm"># f-strings ⭐</span>
+<span class="fn">print</span>(<span class="st">f"Hello {name}, you are {age}."</span>)
+
+<span class="cm"># Format decimals</span>
+<span class="fn">print</span>(<span class="st">f"Total: R{price:.2f}"</span>)</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>Arithmetic Operators</h4>
+        <table class="mini-table">
+          <tr><th>Op</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td><code>+</code></td><td>Addition</td><td><code>5+3=8</code></td></tr>
+          <tr><td><code>-</code></td><td>Subtraction</td><td><code>10-4=6</code></td></tr>
+          <tr><td><code>*</code></td><td>Multiplication</td><td><code>3*7=21</code></td></tr>
+          <tr><td><code>/</code></td><td>Division</td><td><code>7/2=3.5</code></td></tr>
+          <tr><td><code>//</code></td><td>Floor div</td><td><code>7//2=3</code></td></tr>
+          <tr><td><code>%</code></td><td>Modulus</td><td><code>7%2=1</code></td></tr>
+          <tr><td><code>**</code></td><td>Exponent</td><td><code>2**3=8</code></td></tr>
+        </table>
+        <div class="tip-box"><strong>📝 Tip:</strong> <code>num % 2 == 0</code> means even!</div>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 Quick Example</h4>
+        <p>A shop gives a 15% discount. Ask for the original price, display discount and final price.</p>
+<pre><span class="bi">price</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Price: R"</span>))
+<span class="bi">discount</span> = <span class="bi">price</span> * <span class="nb">0.15</span>
+<span class="bi">final</span> = <span class="bi">price</span> - <span class="bi">discount</span>
+<span class="fn">print</span>(<span class="st">f"Discount: R{discount:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Final: R{final:.2f}"</span>)</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 2 ═══════════════════ -->
+  <div class="topic-panel" id="topic-2">
+    <div class="topic-header">
+      <h3 style="color:var(--c-decision);">🔀 Decision Structures &amp; Boolean Logic</h3>
+      <p>Teaching your program to make choices</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>What Is a Decision?</h4>
+        <div class="analogy">🚦 A decision is like a traffic light: check a <strong>condition</strong>, take different <strong>paths</strong> based on True/False.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>Comparison Operators</h4>
+        <table class="mini-table">
+          <tr><th>Op</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td><code>==</code></td><td>Equal</td><td><code>5==5 → True</code></td></tr>
+          <tr><td><code>!=</code></td><td>Not equal</td><td><code>5!=3 → True</code></td></tr>
+          <tr><td><code>&gt;</code></td><td>Greater</td><td><code>7&gt;3 → True</code></td></tr>
+          <tr><td><code>&lt;</code></td><td>Less</td><td><code>2&lt;9 → True</code></td></tr>
+          <tr><td><code>&gt;=</code></td><td>≥</td><td><code>5&gt;=5 → True</code></td></tr>
+          <tr><td><code>&lt;=</code></td><td>≤</td><td><code>3&lt;=4 → True</code></td></tr>
+        </table>
+        <div class="warning-box"><strong>⚠️ #1 Exam Mistake:</strong> <code>=</code> is assignment. <code>==</code> is comparison!</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>if / elif / else</h4>
+<pre><span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">18</span>:
+    <span class="fn">print</span>(<span class="st">"Can vote"</span>)
+<span class="kw">elif</span> <span class="bi">age</span> &gt;= <span class="nb">16</span>:
+    <span class="fn">print</span>(<span class="st">"Almost"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Too young"</span>)</pre>
+        <div class="tip-box"><strong>📝 Tip:</strong> Indentation (4 spaces) defines what's inside each block.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-concept">Logic</span>
+        <h4>Boolean Operators</h4>
+<pre><span class="cm"># and → BOTH true</span>
+<span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">18</span> <span class="kw">and</span> <span class="bi">has_id</span>:
+    <span class="fn">print</span>(<span class="st">"Entry allowed"</span>)
+
+<span class="cm"># or → at least ONE true</span>
+<span class="kw">if</span> <span class="bi">day</span> == <span class="st">"Sat"</span> <span class="kw">or</span> <span class="bi">day</span> == <span class="st">"Sun"</span>:
+    <span class="fn">print</span>(<span class="st">"Weekend!"</span>)
+
+<span class="cm"># not → flip True↔False</span>
+<span class="kw">if</span> <span class="kw">not</span> <span class="bi">raining</span>:
+    <span class="fn">print</span>(<span class="st">"Go outside"</span>)</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>Truth Table</h4>
+        <table class="mini-table">
+          <tr><th>A</th><th>B</th><th>A and B</th><th>A or B</th></tr>
+          <tr><td>T</td><td>T</td><td style="color:var(--easy);">T</td><td style="color:var(--easy);">T</td></tr>
+          <tr><td>T</td><td>F</td><td style="color:var(--hard);">F</td><td style="color:var(--easy);">T</td></tr>
+          <tr><td>F</td><td>T</td><td style="color:var(--hard);">F</td><td style="color:var(--easy);">T</td></tr>
+          <tr><td>F</td><td>F</td><td style="color:var(--hard);">F</td><td style="color:var(--hard);">F</td></tr>
+        </table>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 Cinema Pricing</h4>
+        <p>Children (&lt;12) = R45, Teens (12–17) = R65, Adults (18+) = R95. Seniors (60+) get R20 off.</p>
+<pre><span class="bi">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+<span class="kw">if</span> <span class="bi">age</span> &lt; <span class="nb">12</span>:
+    <span class="bi">price</span> = <span class="nb">45</span>
+<span class="kw">elif</span> <span class="bi">age</span> &lt;= <span class="nb">17</span>:
+    <span class="bi">price</span> = <span class="nb">65</span>
+<span class="kw">elif</span> <span class="bi">age</span> &gt;= <span class="nb">60</span>:
+    <span class="bi">price</span> = <span class="nb">75</span>  <span class="cm"># 95 - 20</span>
+<span class="kw">else</span>:
+    <span class="bi">price</span> = <span class="nb">95</span>
+<span class="fn">print</span>(<span class="st">f"Ticket: R{price}"</span>)</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 3 ═══════════════════ -->
+  <div class="topic-panel" id="topic-3">
+    <div class="topic-header">
+      <h3 style="color:var(--c-loop);">🔄 Repetition Structures</h3>
+      <p>Making the computer do the boring stuff over and over</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>Why Loops?</h4>
+        <div class="analogy">🏋️ Doing 100 push-ups: don't write 100 instructions. Say "do a push-up" and repeat 100 times.</div>
+        <ul>
+          <li><strong><code>while</code></strong> — repeats while condition is True</li>
+          <li><strong><code>for</code></strong> — repeats a fixed number of times</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>while Loop</h4>
+<pre><span class="bi">count</span> = <span class="nb">1</span>
+<span class="kw">while</span> <span class="bi">count</span> &lt;= <span class="nb">5</span>:
+    <span class="fn">print</span>(<span class="st">f"Count: {count}"</span>)
+    <span class="bi">count</span> += <span class="nb">1</span>  <span class="cm"># essential!</span></pre>
+        <div class="warning-box"><strong>⚠️ Infinite Loop Alert:</strong> Forget to update the counter and it runs forever!</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>for Loop &amp; range()</h4>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="fn">print</span>(<span class="bi">i</span>)        <span class="cm"># 0,1,2,3,4</span>
+
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">6</span>):
+    <span class="fn">print</span>(<span class="bi">i</span>)        <span class="cm"># 1,2,3,4,5</span>
+
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">0</span>, <span class="nb">10</span>, <span class="nb">2</span>):
+    <span class="fn">print</span>(<span class="bi">i</span>)        <span class="cm"># 0,2,4,6,8</span></pre>
+        <div class="tip-box"><strong>📝 Tip:</strong> <code>range()</code> never includes the stop value!</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-concept">Pattern</span>
+        <h4>Accumulator &amp; Counter</h4>
+<pre><span class="cm"># Running total</span>
+<span class="bi">total</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Number: "</span>))
+    <span class="bi">total</span> += <span class="bi">num</span>
+
+<span class="cm"># Counting matches</span>
+<span class="bi">passes</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">10</span>):
+    <span class="bi">mark</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Mark: "</span>))
+    <span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+        <span class="bi">passes</span> += <span class="nb">1</span></pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Sentinel Loop</h4>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Num (-1 to quit): "</span>))
+<span class="kw">while</span> <span class="bi">num</span> != -<span class="nb">1</span>:
+    <span class="bi">total</span> += <span class="bi">num</span>
+    <span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Num (-1 to quit): "</span>))
+<span class="fn">print</span>(<span class="st">f"Total: {total}"</span>)</pre>
+        <div class="key-box"><strong>🔑 Pattern:</strong> <code>input()</code> appears TWICE (priming read + inside loop).</div>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 Class Marks</h4>
+        <p>Enter marks for 10 students. Display average AND how many scored above 75.</p>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="bi">above_75</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">10</span>):
+    <span class="bi">mark</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Student {i+1}: "</span>))
+    <span class="bi">total</span> += <span class="bi">mark</span>
+    <span class="kw">if</span> <span class="bi">mark</span> &gt; <span class="nb">75</span>:
+        <span class="bi">above_75</span> += <span class="nb">1</span>
+<span class="fn">print</span>(<span class="st">f"Average: {total/10:.1f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Above 75: {above_75}"</span>)</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 4 ═══════════════════ -->
+  <div class="topic-panel" id="topic-4">
+    <div class="topic-header">
+      <h3 style="color:var(--c-function);">🧩 Functions</h3>
+      <p>Write once, use anywhere — your reusable code blocks</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>What Is a Function?</h4>
+        <div class="analogy">🧃 A juice machine: fruit in (arguments), squeeze (processing), juice out (return value). Same machine, used many times.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Define &amp; Call</h4>
+<pre><span class="cm"># Define (the recipe)</span>
+<span class="kw">def</span> <span class="fn">greet</span>(<span class="bi">name</span>):
+    <span class="fn">print</span>(<span class="st">f"Hello, {name}!"</span>)
+
+<span class="cm"># Call (use the recipe)</span>
+<span class="fn">greet</span>(<span class="st">"Alice"</span>)
+<span class="fn">greet</span>(<span class="st">"Bob"</span>)</pre>
+        <div class="flow-diagram">
+          <span class="flow-box" style="background:rgba(255,107,53,0.15);color:var(--c-io);">def = DEFINE</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-box" style="background:rgba(52,211,153,0.15);color:var(--c-list);">return = OUTPUT</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Parameters vs Arguments</h4>
+<pre><span class="kw">def</span> <span class="fn">add</span>(<span class="bi">a</span>, <span class="bi">b</span>):    <span class="cm"># a,b = PARAMETERS</span>
+    <span class="kw">return</span> <span class="bi">a</span> + <span class="bi">b</span>
+
+<span class="bi">result</span> = <span class="fn">add</span>(<span class="nb">3</span>, <span class="nb">7</span>)  <span class="cm"># 3,7 = ARGUMENTS</span>
+<span class="fn">print</span>(<span class="bi">result</span>)       <span class="cm"># 10</span></pre>
+        <div class="tip-box"><strong>📝 Memory Trick:</strong> <strong>P</strong>arameter = <strong>P</strong>laceholder, <strong>A</strong>rgument = <strong>A</strong>ctual value.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-concept">Logic</span>
+        <h4>return vs print</h4>
+<pre><span class="cm"># ❌ Shows, doesn't give back</span>
+<span class="kw">def</span> <span class="fn">area_bad</span>(<span class="bi">r</span>):
+    <span class="fn">print</span>(<span class="nb">3.14</span> * <span class="bi">r</span> ** <span class="nb">2</span>)
+
+<span class="cm"># ✅ Gives value for reuse</span>
+<span class="kw">def</span> <span class="fn">area</span>(<span class="bi">r</span>):
+    <span class="kw">return</span> <span class="nb">3.14</span> * <span class="bi">r</span> ** <span class="nb">2</span>
+
+<span class="bi">a</span> = <span class="fn">area</span>(<span class="nb">5</span>)       <span class="cm"># store</span>
+<span class="bi">d</span> = <span class="fn">area</span>(<span class="nb">5</span>) * <span class="nb">2</span>   <span class="cm"># use in math</span></pre>
+        <div class="warning-box"><strong>⚠️ Key:</strong> Question says "calculate/return" → use <code>return</code>. Says "display" → use <code>print()</code>.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-concept">Logic</span>
+        <h4>Variable Scope</h4>
+<pre><span class="kw">def</span> <span class="fn">my_fn</span>():
+    <span class="bi">secret</span> = <span class="nb">42</span>    <span class="cm"># LOCAL</span>
+    <span class="fn">print</span>(<span class="bi">secret</span>)   <span class="cm"># ✅ works</span>
+
+<span class="fn">my_fn</span>()
+<span class="fn">print</span>(<span class="bi">secret</span>)       <span class="cm"># ❌ ERROR!</span></pre>
+        <div class="analogy">🏠 Local = items inside a house. They don't exist on the street (main program).</div>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 BMI Calculator</h4>
+        <p>Function <code>calculate_bmi(weight, height)</code> returns BMI. Main program displays category.</p>
+<pre><span class="kw">def</span> <span class="fn">calculate_bmi</span>(<span class="bi">weight</span>, <span class="bi">height</span>):
+    <span class="kw">return</span> <span class="bi">weight</span> / (<span class="bi">height</span> ** <span class="nb">2</span>)
+
+<span class="bi">w</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Weight (kg): "</span>))
+<span class="bi">h</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Height (m): "</span>))
+<span class="bi">bmi</span> = <span class="fn">calculate_bmi</span>(<span class="bi">w</span>, <span class="bi">h</span>)
+
+<span class="kw">if</span> <span class="bi">bmi</span> &lt; <span class="nb">18.5</span>:   <span class="fn">print</span>(<span class="st">"Underweight"</span>)
+<span class="kw">elif</span> <span class="bi">bmi</span> &lt;= <span class="nb">24.9</span>: <span class="fn">print</span>(<span class="st">"Normal"</span>)
+<span class="kw">else</span>:               <span class="fn">print</span>(<span class="st">"Overweight"</span>)</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 5: FILES & EXCEPTIONS ═══════════════════ -->
+  <div class="topic-panel" id="topic-5">
+    <div class="topic-header">
+      <h3 style="color:var(--c-file);">📁 Files &amp; Exceptions</h3>
+      <p>Reading/writing files and handling errors gracefully</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>Why Files?</h4>
+        <div class="analogy">💾 Variables vanish when the program ends. Files are like a filing cabinet — your data stays even after you close the program.</div>
+        <p>Files let you save data permanently: scores, settings, records, logs — anything that should survive between runs.</p>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Writing to a File</h4>
+<pre><span class="cm"># Open, write, close</span>
+<span class="bi">file</span> = <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>)
+<span class="bi">file</span>.<span class="fn">write</span>(<span class="st">"Hello!\n"</span>)
+<span class="bi">file</span>.<span class="fn">write</span>(<span class="st">"Line 2\n"</span>)
+<span class="bi">file</span>.<span class="fn">close</span>()
+
+<span class="cm"># Better — with statement (auto-closes)</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Hello!\n"</span>)</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Reading from a File</h4>
+<pre><span class="cm"># Read entire file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">content</span> = <span class="bi">f</span>.<span class="fn">read</span>()
+<span class="fn">print</span>(<span class="bi">content</span>)
+
+<span class="cm"># Read line by line</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+        <span class="fn">print</span>(<span class="bi">line</span>.<span class="fn">strip</span>())</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>File Modes</h4>
+        <table class="mini-table">
+          <tr><th>Mode</th><th>Meaning</th><th>If file exists</th></tr>
+          <tr><td><code>"r"</code></td><td>Read</td><td>Opens it</td></tr>
+          <tr><td><code>"w"</code></td><td>Write</td><td>⚠️ Erases contents!</td></tr>
+          <tr><td><code>"a"</code></td><td>Append</td><td>Adds to end</td></tr>
+          <tr><td><code>"r+"</code></td><td>Read+Write</td><td>Opens it</td></tr>
+        </table>
+        <div class="warning-box"><strong>⚠️ Warning:</strong> <code>"w"</code> mode wipes the file! Use <code>"a"</code> to add to an existing file.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>What Is an Exception?</h4>
+        <div class="analogy">💥 An exception is like a tripwire. When something goes wrong (bad input, missing file, divide by zero), Python raises an exception. Without a "safety net", your program crashes.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>try / except</h4>
+<pre><span class="kw">try</span>:
+    <span class="bi">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+    <span class="fn">print</span>(<span class="st">f"You are {age}"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Please enter a number!"</span>)
+
+<span class="cm"># Multiple exceptions</span>
+<span class="kw">try</span>:
+    <span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Num: "</span>))
+    <span class="bi">result</span> = <span class="nb">100</span> / <span class="bi">num</span>
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Not a number"</span>)
+<span class="kw">except</span> <span class="fn">ZeroDivisionError</span>:
+    <span class="fn">print</span>(<span class="st">"Cannot divide by zero"</span>)</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>Common Exceptions</h4>
+        <table class="mini-table">
+          <tr><th>Exception</th><th>Triggered by</th></tr>
+          <tr><td><code>ValueError</code></td><td><code>int("abc")</code></td></tr>
+          <tr><td><code>ZeroDivisionError</code></td><td><code>5 / 0</code></td></tr>
+          <tr><td><code>FileNotFoundError</code></td><td>Opening missing file</td></tr>
+          <tr><td><code>IndexError</code></td><td><code>list[99]</code> out of range</td></tr>
+          <tr><td><code>KeyError</code></td><td>Missing dict key</td></tr>
+          <tr><td><code>TypeError</code></td><td><code>"5" + 3</code></td></tr>
+          <tr><td><code>NameError</code></td><td>Using undefined variable</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>try / except / else / finally</h4>
+<pre><span class="kw">try</span>:
+    <span class="bi">f</span> = <span class="fn">open</span>(<span class="st">"data.txt"</span>, <span class="st">"r"</span>)
+    <span class="bi">data</span> = <span class="bi">f</span>.<span class="fn">read</span>()
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"File missing"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Read OK"</span>)     <span class="cm"># if no error</span>
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="st">"Done"</span>)        <span class="cm"># always runs</span></pre>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 Safe Score Saver</h4>
+        <p>Ask for player name and score. Save to a file. Handle invalid number input.</p>
+<pre><span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+<span class="kw">try</span>:
+    <span class="bi">score</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Score: "</span>))
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"scores.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">f"{name},{score}\n"</span>)
+    <span class="fn">print</span>(<span class="st">"Saved!"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Score must be a number"</span>)</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 6: LISTS & TUPLES ═══════════════════ -->
+  <div class="topic-panel" id="topic-6">
+    <div class="topic-header">
+      <h3 style="color:var(--c-list);">📋 Lists &amp; Tuples</h3>
+      <p>Storing collections of data</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>What Is a List?</h4>
+        <div class="analogy">🚃 A list is like a train — each carriage has a number (index) and holds something. You can add, remove, and rearrange carriages anytime.</div>
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="bi">scores</span> = [<span class="nb">85</span>, <span class="nb">92</span>, <span class="nb">78</span>, <span class="nb">90</span>]
+<span class="bi">mixed</span>  = [<span class="st">"Alice"</span>, <span class="nb">21</span>, <span class="kw">True</span>]
+<span class="bi">empty</span>  = []</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Indexing &amp; Slicing</h4>
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+<span class="fn">print</span>(<span class="bi">fruits</span>[<span class="nb">0</span>])    <span class="cm"># apple (first)</span>
+<span class="fn">print</span>(<span class="bi">fruits</span>[<span class="nb">2</span>])    <span class="cm"># cherry</span>
+<span class="fn">print</span>(<span class="bi">fruits</span>[-<span class="nb">1</span>])   <span class="cm"># cherry (last)</span>
+
+<span class="cm"># Slicing [start:stop]</span>
+<span class="fn">print</span>(<span class="bi">fruits</span>[<span class="nb">0</span>:<span class="nb">2</span>])  <span class="cm"># ['apple','banana']
+# Note: stop index NOT included</span></pre>
+        <div class="tip-box"><strong>📝 Tip:</strong> Indexing starts at <code>0</code>, not 1. Negative indexes count from the end.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Modifying Lists</h4>
+<pre><span class="bi">scores</span> = [<span class="nb">85</span>, <span class="nb">92</span>, <span class="nb">78</span>]
+
+<span class="bi">scores</span>[<span class="nb">0</span>] = <span class="nb">100</span>          <span class="cm"># change</span>
+<span class="bi">scores</span>.<span class="fn">append</span>(<span class="nb">95</span>)         <span class="cm"># add to end</span>
+<span class="bi">scores</span>.<span class="fn">insert</span>(<span class="nb">1</span>, <span class="nb">88</span>)      <span class="cm"># add at index</span>
+<span class="bi">scores</span>.<span class="fn">remove</span>(<span class="nb">78</span>)         <span class="cm"># delete value</span>
+<span class="bi">last</span> = <span class="bi">scores</span>.<span class="fn">pop</span>()       <span class="cm"># remove &amp; return last</span></pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>Common List Methods</h4>
+        <table class="mini-table">
+          <tr><th>Method</th><th>What it does</th></tr>
+          <tr><td><code>append(x)</code></td><td>Add x to end</td></tr>
+          <tr><td><code>insert(i,x)</code></td><td>Add x at index i</td></tr>
+          <tr><td><code>remove(x)</code></td><td>Remove first x</td></tr>
+          <tr><td><code>pop()</code></td><td>Remove &amp; return last</td></tr>
+          <tr><td><code>sort()</code></td><td>Sort in place</td></tr>
+          <tr><td><code>reverse()</code></td><td>Reverse order</td></tr>
+          <tr><td><code>index(x)</code></td><td>Find position of x</td></tr>
+          <tr><td><code>count(x)</code></td><td>How many x in list</td></tr>
+          <tr><td><code>len(list)</code></td><td>Number of items</td></tr>
+          <tr><td><code>sum/min/max</code></td><td>Total / smallest / largest</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Looping Through Lists</h4>
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+<span class="cm"># Simple for loop</span>
+<span class="kw">for</span> <span class="bi">fruit</span> <span class="kw">in</span> <span class="bi">fruits</span>:
+    <span class="fn">print</span>(<span class="bi">fruit</span>)
+
+<span class="cm"># With index using enumerate</span>
+<span class="kw">for</span> <span class="bi">i</span>, <span class="bi">fruit</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="bi">fruits</span>):
+    <span class="fn">print</span>(<span class="st">f"{i}: {fruit}"</span>)
+
+<span class="cm"># Check membership</span>
+<span class="kw">if</span> <span class="st">"apple"</span> <span class="kw">in</span> <span class="bi">fruits</span>:
+    <span class="fn">print</span>(<span class="st">"Found it!"</span>)</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>Tuples — Like Lists, but Locked</h4>
+<pre><span class="cm"># Tuple uses () instead of []</span>
+<span class="bi">point</span> = (<span class="nb">10</span>, <span class="nb">20</span>)
+<span class="bi">colors</span> = (<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>)
+
+<span class="fn">print</span>(<span class="bi">point</span>[<span class="nb">0</span>])    <span class="cm"># 10 (indexing works)</span>
+
+<span class="bi">point</span>[<span class="nb">0</span>] = <span class="nb">5</span>       <span class="cm"># ❌ ERROR! Can't change</span>
+
+<span class="cm"># Tuple unpacking</span>
+<span class="bi">x</span>, <span class="bi">y</span> = <span class="bi">point</span>      <span class="cm"># x=10, y=20</span></pre>
+        <div class="key-box"><strong>🔑 Lists vs Tuples:</strong> Lists = changeable (<code>[]</code>). Tuples = fixed (<code>()</code>). Use tuples for data that shouldn't change: coordinates, RGB colors, dates.</div>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 Score Analyzer</h4>
+        <p>Ask for 5 scores, store in a list, then display: highest, lowest, average, and total count above 80.</p>
+<pre><span class="bi">scores</span> = []
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="bi">s</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">f"Score {i+1}: "</span>))
+    <span class="bi">scores</span>.<span class="fn">append</span>(<span class="bi">s</span>)
+
+<span class="fn">print</span>(<span class="st">f"Highest: {max(scores)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Lowest:  {min(scores)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Average: {sum(scores)/len(scores):.1f}"</span>)
+
+<span class="bi">above_80</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">s</span> <span class="kw">in</span> <span class="bi">scores</span>:
+    <span class="kw">if</span> <span class="bi">s</span> &gt; <span class="nb">80</span>:
+        <span class="bi">above_80</span> += <span class="nb">1</span>
+<span class="fn">print</span>(<span class="st">f"Above 80: {above_80}"</span>)</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 7: DATABASE ═══════════════════ -->
+  <div class="topic-panel" id="topic-7">
+    <div class="topic-header">
+      <h3 style="color:var(--c-db);">🗄️ Database Programming (SQLite)</h3>
+      <p>Storing and querying structured data</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-label label-concept">Core Concept</span>
+        <h4>What Is a Database?</h4>
+        <div class="analogy">📚 A database is like a super-organised filing system. Instead of one messy file, data is stored in tables (spreadsheets) with rows and columns. You ask questions (queries) to get back exactly what you need.</div>
+        <p>SQLite is a lightweight database that comes built into Python — no installation needed!</p>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Connecting to a Database</h4>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="cm"># Connect (creates file if missing)</span>
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"school.db"</span>)
+
+<span class="cm"># Cursor — your helper to run SQL</span>
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+
+<span class="cm"># ... do stuff ...</span>
+
+<span class="bi">conn</span>.<span class="fn">commit</span>()   <span class="cm"># save changes</span>
+<span class="bi">conn</span>.<span class="fn">close</span>()    <span class="cm"># disconnect</span></pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>Creating a Table</h4>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        age INTEGER,
+        grade REAL
+    )
+"""</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+        <div class="tip-box"><strong>📝 Tip:</strong> <code>PRIMARY KEY</code> auto-assigns a unique ID. <code>IF NOT EXISTS</code> prevents errors if the table already exists.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>INSERT — Adding Data</h4>
+<pre><span class="cm"># Using ? placeholders (SAFE way)</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"INSERT INTO students (name, age, grade) VALUES (?, ?, ?)"</span>,
+    (<span class="st">"Alice"</span>, <span class="nb">20</span>, <span class="nb">85.5</span>)
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># Inserting many rows</span>
+<span class="bi">students</span> = [
+    (<span class="st">"Bob"</span>, <span class="nb">21</span>, <span class="nb">78.0</span>),
+    (<span class="st">"Cara"</span>, <span class="nb">19</span>, <span class="nb">92.3</span>)
+]
+<span class="bi">cur</span>.<span class="fn">executemany</span>(
+    <span class="st">"INSERT INTO students (name, age, grade) VALUES (?, ?, ?)"</span>,
+    <span class="bi">students</span>
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>SELECT — Reading Data</h4>
+<pre><span class="cm"># Get all rows</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students"</span>)
+<span class="bi">rows</span> = <span class="bi">cur</span>.<span class="fn">fetchall</span>()
+<span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">rows</span>:
+    <span class="fn">print</span>(<span class="bi">row</span>)
+
+<span class="cm"># Get one row</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students WHERE id=?"</span>, (<span class="nb">1</span>,))
+<span class="bi">one</span> = <span class="bi">cur</span>.<span class="fn">fetchone</span>()
+
+<span class="cm"># Specific columns + condition</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"SELECT name, grade FROM students WHERE grade &gt; ?"</span>,
+    (<span class="nb">80</span>,)
+)
+<span class="kw">for</span> <span class="bi">name</span>, <span class="bi">grade</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="st">f"{name}: {grade}"</span>)</pre>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-syntax">Syntax</span>
+        <h4>UPDATE &amp; DELETE</h4>
+<pre><span class="cm"># UPDATE — change existing rows</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"UPDATE students SET grade=? WHERE name=?"</span>,
+    (<span class="nb">95.0</span>, <span class="st">"Alice"</span>)
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># DELETE — remove rows</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"DELETE FROM students WHERE age &lt; ?"</span>,
+    (<span class="nb">18</span>,)
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+        <div class="warning-box"><strong>⚠️ Danger:</strong> <code>DELETE</code> or <code>UPDATE</code> without a <code>WHERE</code> clause affects EVERY row!</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>CRUD — The 4 Operations</h4>
+        <table class="mini-table">
+          <tr><th>Letter</th><th>Operation</th><th>SQL Keyword</th></tr>
+          <tr><td><strong>C</strong></td><td>Create</td><td><code>INSERT</code></td></tr>
+          <tr><td><strong>R</strong></td><td>Read</td><td><code>SELECT</code></td></tr>
+          <tr><td><strong>U</strong></td><td>Update</td><td><code>UPDATE</code></td></tr>
+          <tr><td><strong>D</strong></td><td>Delete</td><td><code>DELETE</code></td></tr>
+        </table>
+        <div class="key-box"><strong>🔑 Remember:</strong> Every database program does some combination of CRUD.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-label label-tip">Reference</span>
+        <h4>SQLite Data Types</h4>
+        <table class="mini-table">
+          <tr><th>SQL Type</th><th>Python Type</th><th>Use For</th></tr>
+          <tr><td><code>INTEGER</code></td><td>int</td><td>Whole numbers, IDs</td></tr>
+          <tr><td><code>REAL</code></td><td>float</td><td>Decimals, prices</td></tr>
+          <tr><td><code>TEXT</code></td><td>str</td><td>Names, descriptions</td></tr>
+          <tr><td><code>BLOB</code></td><td>bytes</td><td>Files, images</td></tr>
+          <tr><td><code>NULL</code></td><td>None</td><td>Missing data</td></tr>
+        </table>
+      </div>
+
+      <div class="card span-2">
+        <span class="card-label label-exam">Exam Practice</span>
+        <h4>🎯 Student Marks System</h4>
+        <p>Create a database with a students table. Add 3 students. Display all students whose grade is ≥ 80.</p>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"school.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY, name TEXT, grade REAL)"""</span>)
+
+<span class="cm"># Insert data</span>
+<span class="bi">data</span> = [(<span class="st">"Ann"</span>, <span class="nb">85</span>), (<span class="st">"Bob"</span>, <span class="nb">72</span>), (<span class="st">"Cy"</span>, <span class="nb">91</span>)]
+<span class="bi">cur</span>.<span class="fn">executemany</span>(
+    <span class="st">"INSERT INTO students (name, grade) VALUES (?, ?)"</span>, <span class="bi">data</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># Query</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT name, grade FROM students WHERE grade &gt;= ?"</span>, (<span class="nb">80</span>,))
+<span class="kw">for</span> <span class="bi">name</span>, <span class="bi">grade</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="st">f"{name}: {grade}"</span>)
+
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

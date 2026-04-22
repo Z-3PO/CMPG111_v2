@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Guide — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html">Cheat Sheets</a></li>
+      <li><a href="notes.html">Study Notes</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="trace.html">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html">Scenarios</a></li>
+      <li><a href="guide.html" class="active">Exam Guide</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">🎓</div>
+  <h1>Exam Guide</h1>
+  <p class="subtitle">Strategy for tackling questions, the mistakes every first-year makes, and concept-check questions to test your understanding.</p>
+</section>
+
+<main class="container">
+
+<!-- ═══════════════════════════════════════════
+     PART A: HOW TO APPROACH EXAM QUESTIONS
+     ═══════════════════════════════════════════ -->
+<div class="section-divider">
+  <h2>🧭 Part A: How to Approach Exam Questions</h2>
+  <p>A step-by-step system that works for every question type</p>
+</div>
+
+<div class="strat-box">
+  <h4>Step 1 · Read the ENTIRE Question First</h4>
+  <p>Don't start coding after the first sentence. Read the full question — the last sentence often contains critical details (output format, edge cases, what the function must return). Underline key action words: "display", "return", "calculate", "store".</p>
+</div>
+
+<div class="strat-box">
+  <h4>Step 2 · Identify the IPO</h4>
+  <p>Before writing any code, figure out:</p>
+  <ol>
+    <li><strong>Input</strong> — What data do you need? From the user? From a file? From a database?</li>
+    <li><strong>Processing</strong> — What must happen? A calculation? A decision? A loop? A database query?</li>
+    <li><strong>Output</strong> — What must be displayed/returned/saved?</li>
+  </ol>
+  <p>Write these three words in the margin and jot down your answers. This takes 30 seconds and prevents 10 minutes of confusion.</p>
+</div>
+
+<div class="strat-box">
+  <h4>Step 3 · Write Pseudocode Before Real Code</h4>
+  <p>If the question is worth more than 5 marks, sketch the logic in plain English first:</p>
+<pre style="color:var(--text-muted);font-style:italic;"><span class="cm">GET price from user
+GET quantity from user
+CALCULATE subtotal = price × quantity
+CALCULATE vat = subtotal × 0.15
+DISPLAY subtotal, vat, and total</span></pre>
+  <p>Once your pseudocode makes sense, translating to Python is mechanical. Most marks are for the <em>logic</em>, not the syntax.</p>
+</div>
+
+<div class="strat-box">
+  <h4>Step 4 · Check Your Variable Types</h4>
+  <p>Before any calculation, ask: "Is this variable a string or a number?" If it came from <code>input()</code>, it's a string. If you need maths, convert it. This single check prevents the #1 exam mistake.</p>
+</div>
+
+<div class="strat-box">
+  <h4>Step 5 · Trace Through with Sample Values</h4>
+  <p>Pick simple numbers (like 5 and 10) and mentally run through your code line by line. Write a trace table if the question involves a loop:</p>
+  <table class="trace-table" style="max-width:400px;">
+    <tr><th>Iteration</th><th>i</th><th>total</th></tr>
+    <tr><td>Start</td><td>—</td><td>0</td></tr>
+    <tr><td>1st</td><td>1</td><td>1</td></tr>
+    <tr><td>2nd</td><td>2</td><td>3</td></tr>
+    <tr><td>3rd</td><td>3</td><td>6</td></tr>
+  </table>
+  <p>If the trace gives you the expected answer, your logic is correct.</p>
+</div>
+
+<div class="strat-box">
+  <h4>Step 6 · Scan for Common Mistakes</h4>
+  <p>Before submitting, quickly check:</p>
+  <ul>
+    <li>Did I convert <code>input()</code> where needed?</li>
+    <li>Are my <code>if/elif</code> boundaries in the right order (highest first)?</li>
+    <li>Does my <code>while</code> loop have an update statement?</li>
+    <li>Did I use <code>return</code> (not <code>print</code>) when the question says "returns"?</li>
+    <li>Did I <code>commit()</code> after INSERT/UPDATE/DELETE?</li>
+    <li>Did I close my database connection?</li>
+  </ul>
+</div>
+
+<div class="strat-box">
+  <h4>🕐 Time Management Tips</h4>
+  <ul>
+    <li><strong>Read all questions first.</strong> Answer the ones you're confident about, then tackle harder ones.</li>
+    <li><strong>1 mark ≈ 1-2 minutes.</strong> A 10-mark question shouldn't take more than 15-20 minutes.</li>
+    <li><strong>Partial marks exist.</strong> Even if you can't solve the whole question, write what you can — the IPO, the function signature, the loop structure. Every correct line earns marks.</li>
+    <li><strong>Don't debug one question for 30 minutes.</strong> If stuck, move on and come back later.</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART B: COMMON MISTAKES PER TOPIC
+     ═══════════════════════════════════════════ -->
+<div class="section-divider">
+  <h2>🚫 Part B: Common Mistakes</h2>
+  <p>The errors first-years make every single year — and exactly how to fix them</p>
+</div>
+
+<!-- Topic 1 Mistakes -->
+<div class="note-section" data-open="true">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-io);">📥 Input/Output Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Forgetting to convert <code>input()</code></h5>
+      <p><code>input()</code> ALWAYS returns a string. Writing <code>age = input("Age: ")</code> and then doing <code>age + 5</code> gives a TypeError. <strong>Fix:</strong> <code>age = int(input("Age: "))</code></p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Using <code>int()</code> for decimal input</h5>
+      <p>If the user might type <code>3.5</code>, <code>int(input())</code> crashes. <strong>Fix:</strong> Use <code>float(input())</code> for any possibly-decimal number.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Forgetting format specifiers</h5>
+      <p>Question says "display to 2 decimal places" but you write <code>print(total)</code>. <strong>Fix:</strong> <code>print(f"R{total:.2f}")</code>.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Missing the f in f-string</h5>
+      <p><code>print("Hello {name}")</code> literally prints <code>{name}</code>. <strong>Fix:</strong> <code>print(f"Hello {name}")</code> — the <code>f</code> before the quote is essential.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 2 Mistakes -->
+<div class="note-section">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-decision);">🔀 Decision Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Using <code>=</code> instead of <code>==</code></h5>
+      <p><code>if x = 5:</code> is assignment (and a syntax error). <strong>Fix:</strong> <code>if x == 5:</code> (comparison).</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Wrong order of elif conditions</h5>
+      <p>Checking <code>mark &gt;= 50</code> before <code>mark &gt;= 75</code> means 90% gets "Pass" not "Distinction". <strong>Fix:</strong> Always check from highest to lowest.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Missing colons</h5>
+      <p>Every <code>if</code>, <code>elif</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>def</code> line ends with <code>:</code>. Forgetting it is a SyntaxError.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Using <code>and</code> when you mean <code>or</code></h5>
+      <p>"If the day is Saturday or Sunday" → <code>if day == "Sat" or day == "Sun"</code>. Using <code>and</code> would require BOTH to be true (impossible!).</p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 3 Mistakes -->
+<div class="note-section">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-loop);">🔄 Loop Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Infinite loops — forgetting the counter update</h5>
+      <p>In a <code>while</code> loop, if you never change the variable in the condition, it stays True forever. <strong>Fix:</strong> Always include <code>counter += 1</code> (or equivalent) inside the loop.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Off-by-one errors in <code>range()</code></h5>
+      <p><code>range(1, 10)</code> gives 1–9, not 1–10. <strong>Fix:</strong> <code>range(1, 11)</code> to include 10.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Initialising accumulators inside the loop</h5>
+      <p>Placing <code>total = 0</code> inside the loop resets it every iteration. <strong>Fix:</strong> Initialise BEFORE the loop.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Dividing by zero when computing averages</h5>
+      <p>If a sentinel loop processes 0 items, <code>total / count</code> crashes. <strong>Fix:</strong> Check <code>if count &gt; 0</code> before dividing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 4 Mistakes -->
+<div class="note-section">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-function);">🧩 Function Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Using <code>print()</code> when the question says "return"</h5>
+      <p>If the question says "write a function that <em>returns</em> the total", use <code>return total</code>. Using <code>print(total)</code> means the caller gets <code>None</code>.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Calling a function before defining it</h5>
+      <p>Python reads top-to-bottom. The <code>def</code> must appear before the call.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Forgetting to capture the return value</h5>
+      <p><code>calculate_vat(200)</code> computes the VAT but throws it away. <strong>Fix:</strong> <code>result = calculate_vat(200)</code>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 5 Mistakes -->
+<div class="note-section">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-file);">📁 Files/Exceptions Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Using "w" when you meant "a"</h5>
+      <p>Mode <code>"w"</code> erases the file contents. If you want to add data to an existing file, use <code>"a"</code> (append).</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Forgetting <code>\n</code> in <code>write()</code></h5>
+      <p>Unlike <code>print()</code>, <code>file.write()</code> does NOT add a newline. Everything ends up on one line.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Catching the wrong exception</h5>
+      <p>If you use <code>except ValueError</code> but the actual error is <code>FileNotFoundError</code>, Python still crashes. Match exception types to the actual errors.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Forgetting <code>.strip()</code> when reading lines</h5>
+      <p>Lines from files include <code>\n</code>. Comparing <code>"Alice\n" == "Alice"</code> is False. Use <code>line.strip()</code>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 6 Mistakes -->
+<div class="note-section">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-list);">📋 Lists/Tuples Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Index out of range</h5>
+      <p>A list of 5 items has indexes 0–4. Accessing <code>list[5]</code> crashes with IndexError. <strong>Remember:</strong> Last valid index = <code>len(list) - 1</code>.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Trying to modify a tuple</h5>
+      <p>Tuples are immutable. <code>my_tuple[0] = 5</code> crashes. If you need to change data, use a list instead.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Confusing <code>sort()</code> and <code>sorted()</code></h5>
+      <p><code>list.sort()</code> sorts in-place and returns None. <code>sorted(list)</code> returns a new sorted list. Writing <code>x = list.sort()</code> gives <code>x = None</code>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Topic 7 Mistakes -->
+<div class="note-section">
+  <div class="note-section-header">
+    <h4 style="color:var(--c-db);">🗄️ Database Mistakes</h4>
+    <span class="note-section-toggle">+</span>
+  </div>
+  <div class="note-section-body">
+    <div class="mistake-entry">
+      <h5>❌ Forgetting <code>conn.commit()</code></h5>
+      <p>Without <code>commit()</code>, INSERT/UPDATE/DELETE changes are never saved. The data vanishes when you close the connection.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Using f-strings in SQL (injection risk)</h5>
+      <p><code>f"SELECT * FROM users WHERE name = '{name}'"</code> is DANGEROUS. Use <code>?</code> placeholders: <code>"SELECT * FROM users WHERE name = ?", (name,)</code>.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ Forgetting the comma in single-value tuples</h5>
+      <p><code>cur.execute("...WHERE id=?", (5))</code> is wrong — <code>(5)</code> is just the number 5 in brackets, not a tuple. <strong>Fix:</strong> <code>(5,)</code> — the trailing comma makes it a tuple.</p>
+    </div>
+    <div class="mistake-entry">
+      <h5>❌ UPDATE/DELETE without WHERE</h5>
+      <p><code>DELETE FROM students</code> deletes ALL rows. Always specify <code>WHERE</code> to target specific records.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART C: CONCEPT-CHECK QUESTIONS
+     ═══════════════════════════════════════════ -->
+<div class="section-divider">
+  <h2>💡 Part C: Concept Check — Theory Questions</h2>
+  <p>Not all exam questions require writing code. Test your understanding of the concepts behind the syntax.</p>
+</div>
+
+<!-- Theory Q1 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Input/Output</span>
+  </div>
+  <h4 class="exam-title">C1 · Why does <code>input()</code> always return a string?</h4>
+  <p class="exam-question-text">Explain in your own words why <code>input()</code> returns a string, and what a programmer must do if they need a number.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">Python can't know whether the user intended to type a number, a name, or an address — all keyboard input is just text (characters). That's why <code>input()</code> returns a string. The programmer must explicitly convert using <code>int()</code> or <code>float()</code> when they need to do maths. This is called <strong>type casting</strong>.</p>
+  </div>
+</div>
+
+<!-- Theory Q2 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Decisions</span>
+  </div>
+  <h4 class="exam-title">C2 · What is the difference between <code>=</code> and <code>==</code>?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text"><code>=</code> is the <strong>assignment operator</strong> — it stores a value in a variable (<code>x = 5</code> means "put 5 into x"). <code>==</code> is the <strong>comparison operator</strong> — it checks whether two values are equal and returns True or False (<code>x == 5</code> means "is x equal to 5?"). Using <code>=</code> in an <code>if</code> statement causes a SyntaxError.</p>
+  </div>
+</div>
+
+<!-- Theory Q3 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Loops</span>
+  </div>
+  <h4 class="exam-title">C3 · When would you use a <code>while</code> loop instead of a <code>for</code> loop?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">Use a <strong><code>for</code> loop</strong> when you know in advance how many times to repeat (e.g., "process 10 students"). Use a <strong><code>while</code> loop</strong> when you don't know — the loop depends on a condition (e.g., "keep asking until the user types 'quit'", or "keep dividing until the number reaches 1"). A for loop is count-controlled; a while loop is condition-controlled.</p>
+  </div>
+</div>
+
+<!-- Theory Q4 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Functions</span>
+  </div>
+  <h4 class="exam-title">C4 · Explain the difference between a parameter and an argument.</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">A <strong>parameter</strong> is the placeholder variable name in the function definition (e.g., <code>def greet(name)</code> — <code>name</code> is the parameter). An <strong>argument</strong> is the actual value you pass in when calling the function (e.g., <code>greet("Alice")</code> — <code>"Alice"</code> is the argument). Parameters are like empty boxes; arguments are what you put in them.</p>
+  </div>
+</div>
+
+<!-- Theory Q5 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Functions</span>
+  </div>
+  <h4 class="exam-title">C5 · What happens if a function has no <code>return</code> statement?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">The function returns <code>None</code> by default. If you try to store or use the result (e.g., <code>result = my_func()</code>), <code>result</code> will be <code>None</code>. This is a common bug — if you need the function to produce a value for later use, you must use <code>return</code>.</p>
+  </div>
+</div>
+
+<!-- Theory Q6 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Files/Exceptions</span>
+  </div>
+  <h4 class="exam-title">C6 · What does the <code>finally</code> block do and when would you use it?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">The <code>finally</code> block runs <strong>no matter what</strong> — whether the <code>try</code> block succeeded or an exception was caught. It's used for cleanup code that must always execute, such as closing files or database connections. Even if an error occurs, the <code>finally</code> block guarantees the cleanup happens.</p>
+  </div>
+</div>
+
+<!-- Theory Q7 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Files/Exceptions</span>
+  </div>
+  <h4 class="exam-title">C7 · Why is the <code>with</code> statement preferred over manual <code>open()</code>/<code>close()</code>?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">The <code>with</code> statement automatically closes the file when the block ends — even if an exception occurs. With manual <code>open()</code>/<code>close()</code>, if an error happens between them, the file stays open and might get corrupted. <code>with</code> is safer, shorter, and considered best practice.</p>
+  </div>
+</div>
+
+<!-- Theory Q8 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Lists/Tuples</span>
+  </div>
+  <h4 class="exam-title">C8 · What is the difference between a list and a tuple?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">Both store collections of items and support indexing/slicing. The key difference is <strong>mutability</strong>: lists (<code>[]</code>) can be changed after creation (add, remove, modify items), while tuples (<code>()</code>) are immutable — once created, their contents cannot change. Use lists for data that will be modified; use tuples for fixed data like coordinates, dates, or database rows.</p>
+  </div>
+</div>
+
+<!-- Theory Q9 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Database</span>
+  </div>
+  <h4 class="exam-title">C9 · Why should you use <code>?</code> placeholders instead of f-strings in SQL?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">To prevent <strong>SQL injection</strong> — a security attack where a user enters malicious SQL code as input. For example, typing <code>' OR 1=1 --</code> into a name field could trick the database into returning all records. The <code>?</code> placeholder tells sqlite3 to safely escape the input, making injection impossible. This is called a <strong>parameterised query</strong>.</p>
+  </div>
+</div>
+
+<!-- Theory Q10 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Database</span>
+  </div>
+  <h4 class="exam-title">C10 · What does <code>conn.commit()</code> do and when is it needed?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text"><code>commit()</code> saves all pending changes to the database file on disk. Without it, any INSERT, UPDATE, or DELETE operations exist only in memory and are lost when the connection closes. It's needed after any operation that modifies data — but NOT after SELECT (which only reads). Think of it as pressing "Save" in a document editor.</p>
+  </div>
+</div>
+
+<!-- Theory Q11 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Database</span>
+  </div>
+  <h4 class="exam-title">C11 · What is the difference between <code>fetchone()</code> and <code>fetchall()</code>?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text"><code>fetchone()</code> returns a single row as a tuple (or <code>None</code> if no results). <code>fetchall()</code> returns ALL matching rows as a list of tuples. Use <code>fetchone()</code> when you expect exactly one result (e.g., looking up by primary key). Use <code>fetchall()</code> when you want multiple results to loop through.</p>
+  </div>
+</div>
+
+<!-- Theory Q12 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="topic-badge">Loops</span>
+  </div>
+  <h4 class="exam-title">C12 · What is a sentinel value and why is the input needed twice?</h4>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Answer</div>
+    <p class="exam-question-text">A <strong>sentinel value</strong> is a special value that signals the end of input (like -1 or "quit"). The input appears twice because of the <strong>priming read</strong> pattern: you must read the first value BEFORE the loop starts (so the condition can be checked), and then read again at the END of each loop iteration to get the next value. Without the priming read, the loop either never starts or processes the sentinel as real data.</p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

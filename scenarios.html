@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Scenarios — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html">Cheat Sheets</a></li>
+      <li><a href="notes.html">Study Notes</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="trace.html">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html" class="active">Scenarios</a></li>
+      <li><a href="guide.html">Exam Guide</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">📝</div>
+  <h1>Exam Scenarios</h1>
+  <p class="subtitle">Multi-topic questions like those on your final exam. Each scenario tests concepts from 3+ topics combined. These are the hardest questions on this site — if you can do these, you're exam-ready.</p>
+</section>
+
+<main class="container">
+
+<!-- SCENARIO 1 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(255,107,53,0.15);color:var(--c-io);">Scenario 1</span>
+  </div>
+  <div class="topics-used">
+    <span>Input/Output</span><span>Decisions</span><span>Functions</span>
+  </div>
+  <h4 class="exam-title">🍕 Restaurant Bill Splitter</h4>
+  <div class="exam-question-text">
+    <p>A group of friends eats at a restaurant. Write a program that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Asks for the <strong>total bill amount</strong> (Rand)</li>
+      <li>Asks how many <strong>people</strong> are splitting the bill</li>
+      <li>Asks if they want to add a <strong>tip</strong> (10%, 15%, or 20%)</li>
+      <li>Uses a function <code>calculate_split(total, people, tip_percent)</code> that <strong>returns</strong> the amount per person</li>
+      <li>Displays the tip amount, grand total, and per-person amount (all to 2 decimal places)</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">calculate_split</span>(<span class="bi">total</span>, <span class="bi">people</span>, <span class="bi">tip_percent</span>):
+    <span class="bi">tip</span> = <span class="bi">total</span> * (<span class="bi">tip_percent</span> / <span class="nb">100</span>)
+    <span class="bi">grand</span> = <span class="bi">total</span> + <span class="bi">tip</span>
+    <span class="kw">return</span> <span class="bi">grand</span> / <span class="bi">people</span>
+
+<span class="bi">bill</span>   = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Total bill (R): "</span>))
+<span class="bi">people</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"How many people? "</span>))
+
+<span class="fn">print</span>(<span class="st">"Tip: 1=10%, 2=15%, 3=20%"</span>)
+<span class="bi">choice</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Choose: "</span>))
+
+<span class="kw">if</span> <span class="bi">choice</span> == <span class="nb">1</span>:
+    <span class="bi">tip_pct</span> = <span class="nb">10</span>
+<span class="kw">elif</span> <span class="bi">choice</span> == <span class="nb">2</span>:
+    <span class="bi">tip_pct</span> = <span class="nb">15</span>
+<span class="kw">else</span>:
+    <span class="bi">tip_pct</span> = <span class="nb">20</span>
+
+<span class="bi">tip_amount</span> = <span class="bi">bill</span> * (<span class="bi">tip_pct</span> / <span class="nb">100</span>)
+<span class="bi">per_person</span> = <span class="fn">calculate_split</span>(<span class="bi">bill</span>, <span class="bi">people</span>, <span class="bi">tip_pct</span>)
+
+<span class="fn">print</span>(<span class="st">f"Tip: R{tip_amount:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Grand total: R{bill + tip_amount:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Per person: R{per_person:.2f}"</span>)</pre>
+    <div class="solution-explanation">
+      <strong>Topics tested:</strong> float/int input conversion (IPO), if/elif/else for tip selection (Decisions), function with return value (Functions), f-string formatting with :.2f (Output).
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIO 2 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(78,205,196,0.15);color:var(--c-loop);">Scenario 2</span>
+  </div>
+  <div class="topics-used">
+    <span>Loops</span><span>Functions</span><span>Decisions</span><span>Input/Output</span>
+  </div>
+  <h4 class="exam-title">🏫 Class Mark Analyzer</h4>
+  <div class="exam-question-text">
+    <p>A teacher needs a program that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Asks for the <strong>number of students</strong> in the class</li>
+      <li>Uses a loop to enter each student's <strong>name</strong> and <strong>mark</strong></li>
+      <li>Uses a function <code>get_grade(mark)</code> that returns "Distinction" (75+), "Merit" (60–74), "Pass" (50–59), or "Fail" (&lt;50)</li>
+      <li>After all students, displays: the <strong>class average</strong>, how many got a <strong>Distinction</strong>, and who got the <strong>highest mark</strong></li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">get_grade</span>(<span class="bi">mark</span>):
+    <span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">75</span>:   <span class="kw">return</span> <span class="st">"Distinction"</span>
+    <span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">60</span>: <span class="kw">return</span> <span class="st">"Merit"</span>
+    <span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>: <span class="kw">return</span> <span class="st">"Pass"</span>
+    <span class="kw">else</span>:             <span class="kw">return</span> <span class="st">"Fail"</span>
+
+<span class="bi">n</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Number of students: "</span>))
+<span class="bi">total</span> = <span class="nb">0</span>
+<span class="bi">distinctions</span> = <span class="nb">0</span>
+<span class="bi">top_name</span> = <span class="st">""</span>
+<span class="bi">top_mark</span> = -<span class="nb">1</span>
+
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="bi">n</span>):
+    <span class="bi">name</span> = <span class="fn">input</span>(<span class="st">f"Student {i+1} name: "</span>)
+    <span class="bi">mark</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Student {i+1} mark: "</span>))
+    <span class="bi">total</span> += <span class="bi">mark</span>
+
+    <span class="bi">grade</span> = <span class="fn">get_grade</span>(<span class="bi">mark</span>)
+    <span class="fn">print</span>(<span class="st">f"  → {name}: {grade}"</span>)
+
+    <span class="kw">if</span> <span class="bi">grade</span> == <span class="st">"Distinction"</span>:
+        <span class="bi">distinctions</span> += <span class="nb">1</span>
+    <span class="kw">if</span> <span class="bi">mark</span> &gt; <span class="bi">top_mark</span>:
+        <span class="bi">top_mark</span> = <span class="bi">mark</span>
+        <span class="bi">top_name</span> = <span class="bi">name</span>
+
+<span class="fn">print</span>(<span class="st">f"\nClass average: {total/n:.1f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Distinctions: {distinctions}"</span>)
+<span class="fn">print</span>(<span class="st">f"Top student: {top_name} ({top_mark})"</span>)</pre>
+  </div>
+</div>
+
+<!-- SCENARIO 3 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(251,191,36,0.15);color:var(--c-file);">Scenario 3</span>
+  </div>
+  <div class="topics-used">
+    <span>Files</span><span>Exceptions</span><span>Lists</span><span>Loops</span><span>Functions</span>
+  </div>
+  <h4 class="exam-title">🌡️ Weather Data Processor</h4>
+  <div class="exam-question-text">
+    <p>Temperature readings are stored in a file <code>temps.txt</code>, one number per line. Write a program that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Reads all temperatures into a <strong>list</strong> (handle the case where the file doesn't exist)</li>
+      <li>Uses a function <code>analyze_temps(temps_list)</code> that <strong>returns</strong> a tuple: <code>(average, highest, lowest)</code></li>
+      <li>Displays the results to 1 decimal place</li>
+      <li>Counts how many readings are <strong>above 30°C</strong> (hot days)</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">analyze_temps</span>(<span class="bi">temps</span>):
+    <span class="bi">avg</span> = <span class="fn">sum</span>(<span class="bi">temps</span>) / <span class="fn">len</span>(<span class="bi">temps</span>)
+    <span class="kw">return</span> (<span class="bi">avg</span>, <span class="fn">max</span>(<span class="bi">temps</span>), <span class="fn">min</span>(<span class="bi">temps</span>))
+
+<span class="kw">try</span>:
+    <span class="bi">temperatures</span> = []
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"temps.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+            <span class="bi">temperatures</span>.<span class="fn">append</span>(<span class="fn">float</span>(<span class="bi">line</span>.<span class="fn">strip</span>()))
+
+    <span class="bi">average</span>, <span class="bi">highest</span>, <span class="bi">lowest</span> = <span class="fn">analyze_temps</span>(<span class="bi">temperatures</span>)
+
+    <span class="fn">print</span>(<span class="st">f"Average: {average:.1f}°C"</span>)
+    <span class="fn">print</span>(<span class="st">f"Highest: {highest:.1f}°C"</span>)
+    <span class="fn">print</span>(<span class="st">f"Lowest:  {lowest:.1f}°C"</span>)
+
+    <span class="bi">hot_days</span> = <span class="nb">0</span>
+    <span class="kw">for</span> <span class="bi">t</span> <span class="kw">in</span> <span class="bi">temperatures</span>:
+        <span class="kw">if</span> <span class="bi">t</span> &gt; <span class="nb">30</span>:
+            <span class="bi">hot_days</span> += <span class="nb">1</span>
+    <span class="fn">print</span>(<span class="st">f"Hot days (&gt;30°C): {hot_days}"</span>)
+
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"temps.txt not found."</span>)</pre>
+  </div>
+</div>
+
+<!-- SCENARIO 4 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(99,102,241,0.15);color:var(--c-db);">Scenario 4</span>
+  </div>
+  <div class="topics-used">
+    <span>Database</span><span>Files</span><span>Exceptions</span><span>Loops</span>
+  </div>
+  <h4 class="exam-title">📚 Library Book Importer</h4>
+  <div class="exam-question-text">
+    <p>A library stores book data in a file <code>books.txt</code> with one book per line in the format: <code>title,author,year</code>. Write a program that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Creates a SQLite database <code>library.db</code> with a table <code>books</code> (id, title, author, year)</li>
+      <li>Reads <code>books.txt</code> and inserts each book into the database</li>
+      <li>Handles the case where the file doesn't exist</li>
+      <li>After importing, queries and displays all books published after <strong>2010</strong>, sorted by year</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"library.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS books (
+    id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER)"""</span>)
+
+<span class="kw">try</span>:
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"books.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+            <span class="bi">parts</span> = <span class="bi">line</span>.<span class="fn">strip</span>().<span class="fn">split</span>(<span class="st">","</span>)
+            <span class="bi">title</span>  = <span class="bi">parts</span>[<span class="nb">0</span>]
+            <span class="bi">author</span> = <span class="bi">parts</span>[<span class="nb">1</span>]
+            <span class="bi">year</span>   = <span class="fn">int</span>(<span class="bi">parts</span>[<span class="nb">2</span>])
+            <span class="bi">cur</span>.<span class="fn">execute</span>(
+                <span class="st">"INSERT INTO books (title,author,year) VALUES (?,?,?)"</span>,
+                (<span class="bi">title</span>, <span class="bi">author</span>, <span class="bi">year</span>))
+    <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="fn">print</span>(<span class="st">"Import complete!"</span>)
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"books.txt not found."</span>)
+
+<span class="cm"># Query recent books</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT title, author, year FROM books WHERE year &gt; ? ORDER BY year"</span>, (<span class="nb">2010</span>,))
+<span class="fn">print</span>(<span class="st">"\nBooks after 2010:"</span>)
+<span class="kw">for</span> <span class="bi">title</span>, <span class="bi">author</span>, <span class="bi">year</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="st">f"  {title} by {author} ({year})"</span>)
+
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+  </div>
+</div>
+
+<!-- SCENARIO 5 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(52,211,153,0.15);color:var(--c-list);">Scenario 5</span>
+  </div>
+  <div class="topics-used">
+    <span>Lists</span><span>Loops</span><span>Decisions</span><span>Functions</span><span>Input/Output</span>
+  </div>
+  <h4 class="exam-title">🎮 Quiz Game</h4>
+  <div class="exam-question-text">
+    <p>Create a multiple-choice quiz game that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Stores 5 questions in a <strong>list of tuples</strong>: <code>(question, option_a, option_b, option_c, correct_answer)</code></li>
+      <li>Loops through each question, displays the options, and asks the user for their answer (a/b/c)</li>
+      <li>Uses a function <code>check_answer(user_answer, correct)</code> that returns True or False</li>
+      <li>Tracks the <strong>score</strong> and displays the final result as a percentage</li>
+      <li>At the end, tells the user if they scored "Distinction" (75%+), "Pass" (50%+), or "Fail"</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">check_answer</span>(<span class="bi">user</span>, <span class="bi">correct</span>):
+    <span class="kw">return</span> <span class="bi">user</span>.<span class="fn">lower</span>() == <span class="bi">correct</span>.<span class="fn">lower</span>()
+
+<span class="bi">questions</span> = [
+    (<span class="st">"What does CPU stand for?"</span>,
+     <span class="st">"a) Central Processing Unit"</span>,
+     <span class="st">"b) Central Power Unit"</span>,
+     <span class="st">"c) Computer Personal Unit"</span>, <span class="st">"a"</span>),
+    (<span class="st">"What does 10 % 3 equal?"</span>,
+     <span class="st">"a) 3"</span>, <span class="st">"b) 1"</span>, <span class="st">"c) 0"</span>, <span class="st">"b"</span>),
+    (<span class="st">"Which stores data permanently?"</span>,
+     <span class="st">"a) RAM"</span>, <span class="st">"b) CPU"</span>, <span class="st">"c) Hard drive"</span>, <span class="st">"c"</span>),
+    (<span class="st">"What is len([1,2,3])?"</span>,
+     <span class="st">"a) 2"</span>, <span class="st">"b) 3"</span>, <span class="st">"c) 4"</span>, <span class="st">"b"</span>),
+    (<span class="st">"What file mode erases content?"</span>,
+     <span class="st">"a) r"</span>, <span class="st">"b) a"</span>, <span class="st">"c) w"</span>, <span class="st">"c"</span>)
+]
+
+<span class="bi">score</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span>, (<span class="bi">q</span>, <span class="bi">a</span>, <span class="bi">b</span>, <span class="bi">c</span>, <span class="bi">correct</span>) <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="bi">questions</span>):
+    <span class="fn">print</span>(<span class="st">f"\nQ{i+1}: {q}"</span>)
+    <span class="fn">print</span>(<span class="st">f"  {a}"</span>)
+    <span class="fn">print</span>(<span class="st">f"  {b}"</span>)
+    <span class="fn">print</span>(<span class="st">f"  {c}"</span>)
+    <span class="bi">ans</span> = <span class="fn">input</span>(<span class="st">"Your answer (a/b/c): "</span>)
+    <span class="kw">if</span> <span class="fn">check_answer</span>(<span class="bi">ans</span>, <span class="bi">correct</span>):
+        <span class="fn">print</span>(<span class="st">"Correct! ✓"</span>)
+        <span class="bi">score</span> += <span class="nb">1</span>
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">f"Wrong. Answer: {correct}"</span>)
+
+<span class="bi">pct</span> = <span class="bi">score</span> / <span class="fn">len</span>(<span class="bi">questions</span>) * <span class="nb">100</span>
+<span class="fn">print</span>(<span class="st">f"\nScore: {score}/{len(questions)} ({pct:.0f}%)"</span>)
+<span class="kw">if</span> <span class="bi">pct</span> &gt;= <span class="nb">75</span>:   <span class="fn">print</span>(<span class="st">"Distinction!"</span>)
+<span class="kw">elif</span> <span class="bi">pct</span> &gt;= <span class="nb">50</span>: <span class="fn">print</span>(<span class="st">"Pass"</span>)
+<span class="kw">else</span>:              <span class="fn">print</span>(<span class="st">"Fail"</span>)</pre>
+  </div>
+</div>
+
+<!-- SCENARIO 6 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(168,85,247,0.15);color:var(--c-function);">Scenario 6</span>
+  </div>
+  <div class="topics-used">
+    <span>Database</span><span>Functions</span><span>Exceptions</span><span>Loops</span><span>Decisions</span>
+  </div>
+  <h4 class="exam-title">📇 Contact Book</h4>
+  <div class="exam-question-text">
+    <p>Build a contact manager that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Uses SQLite with a table <code>contacts</code> (id, name, phone, email)</li>
+      <li>Has a function <code>add_contact(cur, name, phone, email)</code> that inserts a row</li>
+      <li>Has a function <code>search_contact(cur, search_name)</code> that returns all matching rows (using LIKE for partial matches)</li>
+      <li>Presents a menu loop: Add / Search / View All / Delete / Quit</li>
+      <li>Handles invalid menu choices</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="kw">def</span> <span class="fn">add_contact</span>(<span class="bi">cur</span>, <span class="bi">name</span>, <span class="bi">phone</span>, <span class="bi">email</span>):
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO contacts(name,phone,email) VALUES(?,?,?)"</span>,
+                (<span class="bi">name</span>, <span class="bi">phone</span>, <span class="bi">email</span>))
+
+<span class="kw">def</span> <span class="fn">search_contact</span>(<span class="bi">cur</span>, <span class="bi">search_name</span>):
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM contacts WHERE name LIKE ?"</span>,
+                (<span class="st">f"%{search_name}%"</span>,))
+    <span class="kw">return</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>()
+
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"contacts.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS contacts (
+    id INTEGER PRIMARY KEY, name TEXT NOT NULL,
+    phone TEXT, email TEXT)"""</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="st">"\n1.Add  2.Search  3.View All  4.Delete  5.Quit"</span>)
+    <span class="bi">choice</span> = <span class="fn">input</span>(<span class="st">"Choose: "</span>)
+
+    <span class="kw">if</span> <span class="bi">choice</span> == <span class="st">"1"</span>:
+        <span class="bi">n</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+        <span class="bi">p</span> = <span class="fn">input</span>(<span class="st">"Phone: "</span>)
+        <span class="bi">e</span> = <span class="fn">input</span>(<span class="st">"Email: "</span>)
+        <span class="fn">add_contact</span>(<span class="bi">cur</span>, <span class="bi">n</span>, <span class="bi">p</span>, <span class="bi">e</span>)
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+        <span class="fn">print</span>(<span class="st">"Added!"</span>)
+    <span class="kw">elif</span> <span class="bi">choice</span> == <span class="st">"2"</span>:
+        <span class="bi">term</span> = <span class="fn">input</span>(<span class="st">"Search name: "</span>)
+        <span class="bi">results</span> = <span class="fn">search_contact</span>(<span class="bi">cur</span>, <span class="bi">term</span>)
+        <span class="kw">if</span> <span class="bi">results</span>:
+            <span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">results</span>:
+                <span class="fn">print</span>(<span class="bi">row</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">"No matches."</span>)
+    <span class="kw">elif</span> <span class="bi">choice</span> == <span class="st">"3"</span>:
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM contacts ORDER BY name"</span>)
+        <span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+            <span class="fn">print</span>(<span class="bi">row</span>)
+    <span class="kw">elif</span> <span class="bi">choice</span> == <span class="st">"4"</span>:
+        <span class="bi">did</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"ID to delete: "</span>))
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"DELETE FROM contacts WHERE id=?"</span>, (<span class="bi">did</span>,))
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="kw">elif</span> <span class="bi">choice</span> == <span class="st">"5"</span>:
+        <span class="kw">break</span>
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">"Invalid choice."</span>)
+
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+  </div>
+</div>
+
+<!-- SCENARIO 7 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(255,60,131,0.15);color:var(--c-decision);">Scenario 7</span>
+  </div>
+  <div class="topics-used">
+    <span>Files</span><span>Lists</span><span>Loops</span><span>Functions</span><span>Exceptions</span>
+  </div>
+  <h4 class="exam-title">🏆 Sports Club Member Manager</h4>
+  <div class="exam-question-text">
+    <p>A sports club keeps member data in <code>members.txt</code> (format: <code>name,age,sport</code>). Write a program that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Reads the file into a <strong>list of tuples</strong>: <code>[(name, age, sport), ...]</code></li>
+      <li>Writes a function <code>filter_by_sport(members, sport)</code> that returns only members playing a specific sport</li>
+      <li>Writes a function <code>average_age(members)</code> that returns the average age</li>
+      <li>Displays: total members, average age, and all members playing "Soccer" (sorted by name)</li>
+      <li>Handles missing file and invalid data (non-numeric age) gracefully</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">filter_by_sport</span>(<span class="bi">members</span>, <span class="bi">sport</span>):
+    <span class="bi">result</span> = []
+    <span class="kw">for</span> <span class="bi">name</span>, <span class="bi">age</span>, <span class="bi">s</span> <span class="kw">in</span> <span class="bi">members</span>:
+        <span class="kw">if</span> <span class="bi">s</span>.<span class="fn">lower</span>() == <span class="bi">sport</span>.<span class="fn">lower</span>():
+            <span class="bi">result</span>.<span class="fn">append</span>((<span class="bi">name</span>, <span class="bi">age</span>, <span class="bi">s</span>))
+    <span class="kw">return</span> <span class="bi">result</span>
+
+<span class="kw">def</span> <span class="fn">average_age</span>(<span class="bi">members</span>):
+    <span class="bi">total</span> = <span class="nb">0</span>
+    <span class="kw">for</span> <span class="bi">name</span>, <span class="bi">age</span>, <span class="bi">sport</span> <span class="kw">in</span> <span class="bi">members</span>:
+        <span class="bi">total</span> += <span class="bi">age</span>
+    <span class="kw">return</span> <span class="bi">total</span> / <span class="fn">len</span>(<span class="bi">members</span>)
+
+<span class="kw">try</span>:
+    <span class="bi">members</span> = []
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"members.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+            <span class="kw">try</span>:
+                <span class="bi">parts</span> = <span class="bi">line</span>.<span class="fn">strip</span>().<span class="fn">split</span>(<span class="st">","</span>)
+                <span class="bi">members</span>.<span class="fn">append</span>((<span class="bi">parts</span>[<span class="nb">0</span>], <span class="fn">int</span>(<span class="bi">parts</span>[<span class="nb">1</span>]), <span class="bi">parts</span>[<span class="nb">2</span>]))
+            <span class="kw">except</span> (<span class="fn">ValueError</span>, <span class="fn">IndexError</span>):
+                <span class="fn">print</span>(<span class="st">f"Skipping bad line: {line.strip()}"</span>)
+
+    <span class="fn">print</span>(<span class="st">f"Total members: {len(members)}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Average age: {average_age(members):.1f}"</span>)
+
+    <span class="bi">soccer</span> = <span class="fn">filter_by_sport</span>(<span class="bi">members</span>, <span class="st">"Soccer"</span>)
+    <span class="bi">soccer</span>.<span class="fn">sort</span>()  <span class="cm"># sorts by name (first tuple element)</span>
+    <span class="fn">print</span>(<span class="st">f"\nSoccer players ({len(soccer)}):"</span>)
+    <span class="kw">for</span> <span class="bi">name</span>, <span class="bi">age</span>, <span class="bi">sport</span> <span class="kw">in</span> <span class="bi">soccer</span>:
+        <span class="fn">print</span>(<span class="st">f"  {name}, age {age}"</span>)
+
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"members.txt not found."</span>)</pre>
+  </div>
+</div>
+
+<!-- SCENARIO 8 -->
+<div class="exam-box">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="scenario-badge" style="background:rgba(99,102,241,0.15);color:var(--c-db);">Scenario 8</span>
+  </div>
+  <div class="topics-used">
+    <span>ALL 7 TOPICS</span>
+  </div>
+  <h4 class="exam-title">🎓 Student Records System — The Big One</h4>
+  <div class="exam-question-text">
+    <p>Build a complete student management system that:</p>
+    <ol style="padding-left:20px;margin:8px 0;">
+      <li>Uses a SQLite database with a <code>students</code> table (id, name, module, mark)</li>
+      <li>Writes a function <code>get_grade(mark)</code> → returns grade letter</li>
+      <li>Writes a function <code>export_results(cur, filename)</code> → writes all student results to a text file</li>
+      <li>Menu: (1) Add student (with <strong>input validation</strong> — mark must be 0–100), (2) View all, (3) Search by module, (4) Export to file, (5) Show module statistics (average, pass rate), (6) Quit</li>
+      <li>All database operations must use parameterised queries and exception handling</li>
+    </ol>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Solution</div>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="kw">def</span> <span class="fn">get_grade</span>(<span class="bi">mark</span>):
+    <span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">75</span>:   <span class="kw">return</span> <span class="st">"A"</span>
+    <span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">60</span>: <span class="kw">return</span> <span class="st">"B"</span>
+    <span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>: <span class="kw">return</span> <span class="st">"C"</span>
+    <span class="kw">else</span>:             <span class="kw">return</span> <span class="st">"F"</span>
+
+<span class="kw">def</span> <span class="fn">export_results</span>(<span class="bi">cur</span>, <span class="bi">filename</span>):
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT name, module, mark FROM students ORDER BY module, name"</span>)
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="bi">filename</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="kw">for</span> <span class="bi">name</span>, <span class="bi">mod</span>, <span class="bi">mark</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+            <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">f"{name},{mod},{mark},{get_grade(mark)}\n"</span>)
+
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"school.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY, name TEXT NOT NULL,
+    module TEXT, mark REAL)"""</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="st">"\n1.Add 2.View 3.Search 4.Export 5.Stats 6.Quit"</span>)
+    <span class="bi">ch</span> = <span class="fn">input</span>(<span class="st">"Choose: "</span>)
+
+    <span class="kw">if</span> <span class="bi">ch</span> == <span class="st">"1"</span>:
+        <span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+        <span class="bi">mod</span>  = <span class="fn">input</span>(<span class="st">"Module: "</span>)
+        <span class="kw">try</span>:
+            <span class="bi">mark</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Mark (0-100): "</span>))
+            <span class="kw">if</span> <span class="nb">0</span> &lt;= <span class="bi">mark</span> &lt;= <span class="nb">100</span>:
+                <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO students(name,module,mark) VALUES(?,?,?)"</span>,
+                            (<span class="bi">name</span>, <span class="bi">mod</span>, <span class="bi">mark</span>))
+                <span class="bi">conn</span>.<span class="fn">commit</span>()
+                <span class="fn">print</span>(<span class="st">f"Added — Grade: {get_grade(mark)}"</span>)
+            <span class="kw">else</span>:
+                <span class="fn">print</span>(<span class="st">"Mark must be 0-100."</span>)
+        <span class="kw">except</span> <span class="fn">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Invalid number."</span>)
+
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"2"</span>:
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students"</span>)
+        <span class="kw">for</span> <span class="bi">r</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>(): <span class="fn">print</span>(<span class="bi">r</span>)
+
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"3"</span>:
+        <span class="bi">mod</span> = <span class="fn">input</span>(<span class="st">"Module: "</span>)
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT name,mark FROM students WHERE module=?"</span>, (<span class="bi">mod</span>,))
+        <span class="kw">for</span> <span class="bi">n</span>, <span class="bi">m</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+            <span class="fn">print</span>(<span class="st">f"  {n}: {m} ({get_grade(m)})"</span>)
+
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"4"</span>:
+        <span class="fn">export_results</span>(<span class="bi">cur</span>, <span class="st">"results.txt"</span>)
+        <span class="fn">print</span>(<span class="st">"Exported to results.txt"</span>)
+
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"5"</span>:
+        <span class="bi">mod</span> = <span class="fn">input</span>(<span class="st">"Module: "</span>)
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT mark FROM students WHERE module=?"</span>, (<span class="bi">mod</span>,))
+        <span class="bi">marks</span> = [<span class="bi">r</span>[<span class="nb">0</span>] <span class="kw">for</span> <span class="bi">r</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>()]
+        <span class="kw">if</span> <span class="bi">marks</span>:
+            <span class="bi">passes</span> = <span class="nb">0</span>
+            <span class="kw">for</span> <span class="bi">m</span> <span class="kw">in</span> <span class="bi">marks</span>:
+                <span class="kw">if</span> <span class="bi">m</span> &gt;= <span class="nb">50</span>: <span class="bi">passes</span> += <span class="nb">1</span>
+            <span class="fn">print</span>(<span class="st">f"Average: {sum(marks)/len(marks):.1f}"</span>)
+            <span class="fn">print</span>(<span class="st">f"Pass rate: {passes/len(marks)*100:.0f}%"</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">"No records found."</span>)
+
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"6"</span>:
+        <span class="kw">break</span>
+
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+    <div class="solution-explanation">
+      This scenario hits <strong>every topic</strong>: input/output, decisions (grade + validation), loops (menu + iterating results), functions (get_grade, export_results), files (export), lists (collecting marks for stats), database (full CRUD), and exceptions (try/except for validation).
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

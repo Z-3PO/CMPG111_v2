@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trace &amp; Debug — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html">Cheat Sheets</a></li>
+      <li><a href="notes.html">Study Notes</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="trace.html" class="active">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html">Scenarios</a></li>
+      <li><a href="guide.html">Exam Guide</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">🔍</div>
+  <h1>Trace &amp; Debug</h1>
+  <p class="subtitle">Two essential skills: predicting what code will output, and finding bugs in broken code. Work through these on paper first!</p>
+</section>
+
+<main class="container">
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 1: WHAT DOES THIS CODE OUTPUT?
+     ═══════════════════════════════════════════════════════════ -->
+<div class="section-divider">
+  <h2>🧠 Part A: What Does This Code Output?</h2>
+  <p>Read each snippet carefully, trace the variables, and predict the exact output before revealing the answer.</p>
+</div>
+
+<!-- TRACE 1 — IPO -->
+<div class="exam-box" data-difficulty="easy" data-topic="1">
+  <div class="exam-meta">
+    <span class="exam-badge badge-easy">Easy</span>
+    <span class="topic-badge">Input/Output</span>
+  </div>
+  <h4 class="exam-title">T1 · Variable Swap</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">x</span> = <span class="nb">10</span>
+<span class="bi">y</span> = <span class="nb">20</span>
+<span class="bi">x</span> = <span class="bi">y</span>
+<span class="bi">y</span> = <span class="bi">x</span>
+<span class="fn">print</span>(<span class="bi">x</span>, <span class="bi">y</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">20 20</div>
+    <div class="solution-explanation">
+      After <code>x = y</code>, both are 20. Then <code>y = x</code> assigns 20 to y again. <strong>Common trap:</strong> students think this swaps the values, but the original <code>x</code> (10) is lost. A real swap needs a temp variable: <code>temp = x; x = y; y = temp</code>.
+    </div>
+    <p style="margin-top:10px;font-size:0.85rem;color:var(--text-muted);"><strong>Trace table:</strong></p>
+    <table class="trace-table">
+      <tr><th>Line</th><th>x</th><th>y</th></tr>
+      <tr><td>x = 10</td><td>10</td><td>—</td></tr>
+      <tr><td>y = 20</td><td>10</td><td>20</td></tr>
+      <tr><td>x = y</td><td>20</td><td>20</td></tr>
+      <tr><td>y = x</td><td>20</td><td>20</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TRACE 2 — IPO -->
+<div class="exam-box" data-difficulty="easy" data-topic="1">
+  <div class="exam-meta">
+    <span class="exam-badge badge-easy">Easy</span>
+    <span class="topic-badge">Input/Output</span>
+  </div>
+  <h4 class="exam-title">T2 · String Arithmetic</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">a</span> = <span class="st">"3"</span>
+<span class="bi">b</span> = <span class="st">"7"</span>
+<span class="fn">print</span>(<span class="bi">a</span> + <span class="bi">b</span>)
+<span class="fn">print</span>(<span class="fn">int</span>(<span class="bi">a</span>) + <span class="fn">int</span>(<span class="bi">b</span>))</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">37
+10</div>
+    <div class="solution-explanation">
+      <code>"3" + "7"</code> concatenates strings → <code>"37"</code>. But <code>int("3") + int("7")</code> adds numbers → <code>10</code>. This is the #1 input mistake: <code>input()</code> returns strings, so <code>+</code> concatenates instead of adding unless you convert.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 3 — Decisions -->
+<div class="exam-box" data-difficulty="medium" data-topic="2">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Decisions</span>
+  </div>
+  <h4 class="exam-title">T3 · Nested If Tracing</h4>
+  <p class="exam-question-text">If the user enters <code>25</code>, what is the output?</p>
+<pre><span class="bi">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+<span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">18</span>:
+    <span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">65</span>:
+        <span class="fn">print</span>(<span class="st">"Senior"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">"Adult"</span>)
+<span class="kw">elif</span> <span class="bi">age</span> &gt;= <span class="nb">13</span>:
+    <span class="fn">print</span>(<span class="st">"Teen"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Child"</span>)
+<span class="fn">print</span>(<span class="st">"Done"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">Adult
+Done</div>
+    <div class="solution-explanation">
+      25 ≥ 18 → enters outer if. 25 is NOT ≥ 65 → inner else prints "Adult". The elif and else are <strong>skipped entirely</strong> (they belong to the outer if). <code>"Done"</code> prints because it's outside all blocks (no indentation).
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 4 — Decisions / Boolean -->
+<div class="exam-box" data-difficulty="medium" data-topic="2">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Decisions</span>
+  </div>
+  <h4 class="exam-title">T4 · Boolean Logic</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">x</span> = <span class="nb">5</span>
+<span class="bi">y</span> = <span class="nb">10</span>
+<span class="fn">print</span>(<span class="bi">x</span> &gt; <span class="nb">3</span> <span class="kw">and</span> <span class="bi">y</span> &lt; <span class="nb">8</span>)
+<span class="fn">print</span>(<span class="bi">x</span> &gt; <span class="nb">3</span> <span class="kw">or</span> <span class="bi">y</span> &lt; <span class="nb">8</span>)
+<span class="fn">print</span>(<span class="kw">not</span> (<span class="bi">x</span> == <span class="nb">5</span>))</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">False
+True
+False</div>
+    <div class="solution-explanation">
+      Line 1: <code>True and False</code> → <code>False</code> (both must be True for <code>and</code>).<br>
+      Line 2: <code>True or False</code> → <code>True</code> (one is enough for <code>or</code>).<br>
+      Line 3: <code>not True</code> → <code>False</code>.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 5 — Loops -->
+<div class="exam-box" data-difficulty="medium" data-topic="3">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Loops</span>
+  </div>
+  <h4 class="exam-title">T5 · For Loop Accumulator</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">4</span>):
+    <span class="bi">total</span> = <span class="bi">total</span> + <span class="bi">i</span> * <span class="nb">2</span>
+<span class="fn">print</span>(<span class="bi">total</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">12</div>
+    <table class="trace-table">
+      <tr><th>i</th><th>i * 2</th><th>total</th></tr>
+      <tr><td>1</td><td>2</td><td>0 + 2 = 2</td></tr>
+      <tr><td>2</td><td>4</td><td>2 + 4 = 6</td></tr>
+      <tr><td>3</td><td>6</td><td>6 + 6 = 12</td></tr>
+    </table>
+    <div class="solution-explanation">
+      <code>range(1, 4)</code> gives 1, 2, 3. Each iteration multiplies i by 2 and adds to total. Common mistake: including 4 in the range — remember, stop value is excluded.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 6 — Loops -->
+<div class="exam-box" data-difficulty="hard" data-topic="3">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="topic-badge">Loops</span>
+  </div>
+  <h4 class="exam-title">T6 · While Loop Counter</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">n</span> = <span class="nb">1</span>
+<span class="kw">while</span> <span class="bi">n</span> &lt; <span class="nb">20</span>:
+    <span class="bi">n</span> = <span class="bi">n</span> * <span class="nb">2</span>
+<span class="fn">print</span>(<span class="bi">n</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">32</div>
+    <table class="trace-table">
+      <tr><th>Iteration</th><th>n (start)</th><th>n &lt; 20?</th><th>n (end)</th></tr>
+      <tr><td>1</td><td>1</td><td>True</td><td>2</td></tr>
+      <tr><td>2</td><td>2</td><td>True</td><td>4</td></tr>
+      <tr><td>3</td><td>4</td><td>True</td><td>8</td></tr>
+      <tr><td>4</td><td>8</td><td>True</td><td>16</td></tr>
+      <tr><td>5</td><td>16</td><td>True</td><td>32</td></tr>
+      <tr><td>6</td><td>32</td><td>False</td><td>—</td></tr>
+    </table>
+    <div class="solution-explanation">
+      <code>n</code> doubles each iteration: 1→2→4→8→16→32. When n=32, the condition <code>32 &lt; 20</code> is False, so the loop stops. The <code>print(n)</code> is OUTSIDE the loop, so it prints 32 (not 16!).
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 7 — Functions -->
+<div class="exam-box" data-difficulty="hard" data-topic="4">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="topic-badge">Functions</span>
+  </div>
+  <h4 class="exam-title">T7 · Scope &amp; Return</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="kw">def</span> <span class="fn">mystery</span>(<span class="bi">x</span>):
+    <span class="bi">x</span> = <span class="bi">x</span> + <span class="nb">10</span>
+    <span class="kw">return</span> <span class="bi">x</span> * <span class="nb">2</span>
+
+<span class="bi">x</span> = <span class="nb">5</span>
+<span class="bi">result</span> = <span class="fn">mystery</span>(<span class="bi">x</span>)
+<span class="fn">print</span>(<span class="bi">x</span>)
+<span class="fn">print</span>(<span class="bi">result</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">5
+30</div>
+    <div class="solution-explanation">
+      The <code>x</code> inside the function is <strong>local</strong> — a separate copy. Changing it doesn't affect the <code>x = 5</code> in the main program. Inside the function: 5 + 10 = 15, then 15 × 2 = 30 returned. The global <code>x</code> stays 5.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 8 — Functions -->
+<div class="exam-box" data-difficulty="medium" data-topic="4">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Functions</span>
+  </div>
+  <h4 class="exam-title">T8 · print() vs return</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="kw">def</span> <span class="fn">double</span>(<span class="bi">n</span>):
+    <span class="fn">print</span>(<span class="bi">n</span> * <span class="nb">2</span>)
+
+<span class="bi">result</span> = <span class="fn">double</span>(<span class="nb">7</span>)
+<span class="fn">print</span>(<span class="bi">result</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">14
+None</div>
+    <div class="solution-explanation">
+      <code>double(7)</code> prints 14 inside the function. But since there's no <code>return</code> statement, the function returns <code>None</code> by default. So <code>result = None</code>, and the second print shows <code>None</code>. This is why <code>return</code> matters!
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 9 — Files -->
+<div class="exam-box" data-difficulty="medium" data-topic="5">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Files/Exceptions</span>
+  </div>
+  <h4 class="exam-title">T9 · try/except Flow</h4>
+  <p class="exam-question-text">If the user enters <code>"abc"</code>, what is the output?</p>
+<pre><span class="kw">try</span>:
+    <span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter: "</span>))
+    <span class="fn">print</span>(<span class="st">"Got"</span>, <span class="bi">num</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Bad input"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Success"</span>)
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="st">"Done"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">Bad input
+Done</div>
+    <div class="solution-explanation">
+      <code>int("abc")</code> raises ValueError → jumps to except → prints "Bad input". The <code>else</code> only runs when there's NO error, so it's skipped. <code>finally</code> ALWAYS runs, so "Done" prints. The line <code>print("Got", num)</code> was never reached because the exception happened on the same line.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 10 — Lists -->
+<div class="exam-box" data-difficulty="medium" data-topic="6">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Lists/Tuples</span>
+  </div>
+  <h4 class="exam-title">T10 · List Operations</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">nums</span> = [<span class="nb">10</span>, <span class="nb">20</span>, <span class="nb">30</span>, <span class="nb">40</span>, <span class="nb">50</span>]
+<span class="bi">nums</span>.<span class="fn">append</span>(<span class="nb">60</span>)
+<span class="bi">nums</span>.<span class="fn">remove</span>(<span class="nb">30</span>)
+<span class="bi">nums</span>.<span class="fn">pop</span>(<span class="nb">0</span>)
+<span class="fn">print</span>(<span class="bi">nums</span>)
+<span class="fn">print</span>(<span class="bi">nums</span>[<span class="nb">1</span>:<span class="nb">3</span>])</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">[20, 40, 50, 60]
+[40, 50]</div>
+    <table class="trace-table">
+      <tr><th>Operation</th><th>List</th></tr>
+      <tr><td>Start</td><td>[10, 20, 30, 40, 50]</td></tr>
+      <tr><td>append(60)</td><td>[10, 20, 30, 40, 50, 60]</td></tr>
+      <tr><td>remove(30)</td><td>[10, 20, 40, 50, 60]</td></tr>
+      <tr><td>pop(0)</td><td>[20, 40, 50, 60]</td></tr>
+    </table>
+    <div class="solution-explanation">
+      <code>pop(0)</code> removes and returns the item at index 0 (which is 10). Then <code>nums[1:3]</code> slices indexes 1 and 2 (not 3!) → <code>[40, 50]</code>.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 11 — Lists / Tuples -->
+<div class="exam-box" data-difficulty="hard" data-topic="6">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="topic-badge">Lists/Tuples</span>
+  </div>
+  <h4 class="exam-title">T11 · Tuple Unpacking in Loop</h4>
+  <p class="exam-question-text">What is the output?</p>
+<pre><span class="bi">students</span> = [(<span class="st">"Ann"</span>, <span class="nb">85</span>), (<span class="st">"Bob"</span>, <span class="nb">72</span>), (<span class="st">"Cal"</span>, <span class="nb">91</span>)]
+<span class="bi">total</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">name</span>, <span class="bi">mark</span> <span class="kw">in</span> <span class="bi">students</span>:
+    <span class="bi">total</span> += <span class="bi">mark</span>
+<span class="fn">print</span>(<span class="st">f"Average: {total / len(students)}"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">Average: 82.66666666666667</div>
+    <div class="solution-explanation">
+      Each tuple in the list is unpacked into <code>name</code> and <code>mark</code>. Total = 85 + 72 + 91 = 248. Average = 248 / 3 ≈ 82.67. Note: without <code>:.2f</code> formatting, Python shows all decimal places.
+    </div>
+  </div>
+</div>
+
+<!-- TRACE 12 — Database -->
+<div class="exam-box" data-difficulty="hard" data-topic="7">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="topic-badge">Database</span>
+  </div>
+  <h4 class="exam-title">T12 · SQL Query Result</h4>
+  <p class="exam-question-text">Given a table <code>items</code> with rows (1,"Pen",5.50), (2,"Book",89.99), (3,"Ruler",12.00), (4,"Eraser",8.50) — what does this print?</p>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT name, price FROM items WHERE price &gt; 10 ORDER BY price DESC"</span>)
+<span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="bi">row</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Output</div>
+    <div class="output-box">('Book', 89.99)
+('Ruler', 12.0)</div>
+    <div class="solution-explanation">
+      WHERE price &gt; 10 excludes Pen (5.50) and Eraser (8.50). ORDER BY price DESC sorts highest first. <code>fetchall()</code> returns tuples, so each row prints as <code>('name', price)</code>.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 2: FIND AND FIX THE BUG
+     ═══════════════════════════════════════════════════════════ -->
+<div class="section-divider">
+  <h2>🐛 Part B: Find &amp; Fix the Bug</h2>
+  <p>Each snippet has exactly ONE bug. Find it, explain why it's wrong, and write the fix.</p>
+</div>
+
+<!-- BUG 1 — IPO -->
+<div class="exam-box" data-difficulty="easy" data-topic="1">
+  <div class="exam-meta">
+    <span class="exam-badge badge-easy">Easy</span>
+    <span class="topic-badge">Input/Output</span>
+  </div>
+  <h4 class="exam-title">B1 · The Total Won't Add Up</h4>
+  <p class="exam-question-text">The programmer wants to add two numbers, but the output is wrong. Fix it.</p>
+<pre><span class="bi">a</span> = <span class="fn">input</span>(<span class="st">"First number: "</span>)
+<span class="bi">b</span> = <span class="fn">input</span>(<span class="st">"Second number: "</span>)
+<span class="bi">total</span> = <span class="bi">a</span> + <span class="bi">b</span>
+<span class="fn">print</span>(<span class="st">f"Total: {total}"</span>)   <span class="cm"># Typing 3 and 5 gives "35"!</span></pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text"><code>input()</code> returns <strong>strings</strong>. <code>"3" + "5"</code> concatenates to <code>"35"</code> instead of adding to <code>8</code>.</p>
+    <span class="fix-label wrong">❌ Wrong</span>
+<pre><span class="bi">a</span> = <span class="fn">input</span>(<span class="st">"First number: "</span>)
+<span class="bi">b</span> = <span class="fn">input</span>(<span class="st">"Second number: "</span>)</pre>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="bi">a</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"First number: "</span>))
+<span class="bi">b</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Second number: "</span>))</pre>
+  </div>
+</div>
+
+<!-- BUG 2 — Decisions -->
+<div class="exam-box" data-difficulty="easy" data-topic="2">
+  <div class="exam-meta">
+    <span class="exam-badge badge-easy">Easy</span>
+    <span class="topic-badge">Decisions</span>
+  </div>
+  <h4 class="exam-title">B2 · Assignment vs Comparison</h4>
+  <p class="exam-question-text">This crashes with a SyntaxError. Why?</p>
+<pre><span class="bi">password</span> = <span class="fn">input</span>(<span class="st">"Password: "</span>)
+<span class="kw">if</span> <span class="bi">password</span> = <span class="st">"secret123"</span>:
+    <span class="fn">print</span>(<span class="st">"Access granted"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text">Uses <code>=</code> (assignment) instead of <code>==</code> (comparison).</p>
+    <span class="fix-label wrong">❌ Wrong</span>
+<pre><span class="kw">if</span> <span class="bi">password</span> = <span class="st">"secret123"</span>:</pre>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="kw">if</span> <span class="bi">password</span> == <span class="st">"secret123"</span>:</pre>
+  </div>
+</div>
+
+<!-- BUG 3 — Decisions -->
+<div class="exam-box" data-difficulty="medium" data-topic="2">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Decisions</span>
+  </div>
+  <h4 class="exam-title">B3 · Wrong Grade Boundaries</h4>
+  <p class="exam-question-text">A student with 90% is getting "Pass" instead of "Distinction". Fix the logic.</p>
+<pre><span class="bi">mark</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Mark: "</span>))
+<span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+    <span class="fn">print</span>(<span class="st">"Pass"</span>)
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">75</span>:
+    <span class="fn">print</span>(<span class="st">"Distinction"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Fail"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text">90 ≥ 50 is True, so the first branch runs and <code>elif</code> is never checked. You must check the <strong>highest</strong> condition first.</p>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">75</span>:
+    <span class="fn">print</span>(<span class="st">"Distinction"</span>)
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+    <span class="fn">print</span>(<span class="st">"Pass"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Fail"</span>)</pre>
+  </div>
+</div>
+
+<!-- BUG 4 — Loops -->
+<div class="exam-box" data-difficulty="easy" data-topic="3">
+  <div class="exam-meta">
+    <span class="exam-badge badge-easy">Easy</span>
+    <span class="topic-badge">Loops</span>
+  </div>
+  <h4 class="exam-title">B4 · Infinite Loop</h4>
+  <p class="exam-question-text">This program never stops. Find the missing line.</p>
+<pre><span class="bi">count</span> = <span class="nb">1</span>
+<span class="kw">while</span> <span class="bi">count</span> &lt;= <span class="nb">5</span>:
+    <span class="fn">print</span>(<span class="st">f"Count: {count}"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text"><code>count</code> never changes, so <code>count &lt;= 5</code> stays True forever.</p>
+    <span class="fix-label correct">✅ Fixed — add counter update inside the loop</span>
+<pre><span class="bi">count</span> = <span class="nb">1</span>
+<span class="kw">while</span> <span class="bi">count</span> &lt;= <span class="nb">5</span>:
+    <span class="fn">print</span>(<span class="st">f"Count: {count}"</span>)
+    <span class="bi">count</span> += <span class="nb">1</span>    <span class="cm"># THIS WAS MISSING!</span></pre>
+  </div>
+</div>
+
+<!-- BUG 5 — Loops -->
+<div class="exam-box" data-difficulty="medium" data-topic="3">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Loops</span>
+  </div>
+  <h4 class="exam-title">B5 · Off-by-One Error</h4>
+  <p class="exam-question-text">The program should print 1 to 10, but stops at 9.</p>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">10</span>):
+    <span class="fn">print</span>(<span class="bi">i</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text"><code>range(1, 10)</code> stops BEFORE 10 (gives 1–9). To include 10, use <code>range(1, 11)</code>.</p>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">11</span>):
+    <span class="fn">print</span>(<span class="bi">i</span>)</pre>
+  </div>
+</div>
+
+<!-- BUG 6 — Functions -->
+<div class="exam-box" data-difficulty="medium" data-topic="4">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Functions</span>
+  </div>
+  <h4 class="exam-title">B6 · Can't Use the Result</h4>
+  <p class="exam-question-text">The programmer expects <code>result</code> to hold a number, but gets <code>None</code>.</p>
+<pre><span class="kw">def</span> <span class="fn">calculate_area</span>(<span class="bi">length</span>, <span class="bi">width</span>):
+    <span class="bi">area</span> = <span class="bi">length</span> * <span class="bi">width</span>
+    <span class="fn">print</span>(<span class="bi">area</span>)
+
+<span class="bi">result</span> = <span class="fn">calculate_area</span>(<span class="nb">5</span>, <span class="nb">3</span>)
+<span class="fn">print</span>(<span class="st">f"Double: {result * 2}"</span>)  <span class="cm"># TypeError!</span></pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text">The function uses <code>print()</code> instead of <code>return</code>. <code>print()</code> displays but returns <code>None</code>. You can't multiply <code>None * 2</code>.</p>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="kw">def</span> <span class="fn">calculate_area</span>(<span class="bi">length</span>, <span class="bi">width</span>):
+    <span class="bi">area</span> = <span class="bi">length</span> * <span class="bi">width</span>
+    <span class="kw">return</span> <span class="bi">area</span></pre>
+  </div>
+</div>
+
+<!-- BUG 7 — Files -->
+<div class="exam-box" data-difficulty="medium" data-topic="5">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Files/Exceptions</span>
+  </div>
+  <h4 class="exam-title">B7 · Writing After Close</h4>
+  <p class="exam-question-text">Only the first line appears in the file. Why?</p>
+<pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"log.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Line 1\n"</span>)
+
+<span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Line 2\n"</span>)  <span class="cm"># ValueError: I/O on closed file</span></pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text">The <code>with</code> block ends after the first write (notice the indentation). By line 4, the file is already closed. Both writes must be inside the <code>with</code> block.</p>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"log.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Line 1\n"</span>)
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Line 2\n"</span>)</pre>
+  </div>
+</div>
+
+<!-- BUG 8 — Lists -->
+<div class="exam-box" data-difficulty="medium" data-topic="6">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Lists/Tuples</span>
+  </div>
+  <h4 class="exam-title">B8 · IndexError Mystery</h4>
+  <p class="exam-question-text">This crashes on the last iteration. Find why.</p>
+<pre><span class="bi">names</span> = [<span class="st">"Ann"</span>, <span class="st">"Bob"</span>, <span class="st">"Cal"</span>]
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="fn">len</span>(<span class="bi">names</span>) + <span class="nb">1</span>):
+    <span class="fn">print</span>(<span class="bi">names</span>[<span class="bi">i</span>])</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text"><code>range(1, 4)</code> gives i = 1, 2, 3. But <code>names[3]</code> doesn't exist — a 3-item list has indexes 0, 1, 2. Also, index 0 ("Ann") is skipped entirely.</p>
+    <span class="fix-label correct">✅ Fixed — start at 0</span>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(<span class="bi">names</span>)):
+    <span class="fn">print</span>(<span class="bi">names</span>[<span class="bi">i</span>])</pre>
+    <div class="solution-explanation">Or even simpler: <code>for name in names: print(name)</code></div>
+  </div>
+</div>
+
+<!-- BUG 9 — Database -->
+<div class="exam-box" data-difficulty="medium" data-topic="7">
+  <div class="exam-meta">
+    <span class="exam-badge badge-medium">Medium</span>
+    <span class="topic-badge">Database</span>
+  </div>
+  <h4 class="exam-title">B9 · Data Disappears</h4>
+  <p class="exam-question-text">The programmer inserts data, but after re-running the program, the table is empty. Why?</p>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"shop.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO products(name,price) VALUES (?,?)"</span>, (<span class="st">"Pen"</span>, <span class="nb">10</span>))
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text">Missing <code>conn.commit()</code>! Without it, the INSERT is never saved to disk.</p>
+    <span class="fix-label correct">✅ Fixed — add commit before close</span>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO products(name,price) VALUES (?,?)"</span>, (<span class="st">"Pen"</span>, <span class="nb">10</span>))
+<span class="bi">conn</span>.<span class="fn">commit</span>()   <span class="cm"># THIS WAS MISSING!</span>
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+  </div>
+</div>
+
+<!-- BUG 10 — Database -->
+<div class="exam-box" data-difficulty="hard" data-topic="7">
+  <div class="exam-meta">
+    <span class="exam-badge badge-hard">Hard</span>
+    <span class="topic-badge">Database</span>
+  </div>
+  <h4 class="exam-title">B10 · SQL Injection Risk</h4>
+  <p class="exam-question-text">This code works, but has a critical security vulnerability. Fix it.</p>
+<pre><span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">f"SELECT * FROM users WHERE name = '{name}'"</span>)</pre>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">🐛 The Bug</div>
+    <p class="exam-question-text">Using f-strings to build SQL allows <strong>SQL injection</strong>. A user could type <code>' OR 1=1 --</code> to see all records. Always use <code>?</code> placeholders.</p>
+    <span class="fix-label correct">✅ Fixed</span>
+<pre><span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM users WHERE name = ?"</span>, (<span class="bi">name</span>,))</pre>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

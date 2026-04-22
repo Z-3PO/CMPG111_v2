@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Notes — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html">Cheat Sheets</a></li>
+      <li><a href="notes.html" class="active">Study Notes</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="trace.html">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html">Scenarios</a></li>
+      <li><a href="guide.html">Exam Guide</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">📖</div>
+  <h1>Study Notes</h1>
+  <p class="subtitle">Comprehensive notes with explanations, analogies, and worked examples. Tap any section to expand.</p>
+</section>
+
+<main class="container">
+
+  <div class="topic-tabs" role="tablist">
+    <button class="topic-tab" data-topic="1" data-active="true">1 · Input/Output</button>
+    <button class="topic-tab" data-topic="2">2 · Decisions</button>
+    <button class="topic-tab" data-topic="3">3 · Loops</button>
+    <button class="topic-tab" data-topic="4">4 · Functions</button>
+    <button class="topic-tab" data-topic="5">5 · Files/Except</button>
+    <button class="topic-tab" data-topic="6">6 · Lists/Tuples</button>
+    <button class="topic-tab" data-topic="7">7 · Database</button>
+  </div>
+
+  <!-- ═══════════════════ TOPIC 1 ═══════════════════ -->
+  <div class="topic-panel active" id="topic-1">
+    <div class="topic-header">
+      <h3 style="color:var(--c-io);">📥 Chapter 1 · Input, Processing &amp; Output</h3>
+      <p>The fundamental building blocks every program is made of</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>💻 What Is a Computer Program?</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>A <strong>computer</strong> is an electronic machine that processes data. It can't think for itself — it follows step-by-step instructions called a <strong>program</strong>. The person who writes these instructions is called a <strong>programmer</strong>.</p>
+        <p>Think of a program as a very detailed recipe. A recipe tells a chef exactly what to do, step by step. A program tells a computer exactly what to do, step by step. Python is the language we use to write those instructions.</p>
+        <div class="callout key-box">
+          <strong>🔑 Key Terms</strong><br>
+          <strong>Hardware</strong> — the physical parts (keyboard, screen, memory).<br>
+          <strong>Software</strong> — the programs/instructions that run on the hardware.<br>
+          <strong>Programming language</strong> — a special language (like Python) that lets humans write instructions computers can follow.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔄 The IPO Model</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Every program, no matter how small or how large, follows three fundamental steps:</p>
+        <ol>
+          <li><strong>Input</strong> — Gather data. This usually comes from the user typing via <code>input()</code>.</li>
+          <li><strong>Processing</strong> — Do something with the data. Calculate, compare, transform, or rearrange it.</li>
+          <li><strong>Output</strong> — Show the result. Display using <code>print()</code>, or save to a file.</li>
+        </ol>
+        <div class="callout analogy">
+          💡 <strong>Real-World Analogy:</strong> Ordering food at a restaurant. <strong>Input</strong> = you tell the waiter your order. <strong>Processing</strong> = the kitchen prepares the food. <strong>Output</strong> = the waiter brings you the finished meal.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>📦 Variables &amp; Data Types</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>A <strong>variable</strong> is a named storage location in the computer's memory — a labelled box that holds a value. The label is the variable's <strong>name</strong>; what's inside is its <strong>value</strong>.</p>
+<pre><span class="bi">student_name</span> = <span class="st">"Thabo"</span>       <span class="cm"># str — text</span>
+<span class="bi">age</span>          = <span class="nb">19</span>            <span class="cm"># int — whole number</span>
+<span class="bi">average</span>      = <span class="nb">78.5</span>          <span class="cm"># float — decimal</span>
+<span class="bi">is_enrolled</span>  = <span class="kw">True</span>          <span class="cm"># bool — True/False</span></pre>
+
+        <h5>The Four Basic Data Types</h5>
+        <table class="mini-table">
+          <tr><th>Type</th><th>Stores</th><th>Examples</th></tr>
+          <tr><td><code>str</code></td><td>Text</td><td><code>"Hello"</code>, <code>"42"</code></td></tr>
+          <tr><td><code>int</code></td><td>Whole numbers</td><td><code>5</code>, <code>-3</code>, <code>0</code></td></tr>
+          <tr><td><code>float</code></td><td>Decimals</td><td><code>3.14</code>, <code>-0.5</code></td></tr>
+          <tr><td><code>bool</code></td><td>True/False</td><td><code>True</code>, <code>False</code></td></tr>
+        </table>
+
+        <h5>Variable Naming Rules</h5>
+        <ul>
+          <li>Must start with a letter or underscore (not a digit)</li>
+          <li>Can contain letters, digits, and underscores — no spaces or dashes</li>
+          <li>Cannot be a Python keyword (<code>if</code>, <code>for</code>, <code>class</code>, etc.)</li>
+          <li>Case-sensitive: <code>Name</code>, <code>name</code>, <code>NAME</code> are all different</li>
+        </ul>
+        <div class="callout tip-box">
+          📝 <strong>Exam Tip:</strong> Use <strong>descriptive names</strong>. <code>student_age</code> beats <code>x</code> every time. Use <code>snake_case</code> — the Python convention.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>⌨️ Getting Input from the User</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <div class="callout warning-box">
+          ⚠️ <strong>Critical Rule:</strong> <code>input()</code> <strong>ALWAYS</strong> returns a string, even if the user types a number. To do maths you MUST convert with <code>int()</code> or <code>float()</code>. This is the single most common exam mistake.
+        </div>
+<pre><span class="bi">name</span>   = <span class="fn">input</span>(<span class="st">"What is your name? "</span>)           <span class="cm"># text</span>
+<span class="bi">age</span>    = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"How old are you? "</span>))        <span class="cm"># whole number</span>
+<span class="bi">height</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Height in metres: "</span>))   <span class="cm"># decimal</span>
+
+<span class="cm"># ❌ WRONG — will crash later</span>
+<span class="bi">price</span> = <span class="fn">input</span>(<span class="st">"Price: "</span>)
+<span class="bi">total</span> = <span class="bi">price</span> * <span class="nb">2</span>   <span class="cm"># ERROR! price is a string</span></pre>
+        <table class="mini-table">
+          <tr><th>You want…</th><th>Use…</th></tr>
+          <tr><td>Text (no maths)</td><td><code>input()</code></td></tr>
+          <tr><td>Whole number</td><td><code>int(input())</code></td></tr>
+          <tr><td>Decimal number</td><td><code>float(input())</code></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🧮 Operators &amp; Expressions</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>An <strong>expression</strong> is any combination of values, variables, and operators that produces a result.</p>
+        <table class="mini-table">
+          <tr><th>Op</th><th>Name</th><th>Example</th><th>Result</th></tr>
+          <tr><td><code>+</code></td><td>Addition</td><td><code>5 + 3</code></td><td><code>8</code></td></tr>
+          <tr><td><code>-</code></td><td>Subtraction</td><td><code>10 - 4</code></td><td><code>6</code></td></tr>
+          <tr><td><code>*</code></td><td>Multiplication</td><td><code>3 * 7</code></td><td><code>21</code></td></tr>
+          <tr><td><code>/</code></td><td>Division</td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+          <tr><td><code>//</code></td><td>Floor division</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+          <tr><td><code>%</code></td><td>Modulus</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+          <tr><td><code>**</code></td><td>Exponent</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr>
+        </table>
+        <div class="callout tip-box">
+          📝 <strong>The Modulus Trick:</strong><br>
+          • <code>num % 2 == 0</code> → number is <strong>even</strong><br>
+          • <code>num % 2 != 0</code> → number is <strong>odd</strong><br>
+          • <code>num % 10</code> → gives the <strong>last digit</strong><br>
+          • <code>num % 5 == 0</code> → divisible by 5
+        </div>
+        <h5>Operator Precedence (PEMDAS)</h5>
+        <p>Parentheses → Exponents → Multiplication/Division → Addition/Subtraction (left-to-right within a level).</p>
+<pre><span class="bi">result</span> = <span class="nb">2</span> + <span class="nb">3</span> * <span class="nb">4</span>       <span class="cm"># = 14 (not 20!)</span>
+<span class="bi">result</span> = (<span class="nb">2</span> + <span class="nb">3</span>) * <span class="nb">4</span>     <span class="cm"># = 20</span></pre>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🖥️ Displaying Output with print()</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="fn">print</span>(<span class="st">"Hello, World!"</span>)                       <span class="cm"># basic</span>
+<span class="fn">print</span>(<span class="st">"Name:"</span>, <span class="bi">name</span>, <span class="st">"Age:"</span>, <span class="bi">age</span>)          <span class="cm"># comma-separated</span>
+<span class="fn">print</span>(<span class="st">f"Hello {name}, you are {age}."</span>)       <span class="cm"># f-string ⭐</span>
+<span class="fn">print</span>(<span class="st">f"Price: R{price:.2f}"</span>)                <span class="cm"># 2 decimals</span></pre>
+        <div class="callout tip-box">
+          📝 <strong>Exam Tip:</strong> "Display to 2 decimal places" → use <code>:.2f</code> inside an f-string. The number controls decimal places: <code>:.1f</code> = one, <code>:.3f</code> = three.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════ TOPIC 2 ═══════════════════ -->
+  <div class="topic-panel" id="topic-2">
+    <div class="topic-header">
+      <h3 style="color:var(--c-decision);">🔀 Chapter 2 · Decision Structures &amp; Boolean Logic</h3>
+      <p>Teaching your programs to make choices</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>✅ Boolean Values</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>In everyday life, many questions have only two possible answers: yes or no, on or off, true or false. In Python, the <strong>Boolean</strong> data type has exactly two values: <code>True</code> and <code>False</code> (always capitalised).</p>
+        <p>Every decision in your program ultimately comes down to a Boolean question: "Is this condition True or False?" Based on the answer, the program takes one path or another.</p>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> A light switch is either ON (<code>True</code>) or OFF (<code>False</code>). No "maybe" or "half-on". Programming decisions work the same way.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>⚖️ Comparison Operators</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <table class="mini-table">
+          <tr><th>Op</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+          <tr><td><code>==</code></td><td>Equal to</td><td><code>5 == 5</code></td><td><code>True</code></td></tr>
+          <tr><td><code>!=</code></td><td>Not equal to</td><td><code>5 != 3</code></td><td><code>True</code></td></tr>
+          <tr><td><code>&gt;</code></td><td>Greater than</td><td><code>7 &gt; 10</code></td><td><code>False</code></td></tr>
+          <tr><td><code>&lt;</code></td><td>Less than</td><td><code>2 &lt; 9</code></td><td><code>True</code></td></tr>
+          <tr><td><code>&gt;=</code></td><td>≥</td><td><code>5 &gt;= 5</code></td><td><code>True</code></td></tr>
+          <tr><td><code>&lt;=</code></td><td>≤</td><td><code>3 &lt;= 1</code></td><td><code>False</code></td></tr>
+        </table>
+        <div class="callout warning-box">
+          ⚠️ <strong>The #1 Exam Mistake:</strong> <code>=</code> is ASSIGNMENT ("put 5 into x"). <code>==</code> is COMPARISON ("is x equal to 5?"). Writing <code>if x = 5:</code> is a syntax error!
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🛤️ if / elif / else</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <h5>Simple <code>if</code> — one path</h5>
+<pre><span class="kw">if</span> <span class="bi">temperature</span> &gt; <span class="nb">30</span>:
+    <span class="fn">print</span>(<span class="st">"It's a hot day!"</span>)</pre>
+
+        <h5><code>if-else</code> — two paths</h5>
+<pre><span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">18</span>:
+    <span class="fn">print</span>(<span class="st">"Can vote"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Too young"</span>)</pre>
+
+        <h5><code>if-elif-else</code> — multiple paths</h5>
+        <p>Python checks each condition top-to-bottom. The <strong>first</strong> True condition runs — the rest are skipped.</p>
+<pre><span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">75</span>:
+    <span class="fn">print</span>(<span class="st">"Distinction"</span>)
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">60</span>:
+    <span class="fn">print</span>(<span class="st">"Merit"</span>)
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+    <span class="fn">print</span>(<span class="st">"Pass"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Fail"</span>)</pre>
+
+        <div class="callout tip-box">
+          📝 <strong>Order Matters:</strong> Start with the highest/most specific condition first. If you check <code>mark &gt;= 50</code> before <code>mark &gt;= 75</code>, a student with 80 would be told "Pass" instead of "Distinction"!
+        </div>
+        <div class="callout key-box">
+          🔑 <strong>Indentation Is Everything:</strong> Python uses indentation (usually 4 spaces) to know which lines belong to the if/else block.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔗 Logical Operators: and, or, not</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <table class="mini-table">
+          <tr><th>Op</th><th>Meaning</th><th>True when…</th></tr>
+          <tr><td><code>and</code></td><td>Both conditions True</td><td>Both are True</td></tr>
+          <tr><td><code>or</code></td><td>At least one True</td><td>Either (or both) True</td></tr>
+          <tr><td><code>not</code></td><td>Reverses value</td><td>The condition is False</td></tr>
+        </table>
+<pre><span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">18</span> <span class="kw">and</span> <span class="bi">has_license</span>:
+    <span class="fn">print</span>(<span class="st">"You may drive."</span>)
+
+<span class="kw">if</span> <span class="bi">day</span> == <span class="st">"Sat"</span> <span class="kw">or</span> <span class="bi">day</span> == <span class="st">"Sun"</span>:
+    <span class="fn">print</span>(<span class="st">"Weekend!"</span>)</pre>
+
+        <h5>Complete Truth Table</h5>
+        <table class="mini-table">
+          <tr><th>A</th><th>B</th><th>A and B</th><th>A or B</th><th>not A</th></tr>
+          <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td></tr>
+          <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+          <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+          <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td></tr>
+        </table>
+        <div class="callout tip-box">
+          📝 <strong>Memory Trick:</strong> <strong>AND</strong> is a strict teacher — BOTH must pass. <strong>OR</strong> is generous — one passing is enough.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🪆 Nested Decisions</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>A <strong>nested</strong> decision is an <code>if</code> inside another <code>if</code>. The inner decision only runs if the outer condition is True.</p>
+<pre><span class="bi">member</span> = <span class="fn">input</span>(<span class="st">"Are you a member? (yes/no): "</span>)
+<span class="bi">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your age: "</span>))
+
+<span class="kw">if</span> <span class="bi">member</span> == <span class="st">"yes"</span>:
+    <span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">60</span>:
+        <span class="fn">print</span>(<span class="st">"Senior member: 30% off"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">"Member: 15% off"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"No discount"</span>)</pre>
+        <div class="callout tip-box">
+          📝 <strong>Tracing Strategy:</strong> Work from OUTSIDE in. Determine if the outer condition is True — only then look at the inner one.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════ TOPIC 3 ═══════════════════ -->
+  <div class="topic-panel" id="topic-3">
+    <div class="topic-header">
+      <h3 style="color:var(--c-loop);">🔄 Chapter 3 · Repetition Structures</h3>
+      <p>Making the computer repeat tasks — so you don't have to</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>🔁 The while Loop</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>The <code>while</code> loop is <strong>condition-controlled</strong>. It keeps repeating as long as the condition is True. The moment it becomes False, the loop stops.</p>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> "While the pot hasn't boiled, keep waiting." Check → not boiling → wait. Check → boiling → stop.
+        </div>
+<pre><span class="bi">counter</span> = <span class="nb">1</span>                   <span class="cm"># 1. Initialise</span>
+<span class="kw">while</span> <span class="bi">counter</span> &lt;= <span class="nb">5</span>:            <span class="cm"># 2. Condition</span>
+    <span class="fn">print</span>(<span class="st">f"Lap {counter}"</span>)     <span class="cm"># 3. Body</span>
+    <span class="bi">counter</span> += <span class="nb">1</span>              <span class="cm"># 4. Update (CRITICAL!)</span></pre>
+        <table class="mini-table">
+          <tr><th>Part</th><th>Purpose</th><th>Forget and…</th></tr>
+          <tr><td>Initialise</td><td>Set starting value</td><td>NameError</td></tr>
+          <tr><td>Condition</td><td>Checked before each iteration</td><td>Loop won't stop</td></tr>
+          <tr><td>Update</td><td>Move toward False condition</td><td>INFINITE LOOP 💀</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔢 The for Loop and range()</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>The <code>for</code> loop is <strong>count-controlled</strong> — use it when you know in advance how many times to repeat. No risk of infinite loops!</p>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):          <span class="cm"># 0, 1, 2, 3, 4</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">6</span>):       <span class="cm"># 1, 2, 3, 4, 5</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">2</span>, <span class="nb">11</span>, <span class="nb">2</span>):   <span class="cm"># 2, 4, 6, 8, 10</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">10</span>, <span class="nb">0</span>, -<span class="nb">1</span>): <span class="cm"># 10, 9, ..., 1</span></pre>
+        <div class="callout key-box">
+          🔑 <strong>Key Rule:</strong> <code>range()</code> NEVER includes the stop value. Think of it as a fence — you stop BEFORE reaching it.
+        </div>
+
+        <h5>while vs for — Which to Use?</h5>
+        <table class="mini-table">
+          <tr><th>Use <code>for</code> when…</th><th>Use <code>while</code> when…</th></tr>
+          <tr><td>You know how many times</td><td>You don't know — depends on condition</td></tr>
+          <tr><td>"Repeat 10 times", "for each student"</td><td>"Keep going until user says stop"</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🧮 Essential Loop Patterns</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>These patterns appear in almost every exam. Memorise them!</p>
+
+        <h5>Pattern 1: The Accumulator (Running Total)</h5>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="bi">num</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Enter number: "</span>))
+    <span class="bi">total</span> += <span class="bi">num</span>
+<span class="fn">print</span>(<span class="st">f"Sum: {total}, Average: {total/5:.2f}"</span>)</pre>
+
+        <h5>Pattern 2: The Counter</h5>
+<pre><span class="bi">pass_count</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">10</span>):
+    <span class="bi">mark</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">f"Student {i+1}: "</span>))
+    <span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+        <span class="bi">pass_count</span> += <span class="nb">1</span></pre>
+
+        <h5>Pattern 3: Finding Max/Min</h5>
+<pre><span class="bi">highest</span> = <span class="nb">0</span>
+<span class="bi">lowest</span>  = <span class="nb">999999</span>      <span class="cm"># start high</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="bi">score</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Score: "</span>))
+    <span class="kw">if</span> <span class="bi">score</span> &gt; <span class="bi">highest</span>: <span class="bi">highest</span> = <span class="bi">score</span>
+    <span class="kw">if</span> <span class="bi">score</span> &lt; <span class="bi">lowest</span>:  <span class="bi">lowest</span>  = <span class="bi">score</span></pre>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🛑 Sentinel-Controlled Loops</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>A <strong>sentinel</strong> is a special value that signals the end of input. The loop keeps going until the user types this value.</p>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="bi">count</span> = <span class="nb">0</span>
+<span class="bi">num</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Number (-1 to stop): "</span>))
+<span class="kw">while</span> <span class="bi">num</span> != -<span class="nb">1</span>:
+    <span class="bi">total</span> += <span class="bi">num</span>
+    <span class="bi">count</span> += <span class="nb">1</span>
+    <span class="bi">num</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Number (-1 to stop): "</span>))
+
+<span class="kw">if</span> <span class="bi">count</span> &gt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">f"Average: {total/count:.2f}"</span>)</pre>
+        <div class="callout key-box">
+          🔑 <strong>Pattern:</strong> <code>input()</code> appears <strong>twice</strong> — once before the loop (priming read) and once inside. This ensures the sentinel is checked before being processed.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════ TOPIC 4 ═══════════════════ -->
+  <div class="topic-panel" id="topic-4">
+    <div class="topic-header">
+      <h3 style="color:var(--c-function);">🧩 Chapter 4 · Functions</h3>
+      <p>Organising code into reusable, manageable blocks</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>🤔 Why Functions?</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Imagine calculating the area of a circle in 5 places. Without functions, you'd copy-paste the formula 5 times. If a bug appears, you'd fix it in 5 places.</p>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> A function is like a vending machine. Put in money (arguments), press a button (call the function), get a drink (return value). Same machine, used by everyone, every time.
+        </div>
+        <table class="mini-table">
+          <tr><th>Benefit</th><th>Explanation</th></tr>
+          <tr><td>Reusability</td><td>Write once, use many times</td></tr>
+          <tr><td>Organisation</td><td>Break big programs into pieces</td></tr>
+          <tr><td>Debugging</td><td>Fix in one place = fixed everywhere</td></tr>
+          <tr><td>Readability</td><td>Well-named functions explain themselves</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔧 Defining &amp; Calling Functions</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <h5>Defining (writing the recipe)</h5>
+<pre><span class="kw">def</span> <span class="fn">greet</span>(<span class="bi">name</span>, <span class="bi">age</span>):
+    <span class="fn">print</span>(<span class="st">f"Hello {name}! You are {age}."</span>)</pre>
+
+        <h5>Calling (using the recipe)</h5>
+<pre><span class="fn">greet</span>(<span class="st">"Lerato"</span>, <span class="nb">22</span>)   <span class="cm"># pass values</span>
+<span class="fn">greet</span>(<span class="st">"Sipho"</span>, <span class="nb">19</span>)    <span class="cm"># reuse with different values</span></pre>
+        <div class="callout warning-box">
+          ⚠️ <strong>Common Mistake:</strong> Python reads top-to-bottom. You must DEFINE a function BEFORE you CALL it.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>📤 Parameters, Arguments &amp; Return Values</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <table class="mini-table">
+          <tr><th>Term</th><th>Where</th><th>What</th><th>Memory trick</th></tr>
+          <tr><td>Parameter</td><td>def line</td><td>Placeholder name</td><td><strong>P</strong>arameter = <strong>P</strong>laceholder</td></tr>
+          <tr><td>Argument</td><td>function call</td><td>Actual value</td><td><strong>A</strong>rgument = <strong>A</strong>ctual value</td></tr>
+        </table>
+<pre><span class="kw">def</span> <span class="fn">calculate_vat</span>(<span class="bi">price</span>):       <span class="cm"># PARAMETER</span>
+    <span class="kw">return</span> <span class="bi">price</span> * <span class="nb">0.15</span>
+
+<span class="bi">my_vat</span> = <span class="fn">calculate_vat</span>(<span class="nb">200</span>)     <span class="cm"># ARGUMENT</span></pre>
+
+        <h5>return vs print() — Critical Difference</h5>
+        <table class="mini-table">
+          <tr><th></th><th>print()</th><th>return</th></tr>
+          <tr><td>Does what?</td><td>Shows on screen</td><td>Sends value back</td></tr>
+          <tr><td>Store result?</td><td>No — gives None</td><td>Yes — reusable</td></tr>
+          <tr><td>Math on it?</td><td>No</td><td>Yes</td></tr>
+        </table>
+        <div class="callout tip-box">
+          📝 <strong>Exam Tip:</strong> Question says "<strong>returns</strong>" → use <code>return</code>. Says "<strong>displays</strong>" → use <code>print()</code>. <code>return</code> also exits the function immediately — code after it won't run.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔒 Variable Scope</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Variables created <strong>inside</strong> a function are <strong>local</strong> — they only exist while the function is running.</p>
+<pre><span class="kw">def</span> <span class="fn">my_function</span>():
+    <span class="bi">secret</span> = <span class="nb">42</span>    <span class="cm"># LOCAL</span>
+    <span class="fn">print</span>(<span class="bi">secret</span>)   <span class="cm"># ✅ works inside</span>
+
+<span class="fn">my_function</span>()
+<span class="fn">print</span>(<span class="bi">secret</span>)       <span class="cm"># ❌ ERROR — doesn't exist here</span></pre>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> Local variables are like notes on a whiteboard in a meeting room — they vanish when the meeting ends. Global variables are like a hallway notice board — everyone can see.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════ TOPIC 5 ═══════════════════ -->
+  <div class="topic-panel" id="topic-5">
+    <div class="topic-header">
+      <h3 style="color:var(--c-file);">📁 Chapter 5 · Files &amp; Exceptions</h3>
+      <p>Saving data permanently and handling errors gracefully</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>💾 Why Do We Need Files?</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Every variable in your program lives in memory (RAM). The second your program ends, that memory is wiped clean — all data is gone.</p>
+        <p>Files solve this by storing data on the hard drive, where it stays until you delete it. High scores in a game, student records, configuration settings — anything that needs to survive between program runs lives in a file.</p>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> Variables are like notes on a whiteboard — wiped clean when you leave the room. Files are like documents in a filing cabinet — still there when you come back tomorrow.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>📝 Writing to Files</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>To work with a file, you follow three steps: <strong>open</strong> it, <strong>read/write</strong> to it, then <strong>close</strong> it.</p>
+<pre><span class="cm"># The manual way</span>
+<span class="bi">file</span> = <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>)
+<span class="bi">file</span>.<span class="fn">write</span>(<span class="st">"Hello, World!\n"</span>)
+<span class="bi">file</span>.<span class="fn">write</span>(<span class="st">"Line 2\n"</span>)
+<span class="bi">file</span>.<span class="fn">close</span>()
+
+<span class="cm"># The better way — 'with' statement auto-closes</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Hello, World!\n"</span>)
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Line 2\n"</span>)
+<span class="cm"># file is automatically closed here, even if error occurs</span></pre>
+        <h5>File Modes</h5>
+        <table class="mini-table">
+          <tr><th>Mode</th><th>Name</th><th>Behaviour</th></tr>
+          <tr><td><code>"r"</code></td><td>Read</td><td>Default. Error if file missing.</td></tr>
+          <tr><td><code>"w"</code></td><td>Write</td><td>Creates new file OR erases existing content!</td></tr>
+          <tr><td><code>"a"</code></td><td>Append</td><td>Adds to end of file, keeps existing content</td></tr>
+          <tr><td><code>"r+"</code></td><td>Read+Write</td><td>Both — file must exist</td></tr>
+        </table>
+        <div class="callout warning-box">
+          ⚠️ <strong>Critical Warning:</strong> Opening a file with <code>"w"</code> mode ERASES its existing contents immediately. If you want to add to a file, use <code>"a"</code> (append).
+        </div>
+        <div class="callout tip-box">
+          📝 <strong>Exam Tip:</strong> <code>write()</code> does NOT automatically add a newline. You must include <code>\n</code> yourself if you want each piece of data on a new line.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>📖 Reading from Files</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="cm"># Method 1: Read entire file as one string</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">content</span> = <span class="bi">f</span>.<span class="fn">read</span>()
+<span class="fn">print</span>(<span class="bi">content</span>)
+
+<span class="cm"># Method 2: Read all lines into a list</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">lines</span> = <span class="bi">f</span>.<span class="fn">readlines</span>()
+<span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">lines</span>:
+    <span class="fn">print</span>(<span class="bi">line</span>.<span class="fn">strip</span>())   <span class="cm"># .strip() removes \n</span>
+
+<span class="cm"># Method 3: Loop line-by-line (best for big files)</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"notes.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+        <span class="fn">print</span>(<span class="bi">line</span>.<span class="fn">strip</span>())</pre>
+        <div class="callout tip-box">
+          📝 <strong>Why .strip()?</strong> When you read a file, each line keeps its <code>\n</code> newline character. <code>.strip()</code> removes it (plus any spaces at either end) to give you clean text.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>💥 What Is an Exception?</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>An <strong>exception</strong> is Python's way of saying "something went wrong". When Python encounters an unexpected situation — the user types text instead of a number, a file is missing, you try to divide by zero — it <strong>raises</strong> an exception.</p>
+        <p>If you don't handle it, the program <strong>crashes</strong> with an error message. Not great for user experience!</p>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> Exceptions are like tripwires. Without a safety net (<code>try</code>/<code>except</code>), your program falls straight off the edge when it trips one. With a safety net, you catch it gracefully and keep going.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🛡️ try / except — The Safety Net</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="kw">try</span>:
+    <span class="bi">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Your age: "</span>))
+    <span class="fn">print</span>(<span class="st">f"You are {age}"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"That wasn't a number!"</span>)</pre>
+        <p>If the user types "abc", Python would normally crash with <code>ValueError</code>. With <code>try/except</code>, we catch it and show a friendly message instead.</p>
+
+        <h5>Catching Multiple Exceptions</h5>
+<pre><span class="kw">try</span>:
+    <span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter a number: "</span>))
+    <span class="bi">result</span> = <span class="nb">100</span> / <span class="bi">num</span>
+    <span class="fn">print</span>(<span class="st">f"100 / {num} = {result}"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Not a valid number"</span>)
+<span class="kw">except</span> <span class="fn">ZeroDivisionError</span>:
+    <span class="fn">print</span>(<span class="st">"Cannot divide by zero"</span>)</pre>
+
+        <h5>Common Exceptions</h5>
+        <table class="mini-table">
+          <tr><th>Exception</th><th>When it happens</th></tr>
+          <tr><td><code>ValueError</code></td><td><code>int("abc")</code> — wrong value type</td></tr>
+          <tr><td><code>ZeroDivisionError</code></td><td>Dividing by zero</td></tr>
+          <tr><td><code>FileNotFoundError</code></td><td>Opening a file that doesn't exist</td></tr>
+          <tr><td><code>IndexError</code></td><td>Accessing a list item that doesn't exist</td></tr>
+          <tr><td><code>KeyError</code></td><td>Looking up a missing dictionary key</td></tr>
+          <tr><td><code>TypeError</code></td><td>Mixing incompatible types — <code>"5" + 3</code></td></tr>
+          <tr><td><code>NameError</code></td><td>Using an undefined variable</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🏁 try / except / else / finally — The Full Picture</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="kw">try</span>:
+    <span class="bi">f</span> = <span class="fn">open</span>(<span class="st">"data.txt"</span>, <span class="st">"r"</span>)
+    <span class="bi">data</span> = <span class="bi">f</span>.<span class="fn">read</span>()
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"File doesn't exist"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Read successfully!"</span>)   <span class="cm"># only if NO error</span>
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="st">"Cleanup done"</span>)         <span class="cm"># ALWAYS runs</span></pre>
+        <table class="mini-table">
+          <tr><th>Block</th><th>When it runs</th></tr>
+          <tr><td><code>try</code></td><td>The main code that might fail</td></tr>
+          <tr><td><code>except</code></td><td>Only if an exception was raised</td></tr>
+          <tr><td><code>else</code></td><td>Only if NO exception was raised</td></tr>
+          <tr><td><code>finally</code></td><td>Always runs — error or not</td></tr>
+        </table>
+        <div class="callout key-box">
+          🔑 <strong>Use Case:</strong> <code>finally</code> is perfect for cleanup code like closing files or database connections — things that MUST happen whether the operation succeeded or not.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════ TOPIC 6 ═══════════════════ -->
+  <div class="topic-panel" id="topic-6">
+    <div class="topic-header">
+      <h3 style="color:var(--c-list);">📋 Chapter 6 · Lists &amp; Tuples</h3>
+      <p>Collections of data in a single variable</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>📦 Why Do We Need Lists?</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Imagine storing the marks of 30 students. You could create 30 variables: <code>mark1</code>, <code>mark2</code>, … <code>mark30</code>. Messy, right? Now imagine 300 students!</p>
+        <p>A <strong>list</strong> lets you store many values in one variable. You can add, remove, change, or loop through them easily.</p>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> A list is like a train. Each carriage has a position number (index) and holds something. You can add carriages, remove them, or swap what's inside.
+        </div>
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="bi">scores</span> = [<span class="nb">85</span>, <span class="nb">92</span>, <span class="nb">78</span>, <span class="nb">90</span>, <span class="nb">88</span>]
+<span class="bi">mixed</span>  = [<span class="st">"Alice"</span>, <span class="nb">21</span>, <span class="nb">85.5</span>, <span class="kw">True</span>]
+<span class="bi">empty</span>  = []     <span class="cm"># start empty, add later</span></pre>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🎯 Indexing &amp; Slicing</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Every item in a list has a <strong>position number</strong> called its <strong>index</strong>. Python indexes start at <strong>0</strong>, not 1!</p>
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>, <span class="st">"date"</span>]
+<span class="cm"># Index:      0         1          2         3
+# Negative:  -4        -3         -2        -1</span>
+
+<span class="fn">print</span>(<span class="bi">fruits</span>[<span class="nb">0</span>])      <span class="cm"># apple  (first)</span>
+<span class="fn">print</span>(<span class="bi">fruits</span>[<span class="nb">2</span>])      <span class="cm"># cherry</span>
+<span class="fn">print</span>(<span class="bi">fruits</span>[-<span class="nb">1</span>])     <span class="cm"># date   (last)</span>
+<span class="fn">print</span>(<span class="bi">fruits</span>[-<span class="nb">2</span>])     <span class="cm"># cherry (second-last)</span></pre>
+
+        <h5>Slicing — Getting a Range</h5>
+<pre><span class="bi">nums</span> = [<span class="nb">10</span>, <span class="nb">20</span>, <span class="nb">30</span>, <span class="nb">40</span>, <span class="nb">50</span>]
+
+<span class="fn">print</span>(<span class="bi">nums</span>[<span class="nb">1</span>:<span class="nb">4</span>])    <span class="cm"># [20, 30, 40]</span>
+<span class="fn">print</span>(<span class="bi">nums</span>[:<span class="nb">3</span>])     <span class="cm"># [10, 20, 30]  (from start)</span>
+<span class="fn">print</span>(<span class="bi">nums</span>[<span class="nb">2</span>:])     <span class="cm"># [30, 40, 50]  (to end)</span>
+<span class="fn">print</span>(<span class="bi">nums</span>[:])      <span class="cm"># full copy</span></pre>
+        <div class="callout tip-box">
+          📝 <strong>Slicing Rule:</strong> Just like <code>range()</code>, the stop index is NOT included. <code>nums[1:4]</code> gives indexes 1, 2, 3 — not 4.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔧 Modifying Lists — Methods</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="bi">scores</span> = [<span class="nb">85</span>, <span class="nb">92</span>, <span class="nb">78</span>]
+
+<span class="bi">scores</span>[<span class="nb">0</span>] = <span class="nb">100</span>           <span class="cm"># change: [100, 92, 78]</span>
+<span class="bi">scores</span>.<span class="fn">append</span>(<span class="nb">95</span>)          <span class="cm"># add to end: [100, 92, 78, 95]</span>
+<span class="bi">scores</span>.<span class="fn">insert</span>(<span class="nb">1</span>, <span class="nb">88</span>)       <span class="cm"># insert at index 1</span>
+<span class="bi">scores</span>.<span class="fn">remove</span>(<span class="nb">78</span>)          <span class="cm"># remove first 78</span>
+<span class="bi">last</span> = <span class="bi">scores</span>.<span class="fn">pop</span>()        <span class="cm"># remove &amp; return last</span>
+<span class="bi">scores</span>.<span class="fn">sort</span>()               <span class="cm"># sort ascending</span>
+<span class="bi">scores</span>.<span class="fn">sort</span>(reverse=<span class="kw">True</span>)   <span class="cm"># sort descending</span>
+<span class="bi">scores</span>.<span class="fn">reverse</span>()            <span class="cm"># reverse order</span></pre>
+
+        <h5>Useful Built-in Functions</h5>
+<pre><span class="bi">nums</span> = [<span class="nb">15</span>, <span class="nb">23</span>, <span class="nb">8</span>, <span class="nb">42</span>, <span class="nb">16</span>]
+<span class="fn">print</span>(<span class="fn">len</span>(<span class="bi">nums</span>))      <span class="cm"># 5  (how many)</span>
+<span class="fn">print</span>(<span class="fn">sum</span>(<span class="bi">nums</span>))      <span class="cm"># 104 (total)</span>
+<span class="fn">print</span>(<span class="fn">max</span>(<span class="bi">nums</span>))      <span class="cm"># 42  (biggest)</span>
+<span class="fn">print</span>(<span class="fn">min</span>(<span class="bi">nums</span>))      <span class="cm"># 8   (smallest)</span>
+
+<span class="cm"># Check if item is in list</span>
+<span class="kw">if</span> <span class="nb">23</span> <span class="kw">in</span> <span class="bi">nums</span>:
+    <span class="fn">print</span>(<span class="st">"Found!"</span>)</pre>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔁 Looping Through Lists</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+<span class="cm"># Method 1: Loop through items directly</span>
+<span class="kw">for</span> <span class="bi">fruit</span> <span class="kw">in</span> <span class="bi">fruits</span>:
+    <span class="fn">print</span>(<span class="bi">fruit</span>)
+
+<span class="cm"># Method 2: Loop using index</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(<span class="bi">fruits</span>)):
+    <span class="fn">print</span>(<span class="st">f"{i}: {fruits[i]}"</span>)
+
+<span class="cm"># Method 3: Both — with enumerate()</span>
+<span class="kw">for</span> <span class="bi">i</span>, <span class="bi">fruit</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="bi">fruits</span>):
+    <span class="fn">print</span>(<span class="st">f"{i}: {fruit}"</span>)</pre>
+        <div class="callout tip-box">
+          📝 <strong>Tip:</strong> Method 1 is simplest. Use Method 2/3 when you need the index (e.g., for numbering or modifying by position).
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔒 Tuples — Lists That Can't Change</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>A <strong>tuple</strong> is like a list, but <strong>immutable</strong> — once created, you can't change its contents. Use round brackets <code>()</code> instead of square brackets <code>[]</code>.</p>
+<pre><span class="bi">point</span>  = (<span class="nb">10</span>, <span class="nb">20</span>)              <span class="cm"># x, y coordinates</span>
+<span class="bi">colors</span> = (<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>)
+<span class="bi">date</span>   = (<span class="nb">2024</span>, <span class="nb">6</span>, <span class="nb">15</span>)           <span class="cm"># year, month, day</span>
+
+<span class="fn">print</span>(<span class="bi">point</span>[<span class="nb">0</span>])     <span class="cm"># 10 — indexing works</span>
+<span class="fn">print</span>(<span class="fn">len</span>(<span class="bi">colors</span>))   <span class="cm"># 3 — len works</span>
+
+<span class="bi">point</span>[<span class="nb">0</span>] = <span class="nb">5</span>       <span class="cm"># ❌ ERROR! Tuples can't change</span>
+<span class="bi">point</span>.<span class="fn">append</span>(<span class="nb">30</span>)  <span class="cm"># ❌ ERROR! No append method</span></pre>
+
+        <h5>Tuple Unpacking — A Superpower</h5>
+<pre><span class="bi">point</span> = (<span class="nb">10</span>, <span class="nb">20</span>)
+<span class="bi">x</span>, <span class="bi">y</span> = <span class="bi">point</span>              <span class="cm"># x=10, y=20</span>
+
+<span class="cm"># Common pattern: return multiple values</span>
+<span class="kw">def</span> <span class="fn">min_max</span>(<span class="bi">numbers</span>):
+    <span class="kw">return</span> <span class="fn">min</span>(<span class="bi">numbers</span>), <span class="fn">max</span>(<span class="bi">numbers</span>)
+
+<span class="bi">lo</span>, <span class="bi">hi</span> = <span class="fn">min_max</span>([<span class="nb">5</span>, <span class="nb">2</span>, <span class="nb">8</span>, <span class="nb">1</span>])  <span class="cm"># lo=1, hi=8</span></pre>
+
+        <h5>Lists vs Tuples — When to Use Which</h5>
+        <table class="mini-table">
+          <tr><th></th><th>List <code>[]</code></th><th>Tuple <code>()</code></th></tr>
+          <tr><td>Changeable?</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Syntax</td><td>Square brackets</td><td>Round brackets</td></tr>
+          <tr><td>Methods</td><td>Many (append, pop…)</td><td>Few</td></tr>
+          <tr><td>Use for</td><td>Data that will change</td><td>Data that shouldn't change</td></tr>
+        </table>
+        <div class="callout key-box">
+          🔑 <strong>When to use tuples:</strong> coordinates (x, y), RGB colors (255, 128, 0), dates, database rows, or any "package" of related values that belong together and shouldn't be modified.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════ TOPIC 7 ═══════════════════ -->
+  <div class="topic-panel" id="topic-7">
+    <div class="topic-header">
+      <h3 style="color:var(--c-db);">🗄️ Chapter 7 · Database Programming (SQLite)</h3>
+      <p>Storing structured data permanently using SQL</p>
+    </div>
+
+    <div class="note-section" data-open="true">
+      <div class="note-section-header">
+        <h4>🤔 What Is a Database?</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>A <strong>database</strong> is an organised collection of data, stored in structured tables that can be queried (asked questions) efficiently.</p>
+        <p>While files can also store data, databases give you:</p>
+        <ul>
+          <li>Built-in structure (tables with specific columns and types)</li>
+          <li>Fast searching, filtering, and sorting of millions of records</li>
+          <li>Data integrity (e.g., age must be a number, IDs must be unique)</li>
+          <li>A standard query language — <strong>SQL</strong></li>
+        </ul>
+        <div class="callout analogy">
+          💡 <strong>Analogy:</strong> A file is like a notebook — you write things down in order. A database is like a super-organised filing system with labelled drawers, folders, and an index. Finding anything takes seconds, no matter how big.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔌 SQLite &amp; sqlite3</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p><strong>SQLite</strong> is a lightweight, file-based database. Instead of running a separate database server, your entire database lives in a single <code>.db</code> file on your computer.</p>
+        <p>Python includes the <code>sqlite3</code> module built-in — no installation needed.</p>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="cm"># 1. Connect (creates the file if it doesn't exist)</span>
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"school.db"</span>)
+
+<span class="cm"># 2. Create a cursor — your helper for running SQL</span>
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+
+<span class="cm"># 3. ... run SQL statements here ...</span>
+
+<span class="cm"># 4. Save changes</span>
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># 5. Close connection when done</span>
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre>
+        <div class="callout key-box">
+          🔑 <strong>The Flow:</strong> Connect → Cursor → Execute → Commit → Close. Commit saves your changes — forget it and nothing is saved!
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>📋 CREATE TABLE — Designing Storage</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <p>Before storing data, you need to create a table. Think of this as designing a spreadsheet — you decide the column names and what type of data each column holds.</p>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""
+    CREATE TABLE IF NOT EXISTS students (
+        id      INTEGER PRIMARY KEY,
+        name    TEXT NOT NULL,
+        age     INTEGER,
+        grade   REAL
+    )
+"""</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+
+        <h5>SQLite Data Types</h5>
+        <table class="mini-table">
+          <tr><th>Type</th><th>Stores</th><th>Python equivalent</th></tr>
+          <tr><td><code>INTEGER</code></td><td>Whole numbers</td><td><code>int</code></td></tr>
+          <tr><td><code>REAL</code></td><td>Decimal numbers</td><td><code>float</code></td></tr>
+          <tr><td><code>TEXT</code></td><td>Strings</td><td><code>str</code></td></tr>
+          <tr><td><code>BLOB</code></td><td>Binary data</td><td><code>bytes</code></td></tr>
+          <tr><td><code>NULL</code></td><td>Missing/no value</td><td><code>None</code></td></tr>
+        </table>
+
+        <h5>Column Constraints</h5>
+        <table class="mini-table">
+          <tr><th>Constraint</th><th>Meaning</th></tr>
+          <tr><td><code>PRIMARY KEY</code></td><td>Unique identifier; auto-increments if INTEGER</td></tr>
+          <tr><td><code>NOT NULL</code></td><td>Value must be provided (can't be empty)</td></tr>
+          <tr><td><code>UNIQUE</code></td><td>No duplicates allowed</td></tr>
+          <tr><td><code>DEFAULT x</code></td><td>Use x if no value given</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>➕ INSERT — Adding Rows (CRUD: Create)</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="cm"># Insert one row using ? placeholders (SAFE)</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"INSERT INTO students (name, age, grade) VALUES (?, ?, ?)"</span>,
+    (<span class="st">"Alice"</span>, <span class="nb">20</span>, <span class="nb">85.5</span>)
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># Insert multiple rows with executemany()</span>
+<span class="bi">students</span> = [
+    (<span class="st">"Bob"</span>, <span class="nb">21</span>, <span class="nb">78.0</span>),
+    (<span class="st">"Cara"</span>, <span class="nb">19</span>, <span class="nb">92.3</span>),
+    (<span class="st">"Dan"</span>, <span class="nb">22</span>, <span class="nb">65.0</span>)
+]
+<span class="bi">cur</span>.<span class="fn">executemany</span>(
+    <span class="st">"INSERT INTO students (name, age, grade) VALUES (?, ?, ?)"</span>,
+    <span class="bi">students</span>
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+        <div class="callout warning-box">
+          ⚠️ <strong>SECURITY — Use ? Placeholders!</strong> Never build SQL by gluing strings together:
+          <br><br>
+          ❌ <code>cur.execute(f"INSERT INTO users VALUES ('{name}')")</code> — dangerous, allows SQL injection<br>
+          ✅ <code>cur.execute("INSERT INTO users VALUES (?)", (name,))</code> — safe, escapes input properly
+        </div>
+        <div class="callout tip-box">
+          📝 <strong>Note:</strong> The <code>?</code> placeholders expect a tuple, even for a single value. That's why you see <code>(name,)</code> — the trailing comma makes it a tuple with one item.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🔍 SELECT — Reading Data (CRUD: Read)</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="cm"># Get ALL rows</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students"</span>)
+<span class="bi">rows</span> = <span class="bi">cur</span>.<span class="fn">fetchall</span>()
+<span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">rows</span>:
+    <span class="fn">print</span>(<span class="bi">row</span>)    <span class="cm"># (1, 'Alice', 20, 85.5)</span>
+
+<span class="cm"># Get ONE row</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students WHERE id=?"</span>, (<span class="nb">1</span>,))
+<span class="bi">student</span> = <span class="bi">cur</span>.<span class="fn">fetchone</span>()
+<span class="fn">print</span>(<span class="bi">student</span>)
+
+<span class="cm"># Specific columns + WHERE condition</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"SELECT name, grade FROM students WHERE grade &gt; ?"</span>,
+    (<span class="nb">80</span>,)
+)
+<span class="kw">for</span> <span class="bi">name</span>, <span class="bi">grade</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="st">f"{name}: {grade}"</span>)
+
+<span class="cm"># ORDER BY — sort results</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT name, grade FROM students ORDER BY grade DESC"</span>)</pre>
+
+        <h5>fetchone() vs fetchall() vs looping</h5>
+        <table class="mini-table">
+          <tr><th>Method</th><th>Returns</th><th>Use when</th></tr>
+          <tr><td><code>fetchone()</code></td><td>One row as tuple (or None)</td><td>You expect exactly 1 result</td></tr>
+          <tr><td><code>fetchall()</code></td><td>List of tuples</td><td>You want all results at once</td></tr>
+          <tr><td>Loop <code>for row in cur</code></td><td>One row at a time</td><td>Large result sets (memory-friendly)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>✏️ UPDATE &amp; DELETE (CRUD: Update &amp; Delete)</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+<pre><span class="cm"># UPDATE — change existing rows</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"UPDATE students SET grade=? WHERE name=?"</span>,
+    (<span class="nb">95.0</span>, <span class="st">"Alice"</span>)
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># DELETE — remove rows</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"DELETE FROM students WHERE age &lt; ?"</span>,
+    (<span class="nb">18</span>,)
+)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># How many rows were affected?</span>
+<span class="fn">print</span>(<span class="st">f"Rows deleted: {cur.rowcount}"</span>)</pre>
+        <div class="callout warning-box">
+          ⚠️ <strong>DANGER:</strong> <code>UPDATE</code> or <code>DELETE</code> without a <code>WHERE</code> clause affects <strong>every single row</strong> in the table. Always double-check your <code>WHERE</code> condition before committing!
+        </div>
+        <h5>CRUD — The 4 Core Operations</h5>
+        <table class="mini-table">
+          <tr><th>Letter</th><th>Operation</th><th>SQL</th><th>Example</th></tr>
+          <tr><td><strong>C</strong></td><td>Create</td><td><code>INSERT</code></td><td>Add new student</td></tr>
+          <tr><td><strong>R</strong></td><td>Read</td><td><code>SELECT</code></td><td>Look up a grade</td></tr>
+          <tr><td><strong>U</strong></td><td>Update</td><td><code>UPDATE</code></td><td>Change a mark</td></tr>
+          <tr><td><strong>D</strong></td><td>Delete</td><td><code>DELETE</code></td><td>Remove a student</td></tr>
+        </table>
+        <div class="callout key-box">
+          🔑 <strong>Remember:</strong> Every database program does some combination of CRUD. Master these four and you can build anything.
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-section-header">
+        <h4>🛡️ Best Practices &amp; Common Pitfalls</h4>
+        <span class="note-section-toggle">+</span>
+      </div>
+      <div class="note-section-body">
+        <ul>
+          <li><strong>Always commit.</strong> Changes aren't saved to the file until you call <code>conn.commit()</code>.</li>
+          <li><strong>Always close.</strong> End with <code>conn.close()</code> to release the file and ensure all changes are flushed.</li>
+          <li><strong>Always use placeholders.</strong> Never use f-strings or <code>+</code> to insert user input into SQL — use <code>?</code> placeholders.</li>
+          <li><strong>Handle errors.</strong> Wrap database code in <code>try/except</code> to catch <code>sqlite3.IntegrityError</code> (duplicate keys) and <code>sqlite3.OperationalError</code> (locked DB, bad SQL).</li>
+          <li><strong>Use context managers for safety.</strong> <code>with sqlite3.connect("db.db") as conn:</code> automatically commits and closes.</li>
+        </ul>
+<pre><span class="cm"># Full template — the safe way</span>
+<span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="kw">try</span>:
+    <span class="kw">with</span> <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"school.db"</span>) <span class="kw">as</span> <span class="bi">conn</span>:
+        <span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students"</span>)
+        <span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+            <span class="fn">print</span>(<span class="bi">row</span>)
+<span class="kw">except</span> <span class="bi">sqlite3</span>.<span class="fn">Error</span> <span class="kw">as</span> <span class="bi">e</span>:
+    <span class="fn">print</span>(<span class="st">f"Database error: {e}"</span>)</pre>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

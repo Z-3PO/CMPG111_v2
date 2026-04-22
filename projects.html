@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html">Cheat Sheets</a></li>
+      <li><a href="notes.html">Study Notes</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="trace.html">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html">Scenarios</a></li>
+      <li><a href="guide.html">Exam Guide</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">🛠️</div>
+  <h1>Progressive Projects</h1>
+  <p class="subtitle">One project, seven stages. Each stage adds a new topic — by the end you've used everything. Type the code yourself (don't copy-paste!) to build muscle memory.</p>
+</section>
+
+<main class="container">
+
+<div class="callout tip-box" style="max-width:720px;margin:0 auto 30px;">
+  <strong>📝 How to Use This Page:</strong> Start at Stage 1 and work your way down. Each stage builds on the previous one. Try to code it yourself first using just the requirements, then check the solution. By Stage 7, you'll have a complete app using every concept in the course.
+</div>
+
+<!-- ═══════════ STAGE 1 — INPUT/OUTPUT ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-io);">
+  <span class="step-num">Stage 1 · Input/Output</span>
+  <h4>💰 Budget Tracker v1 — Basic Calculator</h4>
+  <p><strong>Your task:</strong> Ask the user for their <strong>monthly income</strong> and a single <strong>expense description</strong> and <strong>amount</strong>. Display the remaining balance.</p>
+  <div class="callout key-box">
+    🔑 <strong>Concepts practiced:</strong> <code>input()</code>, <code>float()</code> conversion, arithmetic, f-string formatting with <code>:.2f</code>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 1 Code</div>
+<pre><span class="bi">income</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Monthly income (R): "</span>))
+<span class="bi">desc</span>   = <span class="fn">input</span>(<span class="st">"Expense description: "</span>)
+<span class="bi">amount</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Amount for {desc} (R): "</span>))
+
+<span class="bi">balance</span> = <span class="bi">income</span> - <span class="bi">amount</span>
+
+<span class="fn">print</span>(<span class="st">f"\n--- Budget Summary ---"</span>)
+<span class="fn">print</span>(<span class="st">f"Income:   R{income:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"{desc}: R{amount:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Balance:  R{balance:.2f}"</span>)</pre>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 2 — DECISIONS ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-decision);">
+  <span class="step-num">Stage 2 · Decisions</span>
+  <h4>💰 Budget Tracker v2 — Budget Warnings</h4>
+  <p><strong>Build on v1:</strong> After calculating the balance, give the user feedback. If they've spent more than 50% of their income, warn them. If the balance is negative, alert them they're over budget. Add a spending category: "Need" or "Want".</p>
+  <div class="callout key-box">
+    🔑 <strong>New concepts:</strong> <code>if/elif/else</code>, comparison operators, Boolean conditions
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 2 Code</div>
+<pre><span class="bi">income</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Monthly income (R): "</span>))
+<span class="bi">desc</span>   = <span class="fn">input</span>(<span class="st">"Expense description: "</span>)
+<span class="bi">amount</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Amount for {desc} (R): "</span>))
+<span class="bi">category</span> = <span class="fn">input</span>(<span class="st">"Category (need/want): "</span>)
+
+<span class="bi">balance</span> = <span class="bi">income</span> - <span class="bi">amount</span>
+<span class="bi">pct_spent</span> = (<span class="bi">amount</span> / <span class="bi">income</span>) * <span class="nb">100</span>
+
+<span class="fn">print</span>(<span class="st">f"\n--- Budget Summary ---"</span>)
+<span class="fn">print</span>(<span class="st">f"Income:   R{income:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"{desc} ({category}): R{amount:.2f} ({pct_spent:.0f}%)"</span>)
+<span class="fn">print</span>(<span class="st">f"Balance:  R{balance:.2f}"</span>)
+
+<span class="kw">if</span> <span class="bi">balance</span> &lt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">"⚠️  OVER BUDGET!"</span>)
+<span class="kw">elif</span> <span class="bi">pct_spent</span> &gt; <span class="nb">50</span>:
+    <span class="fn">print</span>(<span class="st">"⚠️  High spending — over 50% of income"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"✅ Looking good!"</span>)
+
+<span class="kw">if</span> <span class="bi">category</span> == <span class="st">"want"</span> <span class="kw">and</span> <span class="bi">pct_spent</span> &gt; <span class="nb">30</span>:
+    <span class="fn">print</span>(<span class="st">"💡 Tip: Your 'want' spending is over 30%."</span>)</pre>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 3 — LOOPS ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-loop);">
+  <span class="step-num">Stage 3 · Loops</span>
+  <h4>💰 Budget Tracker v3 — Multiple Expenses</h4>
+  <p><strong>Build on v2:</strong> Instead of one expense, let the user enter <strong>multiple expenses</strong> until they type "done". Track the running total, count of expenses, and calculate the average expense.</p>
+  <div class="callout key-box">
+    🔑 <strong>New concepts:</strong> <code>while</code> loop, sentinel value, accumulator pattern, counter pattern
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 3 Code</div>
+<pre><span class="bi">income</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Monthly income (R): "</span>))
+<span class="bi">total_spent</span> = <span class="nb">0</span>
+<span class="bi">count</span> = <span class="nb">0</span>
+
+<span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Expense description (or 'done'): "</span>)
+<span class="kw">while</span> <span class="bi">desc</span> != <span class="st">"done"</span>:
+    <span class="bi">amount</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Amount for {desc} (R): "</span>))
+    <span class="bi">total_spent</span> += <span class="bi">amount</span>
+    <span class="bi">count</span> += <span class="nb">1</span>
+    <span class="fn">print</span>(<span class="st">f"  Running total: R{total_spent:.2f}"</span>)
+    <span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Expense description (or 'done'): "</span>)
+
+<span class="bi">balance</span> = <span class="bi">income</span> - <span class="bi">total_spent</span>
+
+<span class="fn">print</span>(<span class="st">f"\n--- Budget Summary ---"</span>)
+<span class="fn">print</span>(<span class="st">f"Income:    R{income:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Expenses:  {count} totalling R{total_spent:.2f}"</span>)
+<span class="kw">if</span> <span class="bi">count</span> &gt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">f"Average:   R{total_spent/count:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Balance:   R{balance:.2f}"</span>)
+
+<span class="kw">if</span> <span class="bi">balance</span> &lt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">"⚠️  OVER BUDGET!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"✅ Within budget"</span>)</pre>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 4 — FUNCTIONS ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-function);">
+  <span class="step-num">Stage 4 · Functions</span>
+  <h4>💰 Budget Tracker v4 — Organised with Functions</h4>
+  <p><strong>Refactor v3:</strong> Break the code into reusable functions:</p>
+  <ul>
+    <li><code>get_income()</code> → asks for and returns income</li>
+    <li><code>get_expenses()</code> → collects expenses using a loop, returns the list of (desc, amount) tuples</li>
+    <li><code>calculate_summary(income, expenses)</code> → returns (total_spent, balance, average)</li>
+    <li><code>display_report(income, expenses, summary)</code> → prints everything</li>
+  </ul>
+  <div class="callout key-box">
+    🔑 <strong>New concepts:</strong> <code>def</code>, parameters, <code>return</code>, scope, tuple return values
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 4 Code</div>
+<pre><span class="kw">def</span> <span class="fn">get_income</span>():
+    <span class="kw">return</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Monthly income (R): "</span>))
+
+<span class="kw">def</span> <span class="fn">get_expenses</span>():
+    <span class="bi">expenses</span> = []
+    <span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Expense (or 'done'): "</span>)
+    <span class="kw">while</span> <span class="bi">desc</span> != <span class="st">"done"</span>:
+        <span class="bi">amt</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Amount for {desc}: R"</span>))
+        <span class="bi">expenses</span>.<span class="fn">append</span>((<span class="bi">desc</span>, <span class="bi">amt</span>))
+        <span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Expense (or 'done'): "</span>)
+    <span class="kw">return</span> <span class="bi">expenses</span>
+
+<span class="kw">def</span> <span class="fn">calculate_summary</span>(<span class="bi">income</span>, <span class="bi">expenses</span>):
+    <span class="bi">total</span> = <span class="nb">0</span>
+    <span class="kw">for</span> <span class="bi">desc</span>, <span class="bi">amt</span> <span class="kw">in</span> <span class="bi">expenses</span>:
+        <span class="bi">total</span> += <span class="bi">amt</span>
+    <span class="bi">balance</span> = <span class="bi">income</span> - <span class="bi">total</span>
+    <span class="bi">avg</span> = <span class="bi">total</span> / <span class="fn">len</span>(<span class="bi">expenses</span>) <span class="kw">if</span> <span class="bi">expenses</span> <span class="kw">else</span> <span class="nb">0</span>
+    <span class="kw">return</span> (<span class="bi">total</span>, <span class="bi">balance</span>, <span class="bi">avg</span>)
+
+<span class="kw">def</span> <span class="fn">display_report</span>(<span class="bi">income</span>, <span class="bi">expenses</span>, <span class="bi">summary</span>):
+    <span class="bi">total</span>, <span class="bi">balance</span>, <span class="bi">avg</span> = <span class="bi">summary</span>
+    <span class="fn">print</span>(<span class="st">f"\n--- Budget Report ---"</span>)
+    <span class="fn">print</span>(<span class="st">f"Income: R{income:.2f}"</span>)
+    <span class="kw">for</span> <span class="bi">desc</span>, <span class="bi">amt</span> <span class="kw">in</span> <span class="bi">expenses</span>:
+        <span class="fn">print</span>(<span class="st">f"  {desc}: R{amt:.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Total spent: R{total:.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Average: R{avg:.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Balance: R{balance:.2f}"</span>)
+    <span class="kw">if</span> <span class="bi">balance</span> &lt; <span class="nb">0</span>:
+        <span class="fn">print</span>(<span class="st">"⚠️  OVER BUDGET!"</span>)
+
+<span class="cm"># --- Main program ---</span>
+<span class="bi">income</span> = <span class="fn">get_income</span>()
+<span class="bi">expenses</span> = <span class="fn">get_expenses</span>()
+<span class="bi">summary</span> = <span class="fn">calculate_summary</span>(<span class="bi">income</span>, <span class="bi">expenses</span>)
+<span class="fn">display_report</span>(<span class="bi">income</span>, <span class="bi">expenses</span>, <span class="bi">summary</span>)</pre>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 5 — FILES ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-file);">
+  <span class="step-num">Stage 5 · Files &amp; Exceptions</span>
+  <h4>💰 Budget Tracker v5 — Save &amp; Load</h4>
+  <p><strong>Build on v4:</strong> Add the ability to:</p>
+  <ul>
+    <li><strong>Save</strong> expenses to a file <code>budget.txt</code> (one per line: <code>desc,amount</code>)</li>
+    <li><strong>Load</strong> previous expenses from the file when the program starts</li>
+    <li>Handle the case where the file doesn't exist yet (first run)</li>
+    <li>Handle invalid number input with <code>try/except</code></li>
+  </ul>
+  <div class="callout key-box">
+    🔑 <strong>New concepts:</strong> file read/write, append mode, <code>with</code> statement, <code>try/except</code>, <code>.strip()</code>, <code>.split()</code>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 5 Code</div>
+<pre><span class="kw">def</span> <span class="fn">load_expenses</span>(<span class="bi">filename</span>):
+    <span class="bi">expenses</span> = []
+    <span class="kw">try</span>:
+        <span class="kw">with</span> <span class="fn">open</span>(<span class="bi">filename</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+            <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+                <span class="bi">parts</span> = <span class="bi">line</span>.<span class="fn">strip</span>().<span class="fn">split</span>(<span class="st">","</span>)
+                <span class="bi">expenses</span>.<span class="fn">append</span>((<span class="bi">parts</span>[<span class="nb">0</span>], <span class="fn">float</span>(<span class="bi">parts</span>[<span class="nb">1</span>])))
+        <span class="fn">print</span>(<span class="st">f"Loaded {len(expenses)} previous expenses."</span>)
+    <span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+        <span class="fn">print</span>(<span class="st">"No previous data. Starting fresh."</span>)
+    <span class="kw">return</span> <span class="bi">expenses</span>
+
+<span class="kw">def</span> <span class="fn">save_expenses</span>(<span class="bi">filename</span>, <span class="bi">expenses</span>):
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="bi">filename</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="kw">for</span> <span class="bi">desc</span>, <span class="bi">amt</span> <span class="kw">in</span> <span class="bi">expenses</span>:
+            <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">f"{desc},{amt}\n"</span>)
+    <span class="fn">print</span>(<span class="st">"Saved!"</span>)
+
+<span class="kw">def</span> <span class="fn">get_income</span>():
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">try</span>:
+            <span class="kw">return</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Monthly income (R): "</span>))
+        <span class="kw">except</span> <span class="fn">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Please enter a number."</span>)
+
+<span class="kw">def</span> <span class="fn">get_new_expenses</span>():
+    <span class="bi">new</span> = []
+    <span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Expense (or 'done'): "</span>)
+    <span class="kw">while</span> <span class="bi">desc</span> != <span class="st">"done"</span>:
+        <span class="kw">try</span>:
+            <span class="bi">amt</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Amount for {desc}: R"</span>))
+            <span class="bi">new</span>.<span class="fn">append</span>((<span class="bi">desc</span>, <span class="bi">amt</span>))
+        <span class="kw">except</span> <span class="fn">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Invalid amount, try again."</span>)
+        <span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Expense (or 'done'): "</span>)
+    <span class="kw">return</span> <span class="bi">new</span>
+
+<span class="cm"># --- Main ---</span>
+<span class="bi">expenses</span> = <span class="fn">load_expenses</span>(<span class="st">"budget.txt"</span>)
+<span class="bi">income</span> = <span class="fn">get_income</span>()
+<span class="bi">expenses</span> += <span class="fn">get_new_expenses</span>()
+
+<span class="bi">total</span> = <span class="fn">sum</span>(<span class="bi">amt</span> <span class="kw">for</span> <span class="bi">_</span>, <span class="bi">amt</span> <span class="kw">in</span> <span class="bi">expenses</span>)
+<span class="fn">print</span>(<span class="st">f"\nTotal: R{total:.2f} | Balance: R{income - total:.2f}"</span>)
+
+<span class="fn">save_expenses</span>(<span class="st">"budget.txt"</span>, <span class="bi">expenses</span>)</pre>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 6 — LISTS ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-list);">
+  <span class="step-num">Stage 6 · Lists &amp; Tuples</span>
+  <h4>💰 Budget Tracker v6 — Smart Analytics</h4>
+  <p><strong>Build on v5:</strong> Add analysis features using list operations:</p>
+  <ul>
+    <li>Display expenses sorted by amount (highest to lowest)</li>
+    <li>Find and highlight the <strong>biggest</strong> and <strong>smallest</strong> expense</li>
+    <li>Group expenses by category (store as list of tuples: <code>(desc, amount, category)</code>)</li>
+    <li>Show the total spent per category</li>
+  </ul>
+  <div class="callout key-box">
+    🔑 <strong>New concepts:</strong> list methods (<code>sort</code>, <code>append</code>), <code>max()</code>/<code>min()</code>, tuple unpacking in loops, list of tuples, <code>in</code> operator
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 6 Code (analytics portion)</div>
+<pre><span class="kw">def</span> <span class="fn">show_analytics</span>(<span class="bi">expenses</span>):
+    <span class="kw">if</span> <span class="kw">not</span> <span class="bi">expenses</span>:
+        <span class="fn">print</span>(<span class="st">"No expenses to analyze."</span>)
+        <span class="kw">return</span>
+
+    <span class="cm"># Sort by amount (descending)</span>
+    <span class="bi">sorted_exp</span> = <span class="fn">sorted</span>(<span class="bi">expenses</span>, key=<span class="kw">lambda</span> <span class="bi">e</span>: <span class="bi">e</span>[<span class="nb">1</span>], reverse=<span class="kw">True</span>)
+
+    <span class="fn">print</span>(<span class="st">"\n--- Expenses (highest first) ---"</span>)
+    <span class="kw">for</span> <span class="bi">desc</span>, <span class="bi">amt</span>, <span class="bi">cat</span> <span class="kw">in</span> <span class="bi">sorted_exp</span>:
+        <span class="fn">print</span>(<span class="st">f"  {desc} [{cat}]: R{amt:.2f}"</span>)
+
+    <span class="cm"># Biggest and smallest</span>
+    <span class="bi">amounts</span> = [<span class="bi">amt</span> <span class="kw">for</span> <span class="bi">_</span>, <span class="bi">amt</span>, <span class="bi">_</span> <span class="kw">in</span> <span class="bi">expenses</span>]
+    <span class="bi">biggest_idx</span> = <span class="bi">amounts</span>.<span class="fn">index</span>(<span class="fn">max</span>(<span class="bi">amounts</span>))
+    <span class="bi">smallest_idx</span> = <span class="bi">amounts</span>.<span class="fn">index</span>(<span class="fn">min</span>(<span class="bi">amounts</span>))
+    <span class="fn">print</span>(<span class="st">f"\n💸 Biggest:  {expenses[biggest_idx][0]} — R{max(amounts):.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"🪙 Smallest: {expenses[smallest_idx][0]} — R{min(amounts):.2f}"</span>)
+
+    <span class="cm"># Total per category</span>
+    <span class="bi">categories</span> = []
+    <span class="bi">cat_totals</span> = []
+    <span class="kw">for</span> <span class="bi">desc</span>, <span class="bi">amt</span>, <span class="bi">cat</span> <span class="kw">in</span> <span class="bi">expenses</span>:
+        <span class="kw">if</span> <span class="bi">cat</span> <span class="kw">in</span> <span class="bi">categories</span>:
+            <span class="bi">idx</span> = <span class="bi">categories</span>.<span class="fn">index</span>(<span class="bi">cat</span>)
+            <span class="bi">cat_totals</span>[<span class="bi">idx</span>] += <span class="bi">amt</span>
+        <span class="kw">else</span>:
+            <span class="bi">categories</span>.<span class="fn">append</span>(<span class="bi">cat</span>)
+            <span class="bi">cat_totals</span>.<span class="fn">append</span>(<span class="bi">amt</span>)
+
+    <span class="fn">print</span>(<span class="st">"\n--- By Category ---"</span>)
+    <span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(<span class="bi">categories</span>)):
+        <span class="fn">print</span>(<span class="st">f"  {categories[i]}: R{cat_totals[i]:.2f}"</span>)</pre>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 7 — DATABASE ═══════════ -->
+<div class="step-card" style="--topic-color: var(--c-db);">
+  <span class="step-num">Stage 7 · Database</span>
+  <h4>💰 Budget Tracker v7 — Full Database Version</h4>
+  <p><strong>The final stage:</strong> Migrate from a text file to a SQLite database. Create a menu-driven program with all CRUD operations:</p>
+  <ul>
+    <li>Table: <code>expenses</code> (id, description, amount, category, date)</li>
+    <li>Menu: (1) Add expense, (2) View all, (3) View by category, (4) Delete expense, (5) Monthly summary, (6) Quit</li>
+    <li>Include input validation and exception handling throughout</li>
+    <li>Use functions for each operation</li>
+  </ul>
+  <div class="callout key-box">
+    🔑 <strong>New concepts:</strong> SQLite CRUD, parameterised queries, <code>commit()</code>, <code>fetchall()</code>, SQL <code>WHERE</code>, <code>ORDER BY</code>, <code>SUM()</code>
+  </div>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution">
+    <div class="solution-label">✅ Stage 7 Code</div>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+
+<span class="kw">def</span> <span class="fn">setup_db</span>():
+    <span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"budget.db"</span>)
+    <span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS expenses (
+        id INTEGER PRIMARY KEY,
+        description TEXT NOT NULL,
+        amount REAL NOT NULL,
+        category TEXT,
+        date TEXT DEFAULT CURRENT_DATE
+    )"""</span>)
+    <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="kw">return</span> <span class="bi">conn</span>, <span class="bi">cur</span>
+
+<span class="kw">def</span> <span class="fn">add_expense</span>(<span class="bi">cur</span>, <span class="bi">conn</span>):
+    <span class="bi">desc</span> = <span class="fn">input</span>(<span class="st">"Description: "</span>)
+    <span class="kw">try</span>:
+        <span class="bi">amt</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Amount (R): "</span>))
+        <span class="bi">cat</span> = <span class="fn">input</span>(<span class="st">"Category (need/want): "</span>)
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO expenses(description,amount,category) VALUES(?,?,?)"</span>,
+                    (<span class="bi">desc</span>, <span class="bi">amt</span>, <span class="bi">cat</span>))
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+        <span class="fn">print</span>(<span class="st">"Added!"</span>)
+    <span class="kw">except</span> <span class="fn">ValueError</span>:
+        <span class="fn">print</span>(<span class="st">"Invalid amount."</span>)
+
+<span class="kw">def</span> <span class="fn">view_all</span>(<span class="bi">cur</span>):
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT id,description,amount,category,date FROM expenses ORDER BY date DESC"</span>)
+    <span class="bi">rows</span> = <span class="bi">cur</span>.<span class="fn">fetchall</span>()
+    <span class="kw">if</span> <span class="bi">rows</span>:
+        <span class="kw">for</span> <span class="bi">eid</span>, <span class="bi">desc</span>, <span class="bi">amt</span>, <span class="bi">cat</span>, <span class="bi">date</span> <span class="kw">in</span> <span class="bi">rows</span>:
+            <span class="fn">print</span>(<span class="st">f"  [{eid}] {date} | {desc} ({cat}): R{amt:.2f}"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">"No expenses yet."</span>)
+
+<span class="kw">def</span> <span class="fn">view_by_category</span>(<span class="bi">cur</span>):
+    <span class="bi">cat</span> = <span class="fn">input</span>(<span class="st">"Category: "</span>)
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT description,amount FROM expenses WHERE category=?"</span>, (<span class="bi">cat</span>,))
+    <span class="bi">rows</span> = <span class="bi">cur</span>.<span class="fn">fetchall</span>()
+    <span class="bi">total</span> = <span class="nb">0</span>
+    <span class="kw">for</span> <span class="bi">desc</span>, <span class="bi">amt</span> <span class="kw">in</span> <span class="bi">rows</span>:
+        <span class="fn">print</span>(<span class="st">f"  {desc}: R{amt:.2f}"</span>)
+        <span class="bi">total</span> += <span class="bi">amt</span>
+    <span class="fn">print</span>(<span class="st">f"Total for '{cat}': R{total:.2f}"</span>)
+
+<span class="kw">def</span> <span class="fn">delete_expense</span>(<span class="bi">cur</span>, <span class="bi">conn</span>):
+    <span class="kw">try</span>:
+        <span class="bi">eid</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"ID to delete: "</span>))
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"DELETE FROM expenses WHERE id=?"</span>, (<span class="bi">eid</span>,))
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+        <span class="fn">print</span>(<span class="st">f"Deleted {cur.rowcount} record(s)."</span>)
+    <span class="kw">except</span> <span class="fn">ValueError</span>:
+        <span class="fn">print</span>(<span class="st">"Invalid ID."</span>)
+
+<span class="kw">def</span> <span class="fn">monthly_summary</span>(<span class="bi">cur</span>):
+    <span class="bi">income</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Monthly income (R): "</span>))
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT SUM(amount) FROM expenses"</span>)
+    <span class="bi">total</span> = <span class="bi">cur</span>.<span class="fn">fetchone</span>()[<span class="nb">0</span>] <span class="kw">or</span> <span class="nb">0</span>
+    <span class="bi">balance</span> = <span class="bi">income</span> - <span class="bi">total</span>
+    <span class="fn">print</span>(<span class="st">f"Income:  R{income:.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Spent:   R{total:.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Balance: R{balance:.2f}"</span>)
+    <span class="kw">if</span> <span class="bi">balance</span> &lt; <span class="nb">0</span>:
+        <span class="fn">print</span>(<span class="st">"⚠️  OVER BUDGET!"</span>)
+
+<span class="cm"># --- Main ---</span>
+<span class="bi">conn</span>, <span class="bi">cur</span> = <span class="fn">setup_db</span>()
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="st">"\n1.Add  2.View All  3.By Category  4.Delete  5.Summary  6.Quit"</span>)
+    <span class="bi">ch</span> = <span class="fn">input</span>(<span class="st">"Choose: "</span>)
+    <span class="kw">if</span>   <span class="bi">ch</span> == <span class="st">"1"</span>: <span class="fn">add_expense</span>(<span class="bi">cur</span>, <span class="bi">conn</span>)
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"2"</span>: <span class="fn">view_all</span>(<span class="bi">cur</span>)
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"3"</span>: <span class="fn">view_by_category</span>(<span class="bi">cur</span>)
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"4"</span>: <span class="fn">delete_expense</span>(<span class="bi">cur</span>, <span class="bi">conn</span>)
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"5"</span>: <span class="fn">monthly_summary</span>(<span class="bi">cur</span>)
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"6"</span>: <span class="kw">break</span>
+    <span class="kw">else</span>: <span class="fn">print</span>(<span class="st">"Invalid choice."</span>)
+
+<span class="bi">conn</span>.<span class="fn">close</span>()
+<span class="fn">print</span>(<span class="st">"Goodbye!"</span>)</pre>
+    <div class="solution-explanation">
+      🎉 <strong>Congratulations!</strong> This final version uses ALL seven topics: input/output, decisions, loops, functions, files (via the database file), lists (fetching rows), and database programming. You've built a real application!
+    </div>
+  </div>
+</div>
+
+<div class="callout analogy" style="max-width:720px;margin:30px auto;">
+  <strong>🎯 What to Do Next:</strong> Try building your OWN project using the same progressive approach. Ideas: a contacts app, a recipe manager, a study flashcard system, or a simple inventory tracker. Start with just input/output (Stage 1) and add one topic at a time.
+</div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

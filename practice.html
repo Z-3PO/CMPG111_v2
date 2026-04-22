@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Questions — Python 101</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand"><span class="brand-icon">🐍</span><span>Python 101</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cheatsheets.html">Cheat Sheets</a></li>
+      <li><a href="notes.html">Study Notes</a></li>
+      <li><a href="practice.html" class="active">Practice</a></li>
+      <li><a href="trace.html">Trace &amp; Debug</a></li>
+      <li><a href="scenarios.html">Scenarios</a></li>
+      <li><a href="guide.html">Exam Guide</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">🎯</div>
+  <h1>Practice Questions</h1>
+  <p class="subtitle">Exam-style questions organized by topic and difficulty. Try solving on paper first, then reveal the solution. Use the filters to drill specific areas.</p>
+</section>
+
+<main class="container">
+
+  <!-- FILTERS -->
+  <div class="filter-row">
+    <label>Difficulty:</label>
+    <div class="filter-group">
+      <button class="diff-btn" data-diff="all" data-active="true">All</button>
+      <button class="diff-btn" data-diff="easy">🟢 Easy</button>
+      <button class="diff-btn" data-diff="medium">🟡 Medium</button>
+      <button class="diff-btn" data-diff="hard">🔴 Hard</button>
+    </div>
+  </div>
+  <div class="filter-row">
+    <label>Topic:</label>
+    <div class="filter-group">
+      <button class="diff-btn topic-filter-btn" data-topic-filter="all" data-active="true">All Topics</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="1">I/O</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="2">Decisions</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="3">Loops</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="4">Functions</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="5">Files</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="6">Lists</button>
+      <button class="diff-btn topic-filter-btn" data-topic-filter="7">Database</button>
+    </div>
+  </div>
+  <div class="q-counter" id="q-counter"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 1 — INPUT, PROCESSING & OUTPUT
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="1">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Input/Output</span></div>
+  <h4 class="exam-title">Q1 · Personal Greeting</h4>
+  <p class="exam-question-text">Ask the user for their <strong>name</strong> and <strong>age</strong>. Print: <em>"Hello [name], you are [age] years old."</em></p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+<span class="bi">age</span>  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+<span class="fn">print</span>(<span class="st">f"Hello {name}, you are {age} years old."</span>)</pre>
+  <div class="solution-explanation"><code>input()</code> returns a string — wrap with <code>int()</code> for numbers. The <code>f</code> prefix enables variable embedding via <code>{ }</code>.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="1">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Input/Output</span></div>
+  <h4 class="exam-title">Q2 · Rectangle Area</h4>
+  <p class="exam-question-text">Ask for <strong>length</strong> and <strong>width</strong> (may be decimal). Display the area to <strong>2 decimal places</strong>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">length</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Length (m): "</span>))
+<span class="bi">width</span>  = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Width (m): "</span>))
+<span class="bi">area</span>   = <span class="bi">length</span> * <span class="bi">width</span>
+<span class="fn">print</span>(<span class="st">f"Area = {area:.2f} m²"</span>)</pre>
+  <div class="solution-explanation">Use <code>float()</code> for decimals. <code>:.2f</code> formats to 2 decimal places.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="1">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Input/Output</span></div>
+  <h4 class="exam-title">Q3 · Celsius to Fahrenheit</h4>
+  <p class="exam-question-text">Ask for a temperature in <strong>Celsius</strong>. Convert to Fahrenheit using F = C × 9/5 + 32 and display the result to 1 decimal place.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">celsius</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Celsius: "</span>))
+<span class="bi">fahr</span> = <span class="bi">celsius</span> * <span class="nb">9</span> / <span class="nb">5</span> + <span class="nb">32</span>
+<span class="fn">print</span>(<span class="st">f"{celsius}°C = {fahr:.1f}°F"</span>)</pre>
+  <div class="solution-explanation">Follow the formula exactly. <code>:.1f</code> gives 1 decimal place.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="1">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Input/Output</span></div>
+  <h4 class="exam-title">Q4 · Shopping Bill with VAT</h4>
+  <p class="exam-question-text">Ask for an item's <strong>price</strong> and <strong>quantity</strong>. Calculate the subtotal, add <strong>15% VAT</strong>, and display subtotal, VAT amount, and final total — each to 2 decimal places.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">price</span>    = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Price per item (R): "</span>))
+<span class="bi">quantity</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Quantity: "</span>))
+<span class="bi">subtotal</span> = <span class="bi">price</span> * <span class="bi">quantity</span>
+<span class="bi">vat</span>      = <span class="bi">subtotal</span> * <span class="nb">0.15</span>
+<span class="bi">total</span>    = <span class="bi">subtotal</span> + <span class="bi">vat</span>
+<span class="fn">print</span>(<span class="st">f"Subtotal: R{subtotal:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"VAT (15%): R{vat:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Total:    R{total:.2f}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="1">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Input/Output</span></div>
+  <h4 class="exam-title">Q5 · Time Converter</h4>
+  <p class="exam-question-text">Ask the user for a total number of <strong>seconds</strong>. Convert and display the equivalent hours, minutes, and remaining seconds. Example: 3672 seconds = 1 hour, 1 minute, 12 seconds.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">total</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Total seconds: "</span>))
+<span class="bi">hours</span>   = <span class="bi">total</span> // <span class="nb">3600</span>
+<span class="bi">minutes</span> = (<span class="bi">total</span> % <span class="nb">3600</span>) // <span class="nb">60</span>
+<span class="bi">seconds</span> = <span class="bi">total</span> % <span class="nb">60</span>
+<span class="fn">print</span>(<span class="st">f"{hours}h {minutes}m {seconds}s"</span>)</pre>
+  <div class="solution-explanation"><code>//</code> gives whole division, <code>%</code> gives the remainder. Use <code>% 3600</code> to get leftover seconds after removing full hours.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="1">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Input/Output</span></div>
+  <h4 class="exam-title">Q6 · Payslip Calculator</h4>
+  <p class="exam-question-text">Ask for an employee's <strong>name</strong>, <strong>hourly rate</strong>, and <strong>hours worked</strong>. Overtime (over 40 hours) is paid at 1.5× the normal rate. Display a formatted payslip showing regular pay, overtime pay (if any), and gross pay.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">name</span>  = <span class="fn">input</span>(<span class="st">"Employee name: "</span>)
+<span class="bi">rate</span>  = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Hourly rate (R): "</span>))
+<span class="bi">hours</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Hours worked: "</span>))
+
+<span class="kw">if</span> <span class="bi">hours</span> &gt; <span class="nb">40</span>:
+    <span class="bi">regular_pay</span>  = <span class="nb">40</span> * <span class="bi">rate</span>
+    <span class="bi">overtime_pay</span> = (<span class="bi">hours</span> - <span class="nb">40</span>) * <span class="bi">rate</span> * <span class="nb">1.5</span>
+<span class="kw">else</span>:
+    <span class="bi">regular_pay</span>  = <span class="bi">hours</span> * <span class="bi">rate</span>
+    <span class="bi">overtime_pay</span> = <span class="nb">0</span>
+
+<span class="bi">gross</span> = <span class="bi">regular_pay</span> + <span class="bi">overtime_pay</span>
+<span class="fn">print</span>(<span class="st">f"\n--- Payslip for {name} ---"</span>)
+<span class="fn">print</span>(<span class="st">f"Regular:  R{regular_pay:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Overtime: R{overtime_pay:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Gross:    R{gross:.2f}"</span>)</pre>
+  <div class="solution-explanation">Only hours above 40 attract the 1.5× multiplier. The regular component is always capped at 40 hours.</div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 2 — DECISION STRUCTURES
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q7 · Even or Odd</h4>
+  <p class="exam-question-text">Ask the user for a whole number. Display whether it is <strong>even</strong> or <strong>odd</strong>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter a number: "</span>))
+<span class="kw">if</span> <span class="bi">num</span> % <span class="nb">2</span> == <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">f"{num} is even"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">f"{num} is odd"</span>)</pre>
+  <div class="solution-explanation"><code>%</code> gives the remainder. Even numbers have a remainder of 0 when divided by 2.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q8 · Pass or Fail</h4>
+  <p class="exam-question-text">Ask for a test mark (0–100). Print <em>"Pass"</em> if 50 or above, otherwise <em>"Fail"</em>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">mark</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Mark: "</span>))
+<span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+    <span class="fn">print</span>(<span class="st">"Pass"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Fail"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q9 · Positive, Negative, or Zero</h4>
+  <p class="exam-question-text">Ask for a number. Display whether it is <strong>positive</strong>, <strong>negative</strong>, or <strong>zero</strong>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">num</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Number: "</span>))
+<span class="kw">if</span> <span class="bi">num</span> &gt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">"Positive"</span>)
+<span class="kw">elif</span> <span class="bi">num</span> &lt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">"Negative"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Zero"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q10 · Grade Calculator</h4>
+  <p class="exam-question-text">Ask for a mark and print the grade: 80+ = A, 70–79 = B, 60–69 = C, 50–59 = D, below 50 = F.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">mark</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Mark: "</span>))
+<span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">80</span>:    <span class="bi">grade</span> = <span class="st">"A"</span>
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">70</span>:  <span class="bi">grade</span> = <span class="st">"B"</span>
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">60</span>:  <span class="bi">grade</span> = <span class="st">"C"</span>
+<span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:  <span class="bi">grade</span> = <span class="st">"D"</span>
+<span class="kw">else</span>:              <span class="bi">grade</span> = <span class="st">"F"</span>
+<span class="fn">print</span>(<span class="st">f"Grade: {grade}"</span>)</pre>
+  <div class="solution-explanation">Check highest first — if you check <code>&gt;= 50</code> before <code>&gt;= 80</code>, a mark of 90 would get "D"!</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q11 · Cinema Pricing</h4>
+  <p class="exam-question-text">Children (&lt;12) = R45, Teens (12–17) = R65, Adults (18–59) = R95, Seniors (60+) = R55. Ask for age and display the ticket price.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+<span class="kw">if</span> <span class="bi">age</span> &lt; <span class="nb">12</span>:      <span class="bi">price</span> = <span class="nb">45</span>
+<span class="kw">elif</span> <span class="bi">age</span> &lt;= <span class="nb">17</span>:   <span class="bi">price</span> = <span class="nb">65</span>
+<span class="kw">elif</span> <span class="bi">age</span> &lt;= <span class="nb">59</span>:   <span class="bi">price</span> = <span class="nb">95</span>
+<span class="kw">else</span>:               <span class="bi">price</span> = <span class="nb">55</span>
+<span class="fn">print</span>(<span class="st">f"Ticket: R{price}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q12 · Leap Year Checker</h4>
+  <p class="exam-question-text">Ask for a year. Determine if it's a leap year. A year is a leap year if it's divisible by 4, except centuries — which must be divisible by 400.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">year</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Year: "</span>))
+<span class="kw">if</span> (<span class="bi">year</span> % <span class="nb">4</span> == <span class="nb">0</span> <span class="kw">and</span> <span class="bi">year</span> % <span class="nb">100</span> != <span class="nb">0</span>) <span class="kw">or</span> (<span class="bi">year</span> % <span class="nb">400</span> == <span class="nb">0</span>):
+    <span class="fn">print</span>(<span class="st">f"{year} is a leap year"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">f"{year} is not a leap year"</span>)</pre>
+  <div class="solution-explanation">Uses both <code>and</code> and <code>or</code>. Test: 2024 = leap, 1900 = not leap, 2000 = leap.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q13 · Electricity Tariff</h4>
+  <p class="exam-question-text">An electricity company charges per kWh: first 100 kWh = R1.50, next 200 kWh (101–300) = R2.00, above 300 kWh = R3.00. Ask for usage and display the total cost with a R50 service fee.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">usage</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"kWh used: "</span>))
+<span class="kw">if</span> <span class="bi">usage</span> &lt;= <span class="nb">100</span>:
+    <span class="bi">cost</span> = <span class="bi">usage</span> * <span class="nb">1.50</span>
+<span class="kw">elif</span> <span class="bi">usage</span> &lt;= <span class="nb">300</span>:
+    <span class="bi">cost</span> = <span class="nb">100</span> * <span class="nb">1.50</span> + (<span class="bi">usage</span> - <span class="nb">100</span>) * <span class="nb">2.00</span>
+<span class="kw">else</span>:
+    <span class="bi">cost</span> = <span class="nb">100</span> * <span class="nb">1.50</span> + <span class="nb">200</span> * <span class="nb">2.00</span> + (<span class="bi">usage</span> - <span class="nb">300</span>) * <span class="nb">3.00</span>
+<span class="bi">total</span> = <span class="bi">cost</span> + <span class="nb">50</span>
+<span class="fn">print</span>(<span class="st">f"Usage cost: R{cost:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Service fee: R50.00"</span>)
+<span class="fn">print</span>(<span class="st">f"Total: R{total:.2f}"</span>)</pre>
+  <div class="solution-explanation">Tiered pricing: each tier is calculated separately. For 350 kWh: (100 × 1.50) + (200 × 2.00) + (50 × 3.00) + 50 = R750.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="2">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Decisions</span></div>
+  <h4 class="exam-title">Q14 · Student Registration Validator</h4>
+  <p class="exam-question-text">Ask for a student's <strong>age</strong>, <strong>average mark</strong>, and whether they have a <strong>matric certificate</strong> (yes/no). They qualify if: age ≥ 17 AND average ≥ 50 AND have matric. Display "Accepted" or explain EACH reason they were rejected.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">age</span>    = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Age: "</span>))
+<span class="bi">avg</span>    = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Average mark: "</span>))
+<span class="bi">matric</span> = <span class="fn">input</span>(<span class="st">"Matric certificate? (yes/no): "</span>)
+
+<span class="kw">if</span> <span class="bi">age</span> &gt;= <span class="nb">17</span> <span class="kw">and</span> <span class="bi">avg</span> &gt;= <span class="nb">50</span> <span class="kw">and</span> <span class="bi">matric</span> == <span class="st">"yes"</span>:
+    <span class="fn">print</span>(<span class="st">"Accepted!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Rejected:"</span>)
+    <span class="kw">if</span> <span class="bi">age</span> &lt; <span class="nb">17</span>:
+        <span class="fn">print</span>(<span class="st">"  - Must be at least 17"</span>)
+    <span class="kw">if</span> <span class="bi">avg</span> &lt; <span class="nb">50</span>:
+        <span class="fn">print</span>(<span class="st">"  - Average mark below 50"</span>)
+    <span class="kw">if</span> <span class="bi">matric</span> != <span class="st">"yes"</span>:
+        <span class="fn">print</span>(<span class="st">"  - No matric certificate"</span>)</pre>
+  <div class="solution-explanation">Uses separate <code>if</code> (not <code>elif</code>) in the else block so ALL reasons are shown, not just the first.</div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 3 — REPETITION STRUCTURES
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q15 · Count to 10</h4>
+  <p class="exam-question-text">Use a <code>for</code> loop to print the numbers 1 through 10, each on a new line.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">11</span>):
+    <span class="fn">print</span>(<span class="bi">i</span>)</pre>
+  <div class="solution-explanation"><code>range(1, 11)</code> gives 1–10. The stop value (11) is NOT included.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q16 · Sum of Numbers</h4>
+  <p class="exam-question-text">Use a <code>for</code> loop to calculate and print the sum of 1 to 100.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">101</span>):
+    <span class="bi">total</span> += <span class="bi">i</span>
+<span class="fn">print</span>(<span class="st">f"Total: {total}"</span>)    <span class="cm"># 5050</span></pre>
+  <div class="solution-explanation">The accumulator pattern: initialise <code>total = 0</code> BEFORE the loop, add inside.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q17 · Multiplication Table</h4>
+  <p class="exam-question-text">Ask the user for a number. Display its multiplication table from 1 to 12.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Number: "</span>))
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">13</span>):
+    <span class="fn">print</span>(<span class="st">f"{num} × {i} = {num * i}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q18 · Class Average</h4>
+  <p class="exam-question-text">Enter marks for <strong>8 students</strong>. Display the <strong>average</strong> and how many scored <strong>above 60</strong>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="bi">above_60</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">8</span>):
+    <span class="bi">mark</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Student {i+1}: "</span>))
+    <span class="bi">total</span> += <span class="bi">mark</span>
+    <span class="kw">if</span> <span class="bi">mark</span> &gt; <span class="nb">60</span>:
+        <span class="bi">above_60</span> += <span class="nb">1</span>
+<span class="fn">print</span>(<span class="st">f"Average: {total/8:.2f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Above 60: {above_60}"</span>)</pre>
+  <div class="solution-explanation">Combines accumulator (<code>total</code>) and counter (<code>above_60</code>) patterns in one loop.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q19 · Sentinel Average</h4>
+  <p class="exam-question-text">Ask the user to enter numbers until they type <strong>-1</strong>. Calculate and display the average of all entered numbers (excluding the -1). Handle the case where no numbers were entered.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">total</span> = <span class="nb">0</span>
+<span class="bi">count</span> = <span class="nb">0</span>
+<span class="bi">num</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Number (-1 to stop): "</span>))
+<span class="kw">while</span> <span class="bi">num</span> != -<span class="nb">1</span>:
+    <span class="bi">total</span> += <span class="bi">num</span>
+    <span class="bi">count</span> += <span class="nb">1</span>
+    <span class="bi">num</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Number (-1 to stop): "</span>))
+<span class="kw">if</span> <span class="bi">count</span> &gt; <span class="nb">0</span>:
+    <span class="fn">print</span>(<span class="st">f"Average: {total/count:.2f}"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"No numbers entered."</span>)</pre>
+  <div class="solution-explanation">Sentinel loop with priming read. Check <code>count &gt; 0</code> before dividing to avoid ZeroDivisionError.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q20 · Password Gatekeeper</h4>
+  <p class="exam-question-text">The password is <code>"python123"</code>. Give the user <strong>3 attempts</strong>. If correct, print "Access granted". After 3 wrong attempts, print "Account locked".</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">correct</span> = <span class="st">"python123"</span>
+<span class="bi">attempts</span> = <span class="nb">0</span>
+<span class="bi">logged_in</span> = <span class="kw">False</span>
+<span class="kw">while</span> <span class="bi">attempts</span> &lt; <span class="nb">3</span>:
+    <span class="bi">pw</span> = <span class="fn">input</span>(<span class="st">"Password: "</span>)
+    <span class="bi">attempts</span> += <span class="nb">1</span>
+    <span class="kw">if</span> <span class="bi">pw</span> == <span class="bi">correct</span>:
+        <span class="fn">print</span>(<span class="st">"Access granted"</span>)
+        <span class="bi">logged_in</span> = <span class="kw">True</span>
+        <span class="kw">break</span>
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">f"Wrong. {3 - attempts} attempts left."</span>)
+<span class="kw">if</span> <span class="kw">not</span> <span class="bi">logged_in</span>:
+    <span class="fn">print</span>(<span class="st">"Account locked."</span>)</pre>
+  <div class="solution-explanation"><code>break</code> exits the loop immediately on success. The flag <code>logged_in</code> tracks whether we exited via break or exhausted all attempts.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q21 · FizzBuzz</h4>
+  <p class="exam-question-text">Print numbers 1–30. For multiples of 3 print "Fizz", multiples of 5 print "Buzz", multiples of BOTH print "FizzBuzz".</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">1</span>, <span class="nb">31</span>):
+    <span class="kw">if</span> <span class="bi">i</span> % <span class="nb">3</span> == <span class="nb">0</span> <span class="kw">and</span> <span class="bi">i</span> % <span class="nb">5</span> == <span class="nb">0</span>:
+        <span class="fn">print</span>(<span class="st">"FizzBuzz"</span>)
+    <span class="kw">elif</span> <span class="bi">i</span> % <span class="nb">3</span> == <span class="nb">0</span>:
+        <span class="fn">print</span>(<span class="st">"Fizz"</span>)
+    <span class="kw">elif</span> <span class="bi">i</span> % <span class="nb">5</span> == <span class="nb">0</span>:
+        <span class="fn">print</span>(<span class="st">"Buzz"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="bi">i</span>)</pre>
+  <div class="solution-explanation">Check "both" FIRST! If you check <code>% 3</code> first, 15 prints "Fizz" instead of "FizzBuzz".</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="3">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Loops</span></div>
+  <h4 class="exam-title">Q22 · Highest &amp; Lowest Finder</h4>
+  <p class="exam-question-text">Ask for marks of <strong>10 students</strong>. Find and display the <strong>highest</strong>, <strong>lowest</strong>, <strong>average</strong>, and how many <strong>passed</strong> (≥50).</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">highest</span> = -<span class="nb">1</span>
+<span class="bi">lowest</span>  = <span class="nb">101</span>
+<span class="bi">total</span>   = <span class="nb">0</span>
+<span class="bi">passes</span>  = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">10</span>):
+    <span class="bi">mark</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">f"Student {i+1}: "</span>))
+    <span class="bi">total</span> += <span class="bi">mark</span>
+    <span class="kw">if</span> <span class="bi">mark</span> &gt; <span class="bi">highest</span>: <span class="bi">highest</span> = <span class="bi">mark</span>
+    <span class="kw">if</span> <span class="bi">mark</span> &lt; <span class="bi">lowest</span>:  <span class="bi">lowest</span>  = <span class="bi">mark</span>
+    <span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:    <span class="bi">passes</span> += <span class="nb">1</span>
+<span class="fn">print</span>(<span class="st">f"Highest: {highest}"</span>)
+<span class="fn">print</span>(<span class="st">f"Lowest:  {lowest}"</span>)
+<span class="fn">print</span>(<span class="st">f"Average: {total/10:.1f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Passed:  {passes}/10"</span>)</pre>
+  <div class="solution-explanation">Start <code>highest</code> very low and <code>lowest</code> very high so any real mark replaces them immediately.</div></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 4 — FUNCTIONS
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q23 · Square Function</h4>
+  <p class="exam-question-text">Write a function <code>square(n)</code> that returns the square of a number. Call it with 7 and print the result.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">square</span>(<span class="bi">n</span>):
+    <span class="kw">return</span> <span class="bi">n</span> ** <span class="nb">2</span>
+
+<span class="fn">print</span>(<span class="fn">square</span>(<span class="nb">7</span>))   <span class="cm"># 49</span></pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q24 · Greeting Function</h4>
+  <p class="exam-question-text">Write a function <code>greet(name)</code> that <strong>prints</strong> "Hello, [name]!". Call it with two different names.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">greet</span>(<span class="bi">name</span>):
+    <span class="fn">print</span>(<span class="st">f"Hello, {name}!"</span>)
+
+<span class="fn">greet</span>(<span class="st">"Alice"</span>)
+<span class="fn">greet</span>(<span class="st">"Bob"</span>)</pre>
+  <div class="solution-explanation">This function uses <code>print()</code> because the question says "prints". It does not need <code>return</code>.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q25 · Circle Area</h4>
+  <p class="exam-question-text">Write a function <code>circle_area(radius)</code> that <strong>returns</strong> the area (π × r²). Use 3.14159 for π.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">circle_area</span>(<span class="bi">radius</span>):
+    <span class="kw">return</span> <span class="nb">3.14159</span> * <span class="bi">radius</span> ** <span class="nb">2</span>
+
+<span class="bi">r</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Radius: "</span>))
+<span class="fn">print</span>(<span class="st">f"Area: {circle_area(r):.2f}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q26 · Temperature Converter</h4>
+  <p class="exam-question-text">Write <code>c_to_f(celsius)</code> and <code>f_to_c(fahrenheit)</code> using F = C × 9/5 + 32. Print 25°C in Fahrenheit and 98.6°F in Celsius.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">c_to_f</span>(<span class="bi">c</span>):
+    <span class="kw">return</span> <span class="bi">c</span> * <span class="nb">9</span> / <span class="nb">5</span> + <span class="nb">32</span>
+
+<span class="kw">def</span> <span class="fn">f_to_c</span>(<span class="bi">f</span>):
+    <span class="kw">return</span> (<span class="bi">f</span> - <span class="nb">32</span>) * <span class="nb">5</span> / <span class="nb">9</span>
+
+<span class="fn">print</span>(<span class="st">f"25°C = {c_to_f(25):.1f}°F"</span>)
+<span class="fn">print</span>(<span class="st">f"98.6°F = {f_to_c(98.6):.1f}°C"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q27 · BMI Calculator</h4>
+  <p class="exam-question-text">Write <code>calculate_bmi(weight, height)</code> that <strong>returns</strong> BMI (weight ÷ height²). In the main program, use it and display the BMI category: Underweight (&lt;18.5), Normal (18.5–24.9), Overweight (25+).</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">calculate_bmi</span>(<span class="bi">weight</span>, <span class="bi">height</span>):
+    <span class="kw">return</span> <span class="bi">weight</span> / (<span class="bi">height</span> ** <span class="nb">2</span>)
+
+<span class="bi">w</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Weight (kg): "</span>))
+<span class="bi">h</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Height (m): "</span>))
+<span class="bi">bmi</span> = <span class="fn">calculate_bmi</span>(<span class="bi">w</span>, <span class="bi">h</span>)
+<span class="fn">print</span>(<span class="st">f"BMI: {bmi:.1f}"</span>)
+<span class="kw">if</span> <span class="bi">bmi</span> &lt; <span class="nb">18.5</span>:   <span class="fn">print</span>(<span class="st">"Underweight"</span>)
+<span class="kw">elif</span> <span class="bi">bmi</span> &lt;= <span class="nb">24.9</span>: <span class="fn">print</span>(<span class="st">"Normal"</span>)
+<span class="kw">else</span>:               <span class="fn">print</span>(<span class="st">"Overweight"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q28 · Prime Checker</h4>
+  <p class="exam-question-text">Write <code>is_prime(n)</code> that returns True if n is prime. Use it to print all primes from 2 to 50.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">is_prime</span>(<span class="bi">n</span>):
+    <span class="kw">if</span> <span class="bi">n</span> &lt; <span class="nb">2</span>:
+        <span class="kw">return</span> <span class="kw">False</span>
+    <span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">2</span>, <span class="bi">n</span>):
+        <span class="kw">if</span> <span class="bi">n</span> % <span class="bi">i</span> == <span class="nb">0</span>:
+            <span class="kw">return</span> <span class="kw">False</span>
+    <span class="kw">return</span> <span class="kw">True</span>
+
+<span class="kw">for</span> <span class="bi">num</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">2</span>, <span class="nb">51</span>):
+    <span class="kw">if</span> <span class="fn">is_prime</span>(<span class="bi">num</span>):
+        <span class="fn">print</span>(<span class="bi">num</span>, end=<span class="st">" "</span>)</pre>
+  <div class="solution-explanation">A prime has no divisors between 2 and n-1. The early <code>return False</code> exits as soon as we find one.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="4">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Functions</span></div>
+  <h4 class="exam-title">Q29 · Stats Tuple Return</h4>
+  <p class="exam-question-text">Write <code>analyze(numbers)</code> that takes a list and returns a <strong>tuple</strong> of (average, highest, lowest). Use tuple unpacking to display each value.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">analyze</span>(<span class="bi">numbers</span>):
+    <span class="bi">avg</span> = <span class="fn">sum</span>(<span class="bi">numbers</span>) / <span class="fn">len</span>(<span class="bi">numbers</span>)
+    <span class="kw">return</span> (<span class="bi">avg</span>, <span class="fn">max</span>(<span class="bi">numbers</span>), <span class="fn">min</span>(<span class="bi">numbers</span>))
+
+<span class="bi">scores</span> = [<span class="nb">72</span>, <span class="nb">85</span>, <span class="nb">91</span>, <span class="nb">68</span>, <span class="nb">79</span>]
+<span class="bi">average</span>, <span class="bi">highest</span>, <span class="bi">lowest</span> = <span class="fn">analyze</span>(<span class="bi">scores</span>)
+<span class="fn">print</span>(<span class="st">f"Avg: {average:.2f}, High: {highest}, Low: {lowest}"</span>)</pre>
+  <div class="solution-explanation">Functions can return multiple values as a tuple. Tuple unpacking assigns each to a separate variable.</div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 5 — FILES & EXCEPTIONS
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q30 · Write to File</h4>
+  <p class="exam-question-text">Write a program that creates a file <code>greeting.txt</code> and writes <code>"Hello, Python!"</code> to it.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"greeting.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+    <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">"Hello, Python!"</span>)</pre>
+  <div class="solution-explanation"><code>with</code> auto-closes the file. Mode <code>"w"</code> creates or overwrites.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q31 · Safe Number Input</h4>
+  <p class="exam-question-text">Ask for a number. Use <code>try/except</code> to catch invalid input and print a friendly error instead of crashing.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">try</span>:
+    <span class="bi">num</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Number: "</span>))
+    <span class="fn">print</span>(<span class="st">f"You entered {num}"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"That's not a valid number!"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q32 · Read and Count Lines</h4>
+  <p class="exam-question-text">Read <code>poem.txt</code> and display how many lines it has. If the file doesn't exist, print a friendly message.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">try</span>:
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"poem.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="bi">lines</span> = <span class="bi">f</span>.<span class="fn">readlines</span>()
+    <span class="fn">print</span>(<span class="st">f"The file has {len(lines)} lines."</span>)
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"File 'poem.txt' not found."</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q33 · Safe Division</h4>
+  <p class="exam-question-text">Ask for two numbers and divide. Handle both <strong>non-numeric input</strong> AND <strong>division by zero</strong> with separate except blocks.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">try</span>:
+    <span class="bi">a</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"First: "</span>))
+    <span class="bi">b</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Second: "</span>))
+    <span class="fn">print</span>(<span class="st">f"Result: {a / b:.2f}"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Enter valid numbers."</span>)
+<span class="kw">except</span> <span class="fn">ZeroDivisionError</span>:
+    <span class="fn">print</span>(<span class="st">"Cannot divide by zero."</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q34 · Append Scores to File</h4>
+  <p class="exam-question-text">Ask for a player name and score. <strong>Append</strong> to <code>scores.txt</code> in the format <code>name,score</code>. Handle invalid score input.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Player name: "</span>)
+<span class="kw">try</span>:
+    <span class="bi">score</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Score: "</span>))
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"scores.txt"</span>, <span class="st">"a"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="bi">f</span>.<span class="fn">write</span>(<span class="st">f"{name},{score}\n"</span>)
+    <span class="fn">print</span>(<span class="st">"Saved!"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Score must be a number."</span>)</pre>
+  <div class="solution-explanation">Mode <code>"a"</code> appends without erasing. Don't forget <code>\n</code> — <code>write()</code> doesn't add newlines automatically.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q35 · High Score Finder</h4>
+  <p class="exam-question-text">Read <code>scores.txt</code> (format: <code>name,score</code> per line). Find and display the player with the <strong>highest score</strong>. Handle missing file and invalid data.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">try</span>:
+    <span class="bi">best_name</span>  = <span class="st">""</span>
+    <span class="bi">best_score</span> = -<span class="nb">1</span>
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="st">"scores.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+        <span class="kw">for</span> <span class="bi">line</span> <span class="kw">in</span> <span class="bi">f</span>:
+            <span class="kw">try</span>:
+                <span class="bi">n</span>, <span class="bi">s</span> = <span class="bi">line</span>.<span class="fn">strip</span>().<span class="fn">split</span>(<span class="st">","</span>)
+                <span class="kw">if</span> <span class="fn">int</span>(<span class="bi">s</span>) &gt; <span class="bi">best_score</span>:
+                    <span class="bi">best_score</span> = <span class="fn">int</span>(<span class="bi">s</span>)
+                    <span class="bi">best_name</span>  = <span class="bi">n</span>
+            <span class="kw">except</span> <span class="fn">ValueError</span>:
+                <span class="kw">pass</span>
+    <span class="fn">print</span>(<span class="st">f"Leader: {best_name} ({best_score})"</span>)
+<span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="st">"scores.txt not found."</span>)</pre>
+  <div class="solution-explanation">Nested try/except: outer catches missing file, inner catches bad lines (e.g., missing comma). <code>pass</code> silently skips bad data.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="5">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Files/Exceptions</span></div>
+  <h4 class="exam-title">Q36 · Word Count Function</h4>
+  <p class="exam-question-text">Write <code>word_count(filename)</code> that returns the total word count of a text file. Handle missing file by returning 0.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">def</span> <span class="fn">word_count</span>(<span class="bi">filename</span>):
+    <span class="kw">try</span>:
+        <span class="kw">with</span> <span class="fn">open</span>(<span class="bi">filename</span>, <span class="st">"r"</span>) <span class="kw">as</span> <span class="bi">f</span>:
+            <span class="kw">return</span> <span class="fn">len</span>(<span class="bi">f</span>.<span class="fn">read</span>().<span class="fn">split</span>())
+    <span class="kw">except</span> <span class="fn">FileNotFoundError</span>:
+        <span class="fn">print</span>(<span class="st">f"'{filename}' not found."</span>)
+        <span class="kw">return</span> <span class="nb">0</span>
+
+<span class="fn">print</span>(<span class="st">f"Words: {word_count('essay.txt')}"</span>)</pre>
+  <div class="solution-explanation"><code>.split()</code> with no argument splits on all whitespace and removes empties. Returning 0 in the error case lets the caller always get an int.</div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 6 — LISTS & TUPLES
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q37 · Fruit Basket</h4>
+  <p class="exam-question-text">Create a list of 5 fruits. Print the <strong>first</strong>, the <strong>last</strong>, and the <strong>total count</strong>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">fruits</span> = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>, <span class="st">"date"</span>, <span class="st">"elderberry"</span>]
+<span class="fn">print</span>(<span class="st">f"First: {fruits[0]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Last:  {fruits[-1]}"</span>)
+<span class="fn">print</span>(<span class="st">f"Total: {len(fruits)}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q38 · Build a List</h4>
+  <p class="exam-question-text">Start with an empty list. Use a loop to ask the user for <strong>5 names</strong> and add each to the list. Print the final list.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">names</span> = []
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="bi">name</span> = <span class="fn">input</span>(<span class="st">f"Name {i+1}: "</span>)
+    <span class="bi">names</span>.<span class="fn">append</span>(<span class="bi">name</span>)
+<span class="fn">print</span>(<span class="bi">names</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q39 · Search a List</h4>
+  <p class="exam-question-text">A shop stocks: <code>["pen", "book", "ruler", "eraser"]</code>. Ask the user what they want and tell them if the shop has it.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">stock</span> = [<span class="st">"pen"</span>, <span class="st">"book"</span>, <span class="st">"ruler"</span>, <span class="st">"eraser"</span>]
+<span class="bi">item</span> = <span class="fn">input</span>(<span class="st">"What do you need? "</span>).<span class="fn">lower</span>()
+<span class="kw">if</span> <span class="bi">item</span> <span class="kw">in</span> <span class="bi">stock</span>:
+    <span class="fn">print</span>(<span class="st">f"Yes, we have {item}."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">f"Sorry, no {item}."</span>)</pre>
+  <div class="solution-explanation"><code>.lower()</code> makes the search case-insensitive. <code>in</code> checks membership.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q40 · Score Statistics</h4>
+  <p class="exam-question-text">Ask for 5 test scores. Store in a list. Display: highest, lowest, average, and sorted list.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">scores</span> = []
+<span class="kw">for</span> <span class="bi">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nb">5</span>):
+    <span class="bi">scores</span>.<span class="fn">append</span>(<span class="fn">int</span>(<span class="fn">input</span>(<span class="st">f"Score {i+1}: "</span>)))
+<span class="fn">print</span>(<span class="st">f"Highest: {max(scores)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Lowest:  {min(scores)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Average: {sum(scores)/len(scores):.2f}"</span>)
+<span class="bi">scores</span>.<span class="fn">sort</span>()
+<span class="fn">print</span>(<span class="st">f"Sorted:  {scores}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q41 · Count Passes and Fails</h4>
+  <p class="exam-question-text">Given <code>marks = [82, 45, 67, 38, 91, 55, 49, 73]</code>, separate into two lists: <code>passes</code> (≥50) and <code>fails</code>. Display both lists and their counts.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">marks</span> = [<span class="nb">82</span>, <span class="nb">45</span>, <span class="nb">67</span>, <span class="nb">38</span>, <span class="nb">91</span>, <span class="nb">55</span>, <span class="nb">49</span>, <span class="nb">73</span>]
+<span class="bi">passes</span> = []
+<span class="bi">fails</span>  = []
+<span class="kw">for</span> <span class="bi">m</span> <span class="kw">in</span> <span class="bi">marks</span>:
+    <span class="kw">if</span> <span class="bi">m</span> &gt;= <span class="nb">50</span>:
+        <span class="bi">passes</span>.<span class="fn">append</span>(<span class="bi">m</span>)
+    <span class="kw">else</span>:
+        <span class="bi">fails</span>.<span class="fn">append</span>(<span class="bi">m</span>)
+<span class="fn">print</span>(<span class="st">f"Passes ({len(passes)}): {passes}"</span>)
+<span class="fn">print</span>(<span class="st">f"Fails  ({len(fails)}): {fails}"</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q42 · Remove Duplicates</h4>
+  <p class="exam-question-text">Given <code>[1, 2, 2, 3, 1, 4, 5, 3]</code>, build a new list with duplicates removed. Do NOT use <code>set()</code>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">nums</span>   = [<span class="nb">1</span>, <span class="nb">2</span>, <span class="nb">2</span>, <span class="nb">3</span>, <span class="nb">1</span>, <span class="nb">4</span>, <span class="nb">5</span>, <span class="nb">3</span>]
+<span class="bi">unique</span> = []
+<span class="kw">for</span> <span class="bi">n</span> <span class="kw">in</span> <span class="bi">nums</span>:
+    <span class="kw">if</span> <span class="bi">n</span> <span class="kw">not</span> <span class="kw">in</span> <span class="bi">unique</span>:
+        <span class="bi">unique</span>.<span class="fn">append</span>(<span class="bi">n</span>)
+<span class="fn">print</span>(<span class="bi">unique</span>)   <span class="cm"># [1, 2, 3, 4, 5]</span></pre>
+  <div class="solution-explanation"><code>not in</code> checks if the item is absent. Only add if it's not already there.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="6">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Lists/Tuples</span></div>
+  <h4 class="exam-title">Q43 · Student Grades with Tuples</h4>
+  <p class="exam-question-text">Create a list of tuples: <code>[("Ann",85), ("Bob",42), ("Cal",91), ("Di",58)]</code>. Loop through and print each name with their grade (75+=Distinction, 50+=Pass, else Fail). Count the distinctions.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">students</span> = [(<span class="st">"Ann"</span>, <span class="nb">85</span>), (<span class="st">"Bob"</span>, <span class="nb">42</span>), (<span class="st">"Cal"</span>, <span class="nb">91</span>), (<span class="st">"Di"</span>, <span class="nb">58</span>)]
+<span class="bi">distinctions</span> = <span class="nb">0</span>
+<span class="kw">for</span> <span class="bi">name</span>, <span class="bi">mark</span> <span class="kw">in</span> <span class="bi">students</span>:
+    <span class="kw">if</span> <span class="bi">mark</span> &gt;= <span class="nb">75</span>:
+        <span class="bi">grade</span> = <span class="st">"Distinction"</span>
+        <span class="bi">distinctions</span> += <span class="nb">1</span>
+    <span class="kw">elif</span> <span class="bi">mark</span> &gt;= <span class="nb">50</span>:
+        <span class="bi">grade</span> = <span class="st">"Pass"</span>
+    <span class="kw">else</span>:
+        <span class="bi">grade</span> = <span class="st">"Fail"</span>
+    <span class="fn">print</span>(<span class="st">f"{name}: {mark} — {grade}"</span>)
+<span class="fn">print</span>(<span class="st">f"\nDistinctions: {distinctions}"</span>)</pre>
+  <div class="solution-explanation">Tuple unpacking in the loop (<code>name, mark</code>) gives clean access to each element.</div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOPIC 7 — DATABASE PROGRAMMING
+     ═══════════════════════════════════════════════════════ -->
+
+<div class="exam-box" data-difficulty="easy" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q44 · Create a Table</h4>
+  <p class="exam-question-text">Connect to <code>library.db</code>. Create a table <code>books</code> with columns: <code>id</code> (primary key), <code>title</code> (text), <code>year</code> (integer).</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"library.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS books (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    year INTEGER)"""</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q45 · Insert Rows</h4>
+  <p class="exam-question-text">Insert 3 products into a <code>products</code> table (name, price): Bread R20, Milk R25, Eggs R45. Use <code>executemany()</code>.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">items</span> = [(<span class="st">"Bread"</span>, <span class="nb">20</span>), (<span class="st">"Milk"</span>, <span class="nb">25</span>), (<span class="st">"Eggs"</span>, <span class="nb">45</span>)]
+<span class="bi">cur</span>.<span class="fn">executemany</span>(
+    <span class="st">"INSERT INTO products (name, price) VALUES (?, ?)"</span>,
+    <span class="bi">items</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+  <div class="solution-explanation"><code>executemany()</code> takes a list of tuples, inserting each one. Always use <code>?</code> placeholders — never f-strings.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="easy" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-easy">Easy</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q46 · Select All Rows</h4>
+  <p class="exam-question-text">Write code to select and print ALL students from a <code>students</code> table.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students"</span>)
+<span class="kw">for</span> <span class="bi">row</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="bi">row</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q47 · Query with WHERE</h4>
+  <p class="exam-question-text">From a <code>students</code> table, select all students with a grade <strong>above 80</strong>, sorted by grade descending. Print name and grade for each.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(
+    <span class="st">"SELECT name, grade FROM students WHERE grade &gt; ? ORDER BY grade DESC"</span>,
+    (<span class="nb">80</span>,))
+<span class="kw">for</span> <span class="bi">name</span>, <span class="bi">grade</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>():
+    <span class="fn">print</span>(<span class="st">f"{name}: {grade}"</span>)</pre>
+  <div class="solution-explanation">Even for a fixed value (80), use <code>?</code> for best practice. <code>ORDER BY ... DESC</code> sorts highest first.</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q48 · Update and Delete</h4>
+  <p class="exam-question-text">Write code to: (1) update Alice's grade to 95, and (2) delete all students with grade below 30. Commit after each.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="cm"># Update</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"UPDATE students SET grade=? WHERE name=?"</span>, (<span class="nb">95</span>, <span class="st">"Alice"</span>))
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="cm"># Delete</span>
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"DELETE FROM students WHERE grade &lt; ?"</span>, (<span class="nb">30</span>,))
+<span class="bi">conn</span>.<span class="fn">commit</span>()</pre>
+  <div class="solution-explanation">Always use WHERE with UPDATE/DELETE. Without it, ALL rows are affected!</div></div>
+</div>
+
+<div class="exam-box" data-difficulty="medium" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-medium">Medium</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q49 · User Input to Database</h4>
+  <p class="exam-question-text">Ask the user for a student's name and mark. Insert into the <code>students</code> table. Handle non-numeric mark input.</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">name</span> = <span class="fn">input</span>(<span class="st">"Student name: "</span>)
+<span class="kw">try</span>:
+    <span class="bi">mark</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Mark: "</span>))
+    <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO students (name, grade) VALUES (?, ?)"</span>,
+                (<span class="bi">name</span>, <span class="bi">mark</span>))
+    <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="fn">print</span>(<span class="st">"Added!"</span>)
+<span class="kw">except</span> <span class="fn">ValueError</span>:
+    <span class="fn">print</span>(<span class="st">"Mark must be a number."</span>)</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q50 · CRUD Menu System</h4>
+  <p class="exam-question-text">Build a menu: (1) Add student, (2) View all, (3) Update grade, (4) Delete student, (5) Quit. Use a <code>students</code> table (id, name, grade).</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="kw">import</span> <span class="bi">sqlite3</span>
+<span class="bi">conn</span> = <span class="bi">sqlite3</span>.<span class="fn">connect</span>(<span class="st">"school.db"</span>)
+<span class="bi">cur</span> = <span class="bi">conn</span>.<span class="fn">cursor</span>()
+<span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY, name TEXT, grade REAL)"""</span>)
+<span class="bi">conn</span>.<span class="fn">commit</span>()
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="st">"\n1.Add 2.View 3.Update 4.Delete 5.Quit"</span>)
+    <span class="bi">ch</span> = <span class="fn">input</span>(<span class="st">"Choose: "</span>)
+    <span class="kw">if</span> <span class="bi">ch</span> == <span class="st">"1"</span>:
+        <span class="bi">n</span> = <span class="fn">input</span>(<span class="st">"Name: "</span>)
+        <span class="bi">g</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Grade: "</span>))
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"INSERT INTO students(name,grade) VALUES(?,?)"</span>, (<span class="bi">n</span>,<span class="bi">g</span>))
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"2"</span>:
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"SELECT * FROM students"</span>)
+        <span class="kw">for</span> <span class="bi">r</span> <span class="kw">in</span> <span class="bi">cur</span>.<span class="fn">fetchall</span>(): <span class="fn">print</span>(<span class="bi">r</span>)
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"3"</span>:
+        <span class="bi">sid</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"ID: "</span>))
+        <span class="bi">ng</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"New grade: "</span>))
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"UPDATE students SET grade=? WHERE id=?"</span>, (<span class="bi">ng</span>,<span class="bi">sid</span>))
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"4"</span>:
+        <span class="bi">sid</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"ID: "</span>))
+        <span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"DELETE FROM students WHERE id=?"</span>, (<span class="bi">sid</span>,))
+        <span class="bi">conn</span>.<span class="fn">commit</span>()
+    <span class="kw">elif</span> <span class="bi">ch</span> == <span class="st">"5"</span>:
+        <span class="kw">break</span>
+<span class="bi">conn</span>.<span class="fn">close</span>()</pre></div>
+</div>
+
+<div class="exam-box" data-difficulty="hard" data-topic="7">
+  <div class="exam-meta"><span class="exam-badge badge-hard">Hard</span><span class="topic-badge">Database</span></div>
+  <h4 class="exam-title">Q51 · Top 3 Scorers</h4>
+  <p class="exam-question-text">Query a <code>students</code> table and display only the <strong>top 3</strong> highest grades with rank labels (1st, 2nd, 3rd).</p>
+  <button class="solution-toggle">Show / Hide Solution</button>
+  <div class="solution"><div class="solution-label">✅ Solution</div>
+<pre><span class="bi">cur</span>.<span class="fn">execute</span>(<span class="st">"""SELECT name, grade FROM students
+    ORDER BY grade DESC LIMIT 3"""</span>)
+<span class="bi">ranks</span> = [<span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span>]
+<span class="kw">for</span> <span class="bi">i</span>, (<span class="bi">name</span>, <span class="bi">grade</span>) <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="bi">cur</span>.<span class="fn">fetchall</span>()):
+    <span class="fn">print</span>(<span class="st">f"{ranks[i]}: {name} — {grade}"</span>)</pre>
+  <div class="solution-explanation"><code>ORDER BY ... DESC LIMIT 3</code> gets the top 3. <code>enumerate()</code> gives the index for rank labels.</div></div>
+</div>
+
+  <div style="text-align:center; padding:40px 20px; color:var(--text-dim); font-size:0.9rem;">
+    Good luck studying! 🚀 Try writing solutions on paper first, then check your work.
+  </div>
+
+</main>
+
+<footer>
+  <p>Python 101 · Introduction to Programming (CMPG111)</p>
+  <p style="margin-top:4px;">Created by <strong>Zane Swanepoel</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
